@@ -1,10 +1,12 @@
 # elearning-node
 
+使用node+Express+Seneca提供聚合api
+
 ## 阶段1 --- 整合接口
 
 ### 登录 -- `login`
 
->	token 获取token
+> token 获取token
 
 > login 用户登录
 
@@ -24,7 +26,7 @@
 
 > getCourseProgress 课程进度
 
->	getExamDate 考试时间
+> getExamDate 考试时间
 
 广告 - `slideList`
 
@@ -44,8 +46,11 @@
 
 ## 阶段2 --- 接口缓存，错误处理
 
+
+对接口返回的错误，做适当处理
 ...
 
 ## 阶段3 --- 统计数据，数据可视化
+
 
 ...
