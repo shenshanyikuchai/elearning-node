@@ -1,6 +1,6 @@
 # elearning-node
 
-使用node+Express+Seneca提供聚合api
+使用node+hapi提供聚合api
 
 ## 阶段1 --- 整合接口
 
