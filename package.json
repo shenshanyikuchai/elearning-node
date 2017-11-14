@@ -1,0 +1,24 @@
+{
+  "name": "elearning-node",
+  "version": "1.0.0",
+  "description": "使用node+koa提供聚合api",
+  "main": "hello.js",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "koa": "./node_modules/.bin/runkoa bin/www",
+    "pm2": "pm2 start bin/run ",
+    "test": "set NODE_ENV=test && echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zpkweb/elearning-node.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
