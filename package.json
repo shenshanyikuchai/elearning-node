@@ -4,10 +4,12 @@
   "description": "使用node+koa提供聚合api",
   "main": "hello.js",
   "dependencies": {
+    "axios": "^0.17.1",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.3.0"
+    "koa-router": "^7.3.0",
+    "qs": "^6.5.1"
   },
   "devDependencies": {},
   "scripts": {
