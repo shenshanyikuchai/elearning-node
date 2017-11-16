@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const axios = require('axios');
-const axiosConfig = require('./request/config')
+const axiosConfig = require('./request/config');
 const bodyParser = require('koa-bodyparser');
 
 const controller = require('./controller');

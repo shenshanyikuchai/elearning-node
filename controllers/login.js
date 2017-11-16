@@ -15,20 +15,23 @@ function getUserPermissions() {
 
 
 let token = async (ctx,next) => {
-
+	await axios.get('http://api.zbgedu.com/api/zbids/app/gettoken/v1.0/', {
+    params: {
+    	"appType": "pc",
+    	"appId": "pcWeb",
+    	"appKey": "e877000be408a6cb0428e0f584456e03"
+    }
+  })
 }
 let login = async (ctx,next) => {
-	axios.all([getToken()]).then(axios.spread(function (token) {
-		console.log(token.data.data.token)
-  	axios.post('http://api.zbgedu.com/api/zbids/member/login/v1.0',{
-	      'account' : 'zpk',
-	      'password' : '123456',
-	      'token' : token.data.data.token
-	    }).then(res => {
-    	console.log(res.data)
-    	ctx.body = res.data
-    }).catch(err => console.log(err))
-  }));
+	await axios.post('http://api.zbgedu.com/api/zbids/member/login/v1.0',{
+      'account' : 'zpk',
+      'password' : '123456',
+      'token' : token.data.data.token
+    }).then(res => {
+  	console.log(res.data)
+  	ctx.body = res.data
+  }).catch(err => console.log(err))
 }
 module.exports = {
 	'GET /login' : token,login

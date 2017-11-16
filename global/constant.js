@@ -1,9 +1,10 @@
-export default{
+module.exports = {
     "ENTER_KEY" : "13",
     "token": "",
     "loginLink" : "http://www.zbgedu.com/index.php?m=user&c=index&a=index",
     "loginLinkTest" : "#studycenterLogin",
     "host": {
+      "origin" : "http://elearning.zbgedu.com",
       "name": "http://api.zbgedu.com",
       "nameAction": "http://action.zbgedu.com",
       "demoName" : "http://demo.caicui.com",

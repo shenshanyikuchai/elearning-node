@@ -1,19 +1,21 @@
-
+// const sys = require('sys');
 
 const Koa = require('koa');
-const app = new Koa();
-const router = require('koa-router')();
+
 const koaBody = require('koa-body');
- 
-router.post('/users', koaBody(),
-  (ctx) => {
-    console.log(ctx.request.body);
-    // => POST body
-    ctx.body = JSON.stringify(ctx.request.body);
-  }
-);
- 
-app.use(router.routes());
+
+// const api = require('./request/api');
+
+const router = require('./router/config')
+
+const app = new Koa();
+
+app.use(async (ctx, next) => {
+  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+  await next();
+});
+
+
+app.use(router());
  
 app.listen(3000);
-console.log('curl -i http://localhost:3000/users -d "name=test"');

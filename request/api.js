@@ -1,103 +1,5 @@
-
-
-const axios = require('axios');
-const config = require('./config');
-const COMMON = require('../global/constant')
-
-axios.defaults.timeout = 0;
-
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
-
-// axios.interceptors.request.use(function (config) {
-  
-//   return config;
-    
-//   }, function (error) {
-//     // 对请求错误做些什么
-//     return Promise.reject(error);
-//   });
-axios.interceptors.response.use((res) => {
-  if (res && res.data.state == 'success') {
-    return Promise.resolve(res.data);
-  } else {
-    return Promise.reject(res.data);
-  }
-}, (error) => {
-  return Promise.reject(error);
-});
-function ajax(servername,payload){
-  var args = {};
-  var thatServer = server[servername];
-  var hostName = '';
-  var thatServerUrl = thatServer.url;
-  if(process.env.NODE_ENV == 'development'){ // production development
-    if(thatServer.staticDataDemo){
-      args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
-      args.type = 'GET';
-    }else{
-      hostName  = COMMON.host.demoName;
-      if(thatServer.hostNameDemo){
-        hostName = thatServer.hostNameDemo;
-      }
-      if(thatServer.urlDemo){
-        thatServerUrl = thatServer.urlDemo;
-      }
-      if(thatServer.mock){
-        args.url = thatServer.mock;
-        args.type = 'GET';
-      }else{
-        args.url = hostName + thatServerUrl  + "?verTT=" + new Date().getTime();
-        args.type = thatServer.type ? thatServer.type : 'GET';
-      }
-    }
-  }else{
-    hostName = COMMON.host.name;
-    if(thatServer.hostName){
-      hostName = thatServer.hostName;
-    }
-    if(thatServer.mock){
-      args.url = thatServer.mock;
-      args.type = 'GET';
-    }else{
-      args.url = hostName + thatServerUrl  + "?verTT=" + new Date().getTime();
-      args.type = thatServer.type ? thatServer.type : 'GET';
-    }
-  }
-  let localData = localStorage.getItem('elearning/'+servername);
-  if(localData){
-    return Vue.localForage.getItem(servername);
-  }else{
-    if (args.type === 'POST') {
-      return axios.post(args.url, payload, config).then(done(servername,res)).catch(err => err)
-    } else if (args.type === 'GET') {
-      return axios.get(args.url, {
-        params: payload
-      }, config).then(res => done(servername,res)).catch(err => err)
-    }
-  }
-
-  
-}
-function done(servername,res){
-  let addLocalStorage = true;
-  noLocalStorage.forEach(list=>{
-    if(list == servername){
-      addLocalStorage = false;
-    }
-  })
-  if(addLocalStorage){
-    Vue.localForage.setItem(servername,res).then(value => {})
-  }
-  
-  return res
-}
-function fail(){
-
-}
-const noLocalStorage = ['gettoken','login','updateStatus'];
-
-const server = {
+const COMMON = require('../global/constant');
+module.exports = {
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'gettoken': {
     'name' : '获取token',
@@ -391,12 +293,12 @@ const server = {
     'url': '/api/business/order/wileyCourseStudy/v1.0'
   },
   'getAppointmentState': {
-    'hostName': window.origin,
+    'hostName': COMMON.host.origin,
     'url': '/publicCourse/getAppointmentState.do',
     'type': 'POST'
   },
   'appointClick': {
-    'hostName': window.origin,
+    'hostName': COMMON.host.origin,
     'url': '/publicCourse/appointClick.do',
     'type': 'POST'
   },
@@ -493,7 +395,3 @@ const server = {
     'url': '/api/teachsource/knowledge/getKnowledgePointInfo'
   }
 };
-
-module.exports = {
-  ajax
-}
