@@ -5,12 +5,21 @@
 ## 阶段1 --- 整合接口
 
 ### 登录 -- `login`
+```
+http://localhost:3000/login?type=pcWeb&username=zpk&password=123456
+
+产品类型 - type : pcWeb/winExe/iPad/iPhone/aPhone/aPad/zbjyjt/zbjyyw
+用户名   - username : zpk
+密码     - password : 123456
+
+```
 
 > token 获取token
 
 > login 用户登录
 
 ### 首页 -- `index`
+
 
 用户数据 - `userInfo`
 

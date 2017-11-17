@@ -9,6 +9,6 @@ module.exports = [
 		path : "/index",
 		type : "get",
 		// modules : ["courseInfo/learningcourse","courseInfo/getCourseProgress","courseInfo/getExamDate","userInfo/mycount","userInfo/getLoginLog","userInfo/messageList-noRead","slideList","index/index"]
-		modules : ["index/index"]
+		modules : ["courseInfo/learningcourse","courseInfo/getCourseProgress","courseInfo/getExamDate","index/index"]
 	}
 ]

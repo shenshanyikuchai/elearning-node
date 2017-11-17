@@ -1,11 +1,10 @@
-const COMMON = require('../global/constant');
 module.exports = {
+  'demo' : true,
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'gettoken': {
     'name' : '获取token',
     'url': '/api/zbids/app/gettoken/v1.0/',
     'mock' : '/static/mock/token.json',
-    'data': COMMON.product.pcWeb,
     'defaultData' : {
       "appType": "pc",
       "appId": "pcWeb",
@@ -293,12 +292,12 @@ module.exports = {
     'url': '/api/business/order/wileyCourseStudy/v1.0'
   },
   'getAppointmentState': {
-    'hostName': COMMON.host.origin,
+    'hostName': 'http://elearning.zbgedu.com',
     'url': '/publicCourse/getAppointmentState.do',
     'type': 'POST'
   },
   'appointClick': {
-    'hostName': COMMON.host.origin,
+    'hostName': 'http://elearning.zbgedu.com',
     'url': '/publicCourse/appointClick.do',
     'type': 'POST'
   },
@@ -394,4 +393,4 @@ module.exports = {
   'getKnowledgePointInfo': {
     'url': '/api/teachsource/knowledge/getKnowledgePointInfo'
   }
-};
+}

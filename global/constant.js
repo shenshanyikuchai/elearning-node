@@ -1,18 +1,18 @@
 module.exports = {
     "ENTER_KEY" : "13",
     "token": "",
-    "loginLink" : "http://www.zbgedu.com/index.php?m=user&c=index&a=index",
+    "loginLink" : "http://www.caicui.com/index.php?m=user&c=index&a=index",
     "loginLinkTest" : "#studycenterLogin",
     "host": {
-      "origin" : "http://elearning.zbgedu.com",
-      "name": "http://api.zbgedu.com",
-      "nameAction": "http://action.zbgedu.com",
+      "origin" : "http://elearning.caicui.com",
+      "name": "http://api.caicui.com",
+      "nameAction": "http://action.caicui.com",
       "demoName" : "http://demo.caicui.com",
-      "static" : "http://exstatic.zbgedu.com/",
-      "img" : "http://eximg.zbgedu.com",
-      "imgAddress" : "http://exstatic.zbgedu.com/",
-      "infoAddress" : "http://elearning.zbgedu.com/",
-      "IPLocation" : "http://elearning.zbgedu.com/api/v2/"
+      "static" : "http://exstatic.caicui.com/",
+      "img" : "http://eximg.caicui.com",
+      "imgAddress" : "http://exstatic.caicui.com/",
+      "infoAddress" : "http://elearning.caicui.com/",
+      "IPLocation" : "http://elearning.caicui.com/api/v2/"
     },
     "product": {
       "pcWeb": {
