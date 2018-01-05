@@ -1,0 +1,23 @@
+{
+  "totalCount" : 739,
+  "pageNo" : 1,
+  "state" : "success",
+  "data" : [ {
+    "id" : "815420c2b01011e78b8b00163e022e38",
+    "createDate" : null,
+    "modifyDate" : null,
+    "appVersion" : null,
+    "clientType" : "pc",
+    "ip" : "111.193.31.172",
+    "loginTime" : 1507897059000,
+    "logoutTime" : null,
+    "phoneID" : null,
+    "phoneType" : null,
+    "systemType" : null,
+    "systemVersion" : null,
+    "tokenId" : "abe3eed5-fafe-428f-9f94-04e8b09747b5",
+    "memberId" : "8a22cc685215de9f01521b37b748020f"
+  } ],
+  "pageSize" : 1,
+  "msg" : ""
+}

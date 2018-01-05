@@ -1,0 +1,75 @@
+{
+  "data" : [ {
+    "id" : "8a22cc685234d5e4015234e6c2c70018",
+    "categoryName" : "F4",
+    "categoryId" : "ff808081473905e70147625307e90074",
+    "examinationDate" : 1465542000000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_F4"
+  }, {
+    "id" : "8a22ecb5547f18750154e5a7fe3a0ee8",
+    "categoryName" : "P3",
+    "categoryId" : "ff808081473905e701476254e30b007b",
+    "examinationDate" : 1465455600000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_P3"
+  }, {
+    "id" : "8a22ecb554e6d1d50154f09ebb761b0d",
+    "categoryName" : "CMA 中文 Part-1",
+    "categoryId" : "ff808081486933e601489c799f0f0868",
+    "examinationDate" : 1469836800000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "CMA_P1"
+  }, {
+    "id" : "8a22ecb554e6d1d50154f13ca03d1ce3",
+    "categoryName" : "CMA 中文 Part-2",
+    "categoryId" : "ff808081486933e601489c7a1aa20869",
+    "examinationDate" : 1469858400000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "CMA_P2"
+  }, {
+    "id" : "8a22ecb55547b3fb015548f724290203",
+    "categoryName" : "F2",
+    "categoryId" : "ff808081473905e7014762524e800072",
+    "examinationDate" : 1480921200000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_F2"
+  }, {
+    "id" : "8a22ecb555c9ab9b0155e35993f630a8",
+    "categoryName" : "FRM Part I",
+    "categoryId" : "8a22ecb5537864ee01537901cba30002",
+    "examinationDate" : 1479513600000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "FRM_P1"
+  }, {
+    "id" : "8a22ecb55620ce4c0156351f37f34d3f",
+    "categoryName" : "P1",
+    "categoryId" : "ff808081473905e70147625487550079",
+    "examinationDate" : 1481094000000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_P1"
+  }, {
+    "id" : "8a22ecb55620cfad015643f42d8c0b23",
+    "categoryName" : "F6",
+    "categoryId" : "ff80808147c904170147d2d3d4b60098",
+    "examinationDate" : 1481180400000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_F6"
+  }, {
+    "id" : "8a22ecb5569c94e001569ce147e602b1",
+    "categoryName" : "P5",
+    "categoryId" : "ff808081473905e7014762552eb6007d",
+    "examinationDate" : 1481094000000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_P5"
+  }, {
+    "id" : "dd4becb8eb5711e6afc400163e022e38",
+    "categoryName" : "F1",
+    "categoryId" : "ff808081473905e701476204cb6c006f",
+    "examinationDate" : 1489129200000,
+    "memberId" : "8a22cc685215de9f01521b37b748020f",
+    "categorySign" : "ACCA_F1"
+  } ],
+  "state" : "success",
+  "msg" : ""
+}

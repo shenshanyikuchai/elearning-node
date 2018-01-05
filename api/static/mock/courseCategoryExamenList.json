@@ -1,0 +1,30 @@
+{
+  "data" : [ {
+    "id" : "ff8080814d4b3152014d551d7a240572",
+    "examenBindType" : "courseCategory",
+    "examenState" : "publish",
+    "examenType" : "imitate",
+    "time" : 120,
+    "title" : "ACCA-F1-模拟题1",
+    "typeId" : "ff808081473905e701476204cb6c006f",
+    "versionId" : "ff8080814d4b3152014d51b75f55026b",
+    "adminId" : "ff8080814a7f5035014a9415910a2547",
+    "difficultyId" : "中等",
+    "generateType" : "manual"
+  }, {
+    "id" : "ff8080814d4b3152014d551d566e0540",
+    "examenBindType" : "courseCategory",
+    "examenState" : "publish",
+    "examenType" : "imitate",
+    "time" : 120,
+    "title" : "ACCA-F1-模拟题2",
+    "typeId" : "ff808081473905e701476204cb6c006f",
+    "versionId" : "ff8080814d4b3152014d51b7eec1026c",
+    "adminId" : "ff8080814a7f5035014a9415910a2547",
+    "difficultyId" : "中等",
+    "generateType" : "manual"
+  } ],
+  "state" : "success",
+  "msg" : null,
+  "code" : null
+}

@@ -1,0 +1,11 @@
+{
+  "data" : [ {
+    "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+    "totalCount" : 145,
+    "imitateCount" : 26,
+    "realCount" : 119
+  } ],
+  "state" : "success",
+  "msg" : null,
+  "code" : null
+}

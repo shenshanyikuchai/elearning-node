@@ -1,0 +1,23 @@
+{
+  "data" : [ {
+    "content" : "<div style=\"background-position:center top;background-image:url(/upload/201710/867c9935753d420e8e6eb4746ac11420.png);background-repeat:no-repeat;background-color:#b4cc8e;\">\r\n\t<div class=\"exam-box\">\r\n\t\t<a href=\"http://www.zbgedu.com/statics/zhuanti/308fangtan/index.html\" target=\"_blank\"><img src=\"/upload/201710/ebaf160f8eb44769ac707457684e0274.png\" draggable=\"false\" /> </a> <br />\r\n\t</div>\r\n</div>",
+    "id" : "c70c0251ae5911e78b8b00163e022e38",
+    "valid" : true,
+    "title" : "@308 - 中博访谈节目",
+    "other" : "",
+    "imagePath" : "/upload/201710/ebaf160f8eb44769ac707457684e0274.png",
+    "whereTag" : 0,
+    "url" : "http://www.zbgedu.com/statics/zhuanti/308fangtan/index.html"
+  }, {
+    "content" : "<div style=\"background-position:center top;background-image:url(/upload/201710/82e32acb5aa84ba2a8d63ed0f499e3cc.png);background-repeat:no-repeat;background-color:#b4cc8e;\">\r\n\t<div class=\"exam-box\">\r\n\t\t<a href=\"http://www.zbgedu.com/\" target=\"_blank\"><img src=\"/upload/201710/960f77ac08214295a445394c0688d099.png\" draggable=\"false\" /> </a> <br />\r\n\t</div>\r\n</div>",
+    "id" : "772223dc2deeb1a17636debd5d61038e",
+    "valid" : true,
+    "title" : "中博教育新网站上线",
+    "other" : "",
+    "imagePath" : "/upload/admin/201710/0bc385baf20c8e5e849951fc48926f0d.jpg",
+    "whereTag" : 0,
+    "url" : "http://www.zbgedu.com/"
+  } ],
+  "state" : "success",
+  "msg" : ""
+}

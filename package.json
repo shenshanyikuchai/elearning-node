@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev" : "set NODE_ENV=nodetest && nodemon server.js",
+    "dev" : "nodemon api/server.js",
     "koa": "./node_modules/.bin/runkoa bin/www",
     "pm2": "pm2 start bin/run ",
     "test": "set NODE_ENV=test && echo \"Error: no test specified\" && exit 1"
