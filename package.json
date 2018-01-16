@@ -15,10 +15,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev" : "nodemon api/server.js",
-    "koa": "./node_modules/.bin/runkoa bin/www",
-    "pm2": "pm2 start bin/run ",
-    "test": "set NODE_ENV=test && echo \"Error: no test specified\" && exit 1"
+    "dev" : "nodemon --inspect api/server.js",
+    "demo": "set NODE_ENV=development && nodemon --inspect api/server.js"
   },
   "repository": {
     "type": "git",

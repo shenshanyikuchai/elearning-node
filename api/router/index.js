@@ -1,37 +1,37 @@
+const constant = require('../global/constant');
 module.exports = async (ctx, next) => {
+	
 	ctx.state.mock = ctx.query.mock;
 	ctx.state.fail = [];
-	ctx.state.code = "200";
-	ctx.state.msg = "成功";
-	ctx.state.state = "success";
+	ctx.state.response = constant.response.success;
   console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-	await next();
-	
+	try {
+    await next();
+  } catch (err) {
+    ctx.state.response = constant.response.nodeerror;
+  }
 	let fail = ctx.state.fail;
+	let responseData = {};
 	if(fail && fail.length){
-		for(var i=0;i<fail.length;i++){
+		for(let i=0;i<fail.length;i++){
 			if(fail[i].state == "error"){
 				if(fail[i].msg == "nologin"){
-					ctx.state.code = "333";
-					ctx.state.msg = "没有登录";
-					ctx.state.state = "nologin";
+					responseData = constant.response.nologin;
 				}else{
-					ctx.state.code = "444";
-					ctx.state.msg = "服务器错误";
-					ctx.state.state = "error";
+					responseData = constant.response.error;
 				}
 			}
 		}
-	}
-	let bodyData = {
-		code : ctx.state.code,
-		msg : ctx.state.msg,
-		state : ctx.state.state
-	}
-	if(ctx.state.response){
-		for(var i in ctx.state.response){
-			bodyData[i] = ctx.state.response[i];
+	}else{
+		for(let i in ctx.state.response){
+			responseData[i] = ctx.state.response[i];
+		}
+		if(ctx.state.data){
+			for(let i in ctx.state.data){
+				responseData[i] = ctx.state.data[i];
+			}
 		}
 	}
-	ctx.body = bodyData;
+	
+	ctx.body = responseData;
 }

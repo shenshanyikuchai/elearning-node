@@ -1,5 +1,10 @@
 module.exports = [
 	{
+		code : "200",
+		msg : "首页",
+		state : "success"
+	},
+	{
 		code : "333",
 		msg : "没有登录",
 		state : "nologin"

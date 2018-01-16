@@ -7,12 +7,13 @@ module.exports = {
       "origin" : "http://elearning.zbgedu.com",
       "name": "http://api.zbgedu.com",
       "nameAction": "http://action.zbgedu.com",
-      "demoName" : "http://demo.zbgedu.com",
+      "demoName" : "http://demo.caicui.com",
       "static" : "http://exstatic.zbgedu.com/",
       "img" : "http://eximg.zbgedu.com",
       "imgAddress" : "http://exstatic.zbgedu.com/",
       "infoAddress" : "http://elearning.zbgedu.com/",
-      "IPLocation" : "http://elearning.zbgedu.com/api/v2/"
+      "IPLocation" : "http://elearning.zbgedu.com/api/v2/",
+      "actionHostName" : "http://action.zbgedu.com/api/userAction/scene/mobileIndex"
     },
     "product": {
       "pcWeb": {
@@ -44,6 +45,38 @@ module.exports = {
         "appType": "aPad",
         "appId": "aPadCourse",
         "appKey": "f7e4ebaa872f38db7b548b870c13e79e"
+      }
+    },
+    "response" : {
+      "success" : {
+        "code" : "200",
+        "msg" : "成功",
+        "state" : "success"
+      },
+      "nologin" : {
+        "code" : "333",
+        "msg" : "没有登录",
+        "state" : "nologin"
+      },
+      "error" : {
+        "code" : "444",
+        "msg" : "服务器错误",
+        "state" : "error"
+      },
+      "noparameter" : {
+        "code" : "555",
+        "msg" : "参数错误",
+        "state" : "noparameter"
+      },
+      "loading" : {
+        "code" : "666",
+        "msg" : "网络没有响应",
+        "state" : "loading"
+      },
+      "nodeerror" : {
+        "code" : "777",
+        "msg" : "node服务器错误",
+        "state" : "nodeerror"
       }
     }
   }

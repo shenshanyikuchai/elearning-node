@@ -34,19 +34,37 @@ module.exports = {
 		}
 		return format;
 	},
+	timeago : function (data){
+	    var $_data = parseInt(data);
+	    var $_return_string = '1分钟前';
+	    var $_timestamp=parseInt(new Date().getTime()/1000);
+	    var $_reste = $_timestamp - $_data;
+	    if($_reste<0){
+	    	$_reste = 1;
+	    }
+	   	if($_reste <3600){
+	        $_return_string = Math.ceil($_reste/60)+'分钟前';
+	    }else if($_reste>=3600 && $_reste <(3600*24)){
+	        $_return_string = Math.ceil($_reste/3600)+'小时前';
+	    }else if($_reste>=(3600*24) && $_reste <(3600*24*30)){
+	        $_return_string = Math.ceil($_reste/(3600*24))+'天前';
+	    }else if($_reste>=(3600*24*30) && $_reste <(3600*24*30*12)){
+	        $_return_string = Math.ceil($_reste/(3600*24*30))+'月前';
+	    }else{
+	        $_return_string = Math.ceil(parseInt($_reste/(3600*24*30*12)))+'年前';
+	    }
+	    return $_return_string;
+	},
 	getPercentage : function(payload){
-		let percentage = 0;
+		let percentage = 1;
 		let progress = payload.progress ? parseInt(payload.progress) : 0;
 		let total = payload.total ? parseInt(payload.total) : 0;
-		
 		if(progress && total){
 			let a = progress/total;
 			if(a>0 && a<0.01){
 				a = 0.01
 			}
 			percentage = parseInt(a*100);
-		}else if(payload.lastProgress){
-			percentage = 1;
 		}
 		if(percentage >= 100){
 			percentage = 100;
@@ -58,5 +76,10 @@ module.exports = {
     	"total" : total,
     	"percentage" : percentage
     };
+  },
+  entities : function(content){
+  	let arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"','#39':"'"};
+  	let newContent = content.replace(/&(lt|gt|nbsp|amp|quot|#39);/ig,function(all,t){return arrEntities[t];});
+  	return newContent.replace(/<[^>]+>/g,"").replace(/(^\s+)|(\s+$)/g,"").replace(/(\r)|(\n)|(\t)/g,'');
   }
 }

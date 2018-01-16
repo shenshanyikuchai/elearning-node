@@ -27,12 +27,15 @@ axios.interceptors.response.use((res) => {
 }, (error) => {
   return Promise.reject(error);
 });
+
 function ajax(payload){
   var args = {};
   var thatServer = api[payload.server];
   var hostName = '';
   var thatServerUrl = thatServer.url;
-  if(process.env.NODE_ENV == 'development'){ // production development
+  // console.log(process.env.NODE_ENV)
+  if(process.env.NODE_ENV == "demo"){ // production development
+    console.log(thatServer)
     if(thatServer.staticDataDemo){
       args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
       args.type = 'GET';
@@ -92,7 +95,13 @@ function ajax(payload){
 }
 function done(payload, res){
   if(res.state == "success"){
-    return res.data;
+    return res;
+    if(payload.server == "messageListNoRead"){
+      return res;
+    }else{
+      return res.data;
+    }
+    
   }else if(res.state == "error"){
     payload.ctxState.fail.push(res);
     return res;
