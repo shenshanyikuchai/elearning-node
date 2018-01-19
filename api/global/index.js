@@ -1,4 +1,3 @@
-
 module.exports = {
 	getDate : function(str,connector){
 		if(str == null){

@@ -35,7 +35,6 @@ function ajax(payload){
   var thatServerUrl = thatServer.url;
   // console.log(process.env.NODE_ENV)
   if(process.env.NODE_ENV == "demo"){ // production development
-    console.log(thatServer)
     if(thatServer.staticDataDemo){
       args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
       args.type = 'GET';
@@ -71,15 +70,15 @@ function ajax(payload){
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(res)).catch(err => fail(payload, err))
   } else if (args.type === 'GET') {
-    // console.log(args.url+JSON.stringify(payload.data))
+    console.log(args.url+JSON.stringify(payload.data))
     return axios.get(args.url, {
       params: payload.data
     }, config).then(res => done(payload, res)).catch(err => fail(payload, err))
   }else if(args.type === 'JSON'){
     var fs = require('fs');
     var path = require('path');
-    var file = path.resolve(__dirname, '../'+args.url);
     
+    let file = `${process.cwd()}/static/mock/${args.url}`;
     return new Promise(function(resolve, reject){
       fs.readFile(file, "utf8", function(err, data){
         if(err){
@@ -94,6 +93,7 @@ function ajax(payload){
   
 }
 function done(payload, res){
+  console.log("done")
   if(res.state == "success"){
     return res;
     if(payload.server == "messageListNoRead"){
@@ -103,14 +103,23 @@ function done(payload, res){
     }
     
   }else if(res.state == "error"){
+    
     payload.ctxState.fail.push(res);
     return res;
   }
   
 }
 function fail(payload, err){
-  payload.ctxState.fail.push(err);
-  return err
+  console.log("fail")
+  if(payload.server == "getappdownloadinfo"){
+    return err
+  }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){
+    return err
+  }else{
+    payload.ctxState.fail.push(err);
+  }
+  
+  
 }
 
 module.exports = {
