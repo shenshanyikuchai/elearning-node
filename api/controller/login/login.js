@@ -3,7 +3,7 @@ const Request = require('../../request')
 module.exports = async(ctx) => {
 	await Request.ajax({
 		server : 'login',
-		mock : ctx.state.mock,
+		ctxState : ctx.state,
 		data : {
 	    token: ctx.state.token,
 	    account: ctx.query.username,

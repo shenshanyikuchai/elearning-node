@@ -1,6 +1,6 @@
 module.exports = [
 	{
-		name : "api",
+		name : "接口文档",
 		path : "api",
 		type : "get",
 		modules : ["html/api"]
@@ -12,7 +12,7 @@ module.exports = [
 	},{
 		name : "登录",
 		path : "login",
-		type : "get",
+		type : "post",
 		modules : ["login/getToken","login/login"],
 		queryData : {
 			type : "pcWeb",

@@ -70,7 +70,7 @@ function ajax(payload){
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(res)).catch(err => fail(payload, err))
   } else if (args.type === 'GET') {
-    console.log(args.url+JSON.stringify(payload.data))
+    // console.log(args.url+JSON.stringify(payload.data))
     return axios.get(args.url, {
       params: payload.data
     }, config).then(res => done(payload, res)).catch(err => fail(payload, err))
@@ -93,7 +93,6 @@ function ajax(payload){
   
 }
 function done(payload, res){
-  console.log("done")
   if(res.state == "success"){
     return res;
     if(payload.server == "messageListNoRead"){
@@ -110,7 +109,6 @@ function done(payload, res){
   
 }
 function fail(payload, err){
-  console.log("fail")
   if(payload.server == "getappdownloadinfo"){
     return err
   }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){
