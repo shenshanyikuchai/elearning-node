@@ -23,7 +23,7 @@ module.exports = [
 		name : "头部",
 		path : "header",
 		type : "get",
-		modules : ["index","component/header"],
+		modules : ["component/header"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 		}
@@ -31,7 +31,7 @@ module.exports = [
 		name : "移动端首页",
 		path : "mobileIndex",
 		type : "get",
-		modules : ["index","mobile/index","mobile/indexRequest","component/courseProgress"],
+		modules : ["mobile/index","mobile/indexRequest","component/courseProgress"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d"
@@ -40,7 +40,7 @@ module.exports = [
 		name : "pc端首页",
 		path : "pcIndex",
 		type : "get",
-		modules : ["index","pc/index","pc/indexRequest","component/courseProgress"],
+		modules : ["pc/index","pc/indexRequest","component/courseProgress"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d"
@@ -49,7 +49,7 @@ module.exports = [
 		name : "pc端课程首页",
 		path : "pcCourseIndex",
 		type : "get",
-		modules : ["index","pc/courseIndex","pc/courseIndexRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		modules : ["pc/courseIndex","pc/courseIndexRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",

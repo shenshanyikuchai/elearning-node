@@ -1,10 +1,9 @@
 
-
 const axios = require('axios');
 const qs = require('qs');
 const config = require('./axios-config');
-const COMMON = require('../global/constant')
-const api = require('./api.js')
+const COMMON = require('../global/constant');
+const api = require('./api.js');
 // axios.defaults.timeout = 0;
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -17,8 +16,15 @@ const api = require('./api.js')
 //   }, function (error) {
 //     // 对请求错误做些什么
 //     return Promise.reject(error);
-//   });
+//   }); 
 axios.interceptors.response.use((res) => {
+  if (typeof res.data == "string") {
+    try {
+      res.data = JSON.parse(res.data);
+    } catch (e) {
+      Promise.reject(res.data);
+    }
+  }
   if (res && res.data.state == 'success') {
     return Promise.resolve(res.data);
   } else {
@@ -67,18 +73,19 @@ function ajax(payload){
       args.type = thatServer.type ? thatServer.type : 'GET';
     }
   }
+  // console.log(args.url+JSON.stringify(payload.data))
   if (args.type === 'POST') {
-    return axios.post(args.url, payload.data, config).then(res => done(res)).catch(err => fail(payload, err))
+    return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   } else if (args.type === 'GET') {
-    // console.log(args.url+JSON.stringify(payload.data))
     return axios.get(args.url, {
       params: payload.data
-    }, config).then(res => done(payload, res)).catch(err => fail(payload, err))
+    }, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   }else if(args.type === 'JSON'){
     var fs = require('fs');
     var path = require('path');
+    // let file = `${process.cwd()}/static/mock/${args.url}`;
     
-    let file = `${process.cwd()}/static/mock/${args.url}`;
+    let file = `${__dirname}/../static/mock/${args.url}`;
     return new Promise(function(resolve, reject){
       fs.readFile(file, "utf8", function(err, data){
         if(err){

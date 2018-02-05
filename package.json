@@ -4,17 +4,15 @@
   "description": "使用node+koa提供聚合api",
   "main": "hello.js",
   "dependencies": {
-    "axios": "^0.17.1",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compose": "^4.0.0",
     "koa-router": "^7.3.0",
     "koa2-cors": "^2.0.5",
-    "lodash": "^4.17.4",
-    "qs": "^6.5.1"
+    "axios": "^0.17.1",
+    "lodash": "^4.17.4"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "nodemon --inspect api/server.js",
     "demo": "set NODE_ENV=development && nodemon --inspect api/server.js"

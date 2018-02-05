@@ -6,10 +6,10 @@ module.exports = async(ctx) => {
 		ctxState : ctx.state,
 		data : {
 	    token: ctx.state.token,
-	    account: ctx.query.username,
-	    password: ctx.query.password
+	    account: ctx.request.body.username,
+	    password: ctx.request.body.password
 	  }
 	}).then((res) => {
-    ctx.body = res
+    ctx.state.data = res
   })
 }
