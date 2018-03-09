@@ -1,0 +1,11 @@
+{
+	"state" : "success",
+	"msg" : "",
+	"classCourseList" : [{
+		"courseName" : "CMA英语基础课-A组",
+		"courseId" : "2344222"
+	},{
+		"courseName" : "ACCA-F2全景通关班-A组",
+		"courseId" : "11111"
+	}]
+}

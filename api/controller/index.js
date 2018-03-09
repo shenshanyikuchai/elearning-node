@@ -1,9 +1,12 @@
 const constant = require('../global/constant');
+// const platform = require('platform');
 module.exports = async (ctx, next) => {
-	
 	ctx.state.mock = ctx.query.mock;
 	ctx.state.fail = [];
 	ctx.state.response = constant.response.success;
+	// const UA = platform.parse(ctx.request.header['user-agent']);
+	// ctx.state.UA = UA;
+
   console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
 	try {
     await next();
@@ -29,13 +32,11 @@ module.exports = async (ctx, next) => {
 		for(let i in ctx.state.response){
 			responseData[i] = ctx.state.response[i];
 		}
-		// console.log(ctx.state.data)
 		if(ctx.state.data){
 			for(let i in ctx.state.data){
 				responseData[i] = ctx.state.data[i];
 			}
 		}
 	}
-	
 	ctx.body = responseData;
 }

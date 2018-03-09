@@ -1,56 +1,8 @@
 {
-  "totalCount" : 4,
+  "totalCount" : 0,
   "pageNo" : 1,
   "pageSize" : 20,
   "state" : "success",
-  "data" : [ {
-    "sender" : "baoxiongxiong12",
-    "content" : "&lt;p&gt;+1&lt;/p&gt;&lt;input class=&#39;bbsid&#39; type=&#39;hidden&#39; value=&#39;51829&#39;/&gt;",
-    "id" : "b528a517bf9011e78b8b00163e022e38",
-    "sentTime" : 1509598539,
-    "title" : "到底选啥",
-    "headImg" : "/upload/avatar/big_8a22ecb5583f6e930158470dd8d63ba7.jpg",
-    "urlId" : null,
-    "status" : "0",
-    "textId" : "124fc99ebf8a11e78b8b00163e022e38",
-    "senderId" : "8a22ecb5583f6e930158470dd8d63ba7",
-    "msgType" : "0"
-  }, {
-    "sender" : "lvguoyong",
-    "content" : "&lt;p&gt;这里明显选B，题目问的是哪一项是单因素对冲存在的最大问题。单因素对冲假设了利率曲线上所有的店都将会平行移动，也就是说它们是完全正相关的，但是这种假设在实践中总是不能被满足，因而这道题选B。&lt;/p&gt;&lt;br&gt;&lt;input class=&#39;bbsid&#39; type=&#39;hidden&#39; value=&#39;51829&#39;/&gt;",
-    "id" : "b52a1438bf9011e78b8b00163e022e38",
-    "sentTime" : 1509531229,
-    "title" : "到底选啥",
-    "headImg" : "/upload/avatar/big_8a2b99a553dbbef4015422ae88db40fd.jpg",
-    "urlId" : null,
-    "status" : "0",
-    "textId" : "5a2d49adbeed11e78b8b00163e022e38",
-    "senderId" : "8a2b99a553dbbef4015422ae88db40fd",
-    "msgType" : "0"
-  }, {
-    "sender" : "系统",
-    "content" : "&lt;p&gt;&lt;span style=&quot;font-family: &amp;#39;sans serif&amp;#39;, tahoma, verdana, helvetica; line-height: 24px;&quot;&gt;亲爱的童鞋，ACCA- F2串讲新版网课已经上线啦！新网课与上一版网课均是针对现行考纲而录制的，都是适用目前考试。如果您的串讲网课学习还不到三分之一，或者还有10天以上的备考时间，建议学习新版串讲网课；如果时间不允许，通过上一版网课的学习应对考试也可以；如果您需要新网课的讲义可以在对应网课的右上角点击完整版讲义下载。目前默认新版网课，如需要继续上一版网课的学习，请在学习中心对应课程的右上角点击课程版本切换。祝各位童鞋学习顺利，考试取得好成绩！&lt;/span&gt;&lt;/p&gt;",
-    "id" : "6e13d290bec811e78b8b00163e022e38",
-    "sentTime" : 1509515350,
-    "title" : "ACCA- F2串讲新版网课已经上线啦！",
-    "headImg" : "",
-    "urlId" : null,
-    "status" : "0",
-    "textId" : "6173d490bec811e78b8b00163e022e38",
-    "senderId" : "6c5961ee721aa08f52ecca0d872802ea",
-    "msgType" : "1"
-  }, {
-    "sender" : "系统",
-    "content" : "&lt;p&gt;&lt;span style=&quot;font-family: &amp;#39;sans serif&amp;#39;, tahoma, verdana, helvetica; line-height: 24px;&quot;&gt;亲爱的童鞋，ACCA- F4串讲新版网课已经上线啦！新网课与上一版网课均是针对现行考纲而录制的，都是适用目前考试。如果您的串讲网课学习还不到三分之一，或者还有10天以上的备考时间，建议学习新版串讲网课；如果时间不允许，通过上一版网课的学习应对考试也可以；如果您需要新网课的讲义可以在对应网课的右上角点击完整版讲义下载。目前默认新版网课，如需要继续上一版网课的学习，请在学习中心对应课程的右上角点击课程版本切换。祝各位童鞋学习顺利，考试取得好成绩！&lt;/span&gt;&lt;/p&gt;",
-    "id" : "15c9845fbec811e78b8b00163e022e38",
-    "sentTime" : 1509515214,
-    "title" : "ACCA- F4串讲新版网课已经上线啦！",
-    "headImg" : "",
-    "urlId" : null,
-    "status" : "0",
-    "textId" : "10613816bec811e78b8b00163e022e38",
-    "senderId" : "6c5961ee721aa08f52ecca0d872802ea",
-    "msgType" : "1"
-  } ],
+  "data" : [ ],
   "msg" : ""
 }

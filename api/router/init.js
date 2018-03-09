@@ -13,7 +13,7 @@ function addMapping() {
 		});
 		if(item.type == "get"){
 			router.get(`/${item.path}`, compose(methods));
-		}else if(item.type == "post"){ 
+		}else if(item.type == "post"){
 			router.post(`/${item.path}`, compose(methods));
 		}
 	});
@@ -21,9 +21,9 @@ function addMapping() {
 
 module.exports = {
 	routes : () => {
-			addMapping();
-			router.prefix('/api/userAction/scene/mobileIndex')
-		  return router.routes();
+		addMapping();
+		router.prefix('/api/userAction/scene/mobileIndex')
+	  return router.routes();
 	},
 	allowedMethods : () => {
 		return router.allowedMethods();

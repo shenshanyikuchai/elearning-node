@@ -55,5 +55,62 @@ module.exports = [
 			memberId : "ff8080815133db0d0151375bfdf30c0d",
 			courseId : "8a22ecb5577562b70157b6fc00e8011c"
 		}
+	},{
+		name : "班级课程列表",
+		path : "classCourseList",
+		type : "get",
+		modules : ["classCourse/list"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
+		name : "班级课程详情",
+		path : "classCourseDetail",
+		type : "get",
+		modules : ["classCourse/detail"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
+		name : "教学大纲",
+		path : "teachingProgram",
+		type : "get",
+		modules : ["classCourse/teachingProgram"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
+		name : "教学计划",
+		path : "teachingPlan",
+		type : "get",
+		modules : ["classCourse/teachingPlan"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
 	}
 ]
+
+/*
+$.ajax({
+url : 'http://localhost:3080/api/userAction/scene/mobileIndex/login',
+type : 'post',
+data : {
+ type: "pcWeb",
+username: "zpk",
+password: "123456"
+},
+success : function(data){
+console.log(data)
+},error : function(err){
+console.log(err)
+}
+})
+*/

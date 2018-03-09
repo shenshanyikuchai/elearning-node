@@ -39,7 +39,6 @@ function ajax(payload){
   var thatServer = api[payload.server];
   var hostName = '';
   var thatServerUrl = thatServer.url;
-  // console.log(process.env.NODE_ENV)
   if(process.env.NODE_ENV == "demo"){ // production development
     if(thatServer.staticDataDemo){
       args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();

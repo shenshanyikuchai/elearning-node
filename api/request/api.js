@@ -1,6 +1,46 @@
 module.exports = {
   'demo' : true,
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
+  'classCourseList': {
+    'name' : '登录',
+    'url': '/api/zbids/member/login/v1.0',
+    'mock' : 'classCourseList.json',
+    'defaultData' : {
+      'token' : this.token,
+      'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
+      'courseId' : ''
+    }
+  },
+  'classCourseDetail': {
+    'name' : '登录',
+    'url': '/api/zbids/member/login/v1.0',
+    'mock' : 'classCourseDetail.json',
+    'defaultData' : {
+      'token' : this.token,
+      'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
+      'courseId' : ''
+    }
+  },
+  'teachingProgram' : {
+    'name' : '课程班级教学大纲',
+    'isPrefix' : true,
+    'path' : '/teachingProgram',
+    'mock' : '/teachingProgram.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
+  'teachingPlan' : {
+    'name' : '课程班级教学计划',
+    'isPrefix' : true,
+    'path' : '/teachingPlan',
+    'mock' : '/teachingPlan.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
   'gettoken': {
     'name' : '获取token',
     'url': '/api/zbids/app/gettoken/v1.0/',
