@@ -41,6 +41,14 @@ module.exports = {
       'courseid' : "123456"
     }
   },
+  'getClass' : {
+    'name' : '获取指定学员班级列表信息',
+    'path' : '/api/userAction/study/member/getClass',
+    'mock' : '/getClass.json',
+    'queryData' : {
+      'token' : "123456"
+    }
+  },
   'gettoken': {
     'name' : '获取token',
     'url': '/api/zbids/app/gettoken/v1.0/',
