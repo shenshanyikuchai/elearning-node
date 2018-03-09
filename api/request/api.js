@@ -49,6 +49,16 @@ module.exports = {
       'token' : "123456"
     }
   },
+  'teachingPlan' : {
+    'name' : '获取学员在某班级指定课程和学习计划的学习计划进度',
+    'path' : '/api/userAction/study/member/getplan',
+    'mock' : '/teachingPlan.json',
+    'queryData' : {
+      'token' : "123456",
+      'courseCategoryId' : "科目id",
+      'courseId' : "课程id"
+    }
+  },
   'gettoken': {
     'name' : '获取token',
     'url': '/api/zbids/app/gettoken/v1.0/',
