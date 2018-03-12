@@ -6,17 +6,20 @@ var courseDetailList = [];
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
 
-function courseIndex(payload){
+function classCourse(payload){
 	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);
+	console.log(payload.memberGetplan)
+	courseRenderData = getChapterListWeekList(payload.memberGetplan);
+	console.log(courseRenderData)
 
-	courseRenderData = getChapterListWeekList(payload.memberGetplan)
 	courseRenderData.courseStatus = courseByInFo(payload.courseactivestatus);
 	courseRenderData.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
 	courseRenderData.courseInfo = filterCourseInfo(payload.courseDetail);
 	courseRenderData.lastLearn = filterLastLearnChapter(payload.tasksProgress);
+
 	return courseRenderData;
 }
 function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
@@ -180,11 +183,17 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 	var courseDetailWeekList = [];
 	var courseDetailLevel = 0;
+
+	var weekTotal = planData.length;
+	var weekTotalCompleted = 0;
+	var weekTotalOngoing = 0;
+	var weekTotalNotstarted = 0;
 	var weekTotalBeoverdue = 0;
+
+	var taskTotal = 0;
 	var taskTotalCompleted = 0;
 	var taskTotalOngoing = 0;
 	var taskTotalNotstarted = 0;
-	var taskTotal = 0;
 	var taskTotalBeoverdue = 0;
 
 	var itemStart = 0;
@@ -211,13 +220,16 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		var weekTaskOngoing = 0;
 		var weekTaskCompleted = 0;
 		var weekTaskNotstarted = 0;
+
 		if(element.startDate<newDate && element.endDate<newDate){
 			weekStatus = "beoverdue";
 			weekTotalBeoverdue++;
 		}else if(element.startDate<newDate && newDate<element.endDate){
 			weekStatus = "ongoing";
+			weekTaskOngoing++;
 		}if(newDate<element.startDate && newDate<element.endDate){
 			weekStatus = "notstarted";
+			weekTaskNotstarted++;
 		}
 		
 		for(var i=itemStart;i<itemLength;i++){
@@ -293,6 +305,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		if(tasksNum == weekDoneNum && weekStatus !== "notstarted"){
 			weekDone = 1;
 			weekStatus = "completed";
+			weekTotalCompleted++;
 		}
 
 		taskTotal += tasksNum;
@@ -317,6 +330,14 @@ function filterCourseDetailWeekPlan(courseData, planData){
 	return  {
 		'isCoursePlan' : "true",
 		'chapterListWeekList' : courseDetailWeekList,
+		"studyInfo" : {
+			"studyProgressTotal" : iGlobal.getProgress(taskTotalCompleted,taskTotal),
+			"weekTotal" : weekTotal,
+			"weekBeoverdue" : weekTotalBeoverdue,
+			"weekCompleted" : weekTotalCompleted,
+			"weekOngoing" : weekTotalOngoing,
+			"weekNotstarted" : weekTotalNotstarted
+		},
 		'taskTotalSummary' : {
 			'total' : taskTotal,
 			'beoverdue' : taskTotalBeoverdue,
@@ -334,7 +355,7 @@ function courseByInFo(coursestatus){
 	let courseActiveTime = 0;
 	let courseExpirationTime = 0;
 	let courseActiveState=0;
-	let courseActiveStateInfo = "默认未购买";
+	let courseActiveStateText = "默认未购买";
 	if(coursestatus && coursestatus.length){
 		var lockStatusNum = 0;
 		for(var i=0;i<coursestatus.length;i++){
@@ -356,21 +377,21 @@ function courseByInFo(coursestatus){
 		for(var i=0;i<coursestatus.length;i++){
 			if(coursestatus[i].activeState=="acitve" && coursestatus[i].expirationTime>datanow && courseActiveState<3){
 				courseActiveState="3";//已激活未过期
-				courseActiveStateInfo = "已激活未过期";
+				courseActiveStateText = "已激活未过期";
 				break;
 			}else if(coursestatus[i].activeState=="init" && courseActiveState<2){
 				courseActiveState="2";//未激活
-				courseActiveStateInfo = "未激活";
+				courseActiveStateText = "未激活";
 			}else if(coursestatus[i].activeState=="acitve" && coursestatus[i].expirationTime<datanow && courseActiveState<1){
 				courseActiveState="1";//已激活已过期
-				courseActiveStateInfo = "已激活已过期";
+				courseActiveStateText = "已激活已过期";
 			}
 			
 		}
 			
 		if(courseActiveState && lockStatus){
 			courseActiveState="4";//课程已锁定
-			courseActiveStateInfo = "课程已锁定";
+			courseActiveStateText = "课程已锁定";
 		}
 		courseActiveState = courseActiveState;
 	}else{
@@ -382,7 +403,7 @@ function courseByInFo(coursestatus){
 		courseActiveTime : courseActiveTime,
 		courseExpirationTime : courseExpirationTime,
 		courseActiveState : courseActiveState,
-		courseActiveStateInfo : courseActiveStateInfo
+		courseActiveStateText : courseActiveStateText
 	}
 }
 function filterExamDate(courseId, examDate){
@@ -405,15 +426,26 @@ function filterExamDate(courseId, examDate){
   }
 }
 function filterCourseInfo(courseDetail){
-	let courseInfo = "";
-	let courseModel = JSON.parse(courseDetail.courseModel);
-	if(courseModel && courseModel.length){
+	let courseInfo = {}
+	if(courseDetail){
 		courseInfo = {
-			courseModel : courseDetail.courseModel,
-			img : constant.host.static + courseDetail.coverPath,
-			video : courseDetail.firstVideo
+			categoryName : courseDetail.categoryName,
+			categoryId : courseDetail.categoryId,
+			courseName : courseDetail.courseName,
+			courseId : courseDetail.courseId,
+			courseImage : constant.host.static + courseDetail.coverPath,
+			expirationTime : courseDetail.effectiveDay,
+			courseProgress : "77",
+			lastLearn : "知识点1 战略规划概述"
+		};
+		let courseModel = JSON.parse(courseDetail.courseModel);
+		if(courseModel && courseModel.length){
+			courseInfo.courseModel = courseDetail.courseModel;
+			courseInfo.img = constant.host.static + courseDetail.coverPath;
+			courseInfo.video = courseDetail.firstVideo;
 		}
 	}
+
 	return courseInfo;
 }
 function filterLastLearnChapter(taskProgress){
@@ -432,6 +464,7 @@ function filterLastLearnChapter(taskProgress){
 		chapterName = lastLearnChapter.chapterName;
 		taskId = lastLearnChapter.taskId;
 		taskName = lastLearnChapter.taskName;
+
 	}else{
 		isLastLearn = false;
 		let index = _.findIndex(courseDetailList, ['isTasks', true]);
@@ -450,6 +483,14 @@ function filterLastLearnChapter(taskProgress){
 			taskName = "";
 		}
 	}
+	// "categoryName" : "CFA Level 2",
+	// "categoryId" : "234u9u",
+	// "courseName" : "CFA L1 基础课（体验课）",
+	// "courseId" : "sdf34522",
+	// "courseImage" : "http://exstatic.zbgedu.com/upload/201712/2938ddcefc4741998a5bae2c6a2e41cf.jpg",
+	// "expirationTime" : "2018/10/22",
+	// "courseProgress" : "77",
+	// "lastLearn" : "知识点1 战略规划概述"
 	return {
 		isLastLearn : isLastLearn,
 		title : title,
@@ -459,4 +500,4 @@ function filterLastLearnChapter(taskProgress){
 		taskName : taskName
 	}
 }
-module.exports = courseIndex
+module.exports = classCourse

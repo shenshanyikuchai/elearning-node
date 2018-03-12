@@ -32,6 +32,7 @@ module.exports = async (ctx, next) => {
 		for(let i in ctx.state.response){
 			responseData[i] = ctx.state.response[i];
 		}
+		console.log(ctx.state.data)
 		if(ctx.state.data){
 			for(let i in ctx.state.data){
 				responseData[i] = ctx.state.data[i];

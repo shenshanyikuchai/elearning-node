@@ -41,7 +41,51 @@
 			"videoTime" : "17h",
 			"examTime" : "8h",
 			"evaluationTime" : "3h",
-			"totalTime" : "33h"
+			"totalTime" : "33h",
+			"teachingProgram" : {
+				"name" : "章",
+				"type" : "chapter",
+				"children" : [{
+					"name" : "节1",
+					"type" : "section",
+					"time" : "1.5h",
+					"progress" : "66",
+					"children" : [{
+						"name" : "任务1",
+						"type" : "task",
+						"taskType" : "video"
+					},{
+						"name" : "任务2",
+						"type" : "task",
+						"taskType" : "exam"
+					},{
+						"name" : "任务3",
+						"type" : "task",
+						"taskType" : "live"
+					}]
+				},{
+					"name" : "节2",
+					"type" : "section",
+					"time" : "1.5h",
+					"progress" : "66",
+					"children" : [{
+						"name" : "任务1",
+						"type" : "task",
+						"taskType" : "video"
+					}]
+				},{
+					"name" : "测评",
+					"type" : "task",
+					"status" : "0",
+					"taskType" : "examReport"
+				},{
+					"name" : "直播",
+					"type" : "task",
+					"taskType" : "live",
+					"status" : "0",
+					"timeText" : "2018年02月12日 20:00开始"
+				}]
+			}
 		},{
 			"isOpen" : "true",
 			"weekName" : "第一周",

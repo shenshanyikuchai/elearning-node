@@ -59,7 +59,7 @@ module.exports = [
 		name : "班级课程列表",
 		path : "classCourseList",
 		type : "get",
-		modules : ["classCourse/list"],
+		modules : ["classCourse/list","classCourse/listRequest"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",
@@ -69,7 +69,7 @@ module.exports = [
 		name : "班级课程详情",
 		path : "classCourseDetail",
 		type : "get",
-		modules : ["classCourse/detail"],
+		modules : ["classCourse/detail","classCourse/detailRequest","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",

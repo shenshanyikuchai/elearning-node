@@ -1,6 +1,5 @@
 
 const axios = require('axios');
-const qs = require('qs');
 const config = require('./axios-config');
 const COMMON = require('../global/constant');
 const api = require('./api.js');

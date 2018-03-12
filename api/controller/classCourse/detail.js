@@ -1,17 +1,18 @@
-const Request = require('../../request');
+const iGlobal = require('../../global');
+const constant = require('../../global/constant');
+const Filter = require('../../filter');
 
 module.exports = async(ctx, next) => {
-	ctx.state.mock = true;
-	await Request.ajax({
-		server : "classCourseDetail",
-		ctxState : ctx.state,
-		data : {
-			token: ctx.query.token,
-  		memberId: ctx.query.memberId,
-  		courseId: ctx.query.courseId
-		}
-	}).then((res) => {
-		ctx.state.data = res;
-		return next();
-	})
+	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId && ctx.query.courseCategoryId){
+		await next();
+		ctx.state.data = Filter.classCourse({
+			courseDetail : ctx.state.courseDetail,
+			tasksProgress : ctx.state.getTasksProgress,
+			txamDate : ctx.state.getExamDate,
+			memberGetplan : ctx.state.memberGetplan,
+			courseactivestatus : ctx.state.courseactivestatus
+		})
+	}else{
+		ctx.state.response = constant.response.noparameter;
+	}
 }

@@ -76,9 +76,40 @@ module.exports = {
     	"percentage" : percentage
     };
   },
+  getProgress : function(progress, total, type){
+    var taskprogress = progress ? parseInt(progress) : 0;
+    var taskTotal = total ? parseInt(total) : 0;
+    var percentage = 0;
+    var lastProgress = progress;
+    if(taskprogress && taskTotal){
+      var a = taskprogress/taskTotal;
+      if(a>0 && a<0.01){
+        a = 0.01
+      }
+      percentage = parseInt(a*100);
+    }else if(lastProgress){
+      percentage = 1;
+    }
+    var percentageProgress = percentage;
+    if(percentage >= 100){
+      percentageProgress = 100;
+    }
+    return percentageProgress;
+  },
   entities : function(content){
   	let arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"','#39':"'"};
   	let newContent = content.replace(/&(lt|gt|nbsp|amp|quot|#39);/ig,function(all,t){return arrEntities[t];});
   	return newContent.replace(/<[^>]+>/g,"").replace(/(^\s+)|(\s+$)/g,"").replace(/(\r)|(\n)|(\t)/g,'');
+  },
+  toString : (str) => {
+  	let newString = "";
+  	if(str){
+  		if(typeof str == "string"){
+  			newString = str;
+  		}else if(typeof str == "number"){
+  			newString = str.toString();
+  		}
+  	}
+  	return newString;
   }
 }

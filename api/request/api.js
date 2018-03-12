@@ -3,7 +3,7 @@ module.exports = {
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'classCourseList': {
     'name' : '登录',
-    'url': '/api/zbids/member/login/v1.0',
+    'url': '/api/userAction/study/member/getClass',
     'mock' : 'classCourseList.json',
     'defaultData' : {
       'token' : this.token,
