@@ -22,20 +22,10 @@ module.exports = async(ctx, next) => {
   	data : {
   		memberId: ctx.query.memberId
   	}
-  }),Request.ajax({
-	  server : 'memberGetplan',
-	  ctxState : ctx.state,
-	  data : {
-	    token: ctx.query.token,
-	    courseCategoryId: ctx.query.courseCategoryId,
-	    courseId: ctx.query.courseId
-	  }
-	})]).then(axios.spread(function (courseDetail, getTasksProgress, getExamDate, memberGetplan) {
-		console.log(memberGetplan)
+  })]).then(axios.spread(function (courseDetail, getTasksProgress, getExamDate) {
   	let courseDetailData = courseDetail.data;
   	let getTasksProgressData = getTasksProgress.data;
   	let getExamDateData = getExamDate.data;
-  	let memberGetplanData = memberGetplan.data;
   	if(courseDetailData && courseDetailData.length){
   		ctx.state.courseDetail = courseDetailData[0];
   	}else{
@@ -53,11 +43,6 @@ module.exports = async(ctx, next) => {
   		ctx.state.getExamDate = getExamDateData;
   	}else{
   		ctx.state.getExamDate = [];
-  	}
-  	if(memberGetplanData && memberGetplanData.length){
-  		ctx.state.memberGetplan = memberGetplanData;
-  	}else{
-  		ctx.state.memberGetplan = [];
   	}
   	return next();
   }))

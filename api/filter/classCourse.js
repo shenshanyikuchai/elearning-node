@@ -5,15 +5,14 @@ const _ = require('lodash');
 var courseDetailList = [];
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
+var weekIngNum = 0;
 
 function classCourse(payload){
 	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);
-	console.log(payload.memberGetplan)
 	courseRenderData = getChapterListWeekList(payload.memberGetplan);
-	console.log(courseRenderData)
 
 	courseRenderData.courseStatus = courseByInFo(payload.courseactivestatus);
 	courseRenderData.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
@@ -41,6 +40,10 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 			rootNode = index.toString();
 		}
 		let chapterTotalTime = 0;
+		let videoTime = 0;
+		let examTime = 0;
+		let knowledgePointTime = 0;
+		let openCourseTime = 0;
 		if(element.tasks && element.tasks.length){
 			let newTasks = [];
 			let completedNum = 0;
@@ -48,21 +51,25 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 			let notstartedNum = 0;
 			element.tasks.forEach(function(element,index){
 				if(element.taskType == "video"){
-					newTasks.push(element)
+					newTasks.push(element);
 					// courseTimeTotalNum += (+element.videoTime);
-					chapterTotalTime += (+element.videoTime);
+					chapterTotalTime+=(+element.videoTime);
+					videoTime+=(+element.videoTime);
 				}else if(element.taskType == "exam"){
-					newTasks.push(element)
+					newTasks.push(element);
 					// courseTimeTotalNum += (+element.taskTime)*60;
-					chapterTotalTime += (+element.taskTime)*60;
+					chapterTotalTime+=(+element.taskTime)*60;
+					examTime+=(+element.taskTime);
 				}else if(element.taskType == "knowledgePointExercise"){
-					newTasks.push(element)
+					newTasks.push(element);
 					// courseTimeTotalNum += (120)*60;
-					chapterTotalTime += (120)*60;
+					chapterTotalTime+=(120)*60;
+					knowledgePointTime+=(+element.taskTime);
 				}else if(element.taskType == "openCourse"){
-					newTasks.push(element)
+					newTasks.push(element);
 					// courseTimeTotalNum += (+element.taskTime);
-					chapterTotalTime += (+element.taskTime);
+					chapterTotalTime+=(+element.taskTime);
+					openCourseTime+=(+element.taskTime);
 				}
 				if(element.state){
 					completedNum++;
@@ -89,6 +96,11 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'ongoingNum' : ongoingNum,
 				'notstartedNum' : notstartedNum,
 				'chapterTotalTime' : chapterTotalTime,
+				'chapterStudyTime' : 0,
+				'videoTime' : videoTime,
+				'examTime' : examTime,
+				'knowledgePointTime' : knowledgePointTime,
+				'openCourseTime' : openCourseTime,
 				'checked' : true,
 				'activeClass' : true,
 				'showClass' : true
@@ -133,6 +145,7 @@ function addTaskProgress(taskProgress) {
 							thatTaskData = taskProgressElement;
 						}
 					});
+
 					if(thatTaskData){
 
 						var studyTime = 0;
@@ -168,7 +181,7 @@ function addTaskProgress(taskProgress) {
 }
 function getChapterListWeekList(memberGetplan){
 	if(memberGetplan && memberGetplan.length){
-		return filterCourseDetailWeekPlan(courseDetailList,memberGetplan);
+		return filterCourseDetailWeekPlan(courseDetailList, memberGetplan);
 	}else{
 		return filterCourseDetailPlan(courseDetailList);
 	}
@@ -181,53 +194,78 @@ function filterCourseDetailPlan(courseData){
 }
 function filterCourseDetailWeekPlan(courseData, planData){
 
-	var courseDetailWeekList = [];
-	var courseDetailLevel = 0;
+	let courseDetailWeekList = [];
+	let courseDetailLevel = 0;
 
-	var weekTotal = planData.length;
-	var weekTotalCompleted = 0;
-	var weekTotalOngoing = 0;
-	var weekTotalNotstarted = 0;
-	var weekTotalBeoverdue = 0;
+	let weekTotal = planData.length;
+	let weekTotalCompleted = 0;
+	let weekTotalOngoing = 0;
+	let weekTotalNotstarted = 0;
+	let weekTotalBeoverdue = 0;
 
-	var taskTotal = 0;
-	var taskTotalCompleted = 0;
-	var taskTotalOngoing = 0;
-	var taskTotalNotstarted = 0;
-	var taskTotalBeoverdue = 0;
+	let taskTotal = 0;
+	let taskTotalCompleted = 0;
+	let taskTotalOngoing = 0;
+	let taskTotalNotstarted = 0;
+	let taskTotalBeoverdue = 0;
 
-	var itemStart = 0;
-	var newDate = new Date().getTime();
+	let itemStart = 0;
+	let newDate = new Date().getTime();
+
 	planData.forEach(function(element,index){
-		var startCategoryId = element.startCategoryId;
-		var endCategoryId = element.endCategoryId;
-		var addCourseDetailList = [];
-		var addcourseDetailWeekList = false;
-		var item = courseData;
-		var itemLength = item.length;
-		var itemEnd = 0;
-		var tasksNum = 0;
+		let isOpen = 'true';
+		let startCategoryId = element.startCategoryId;
+		let endCategoryId = element.endCategoryId;
+		let addCourseDetailList = [];
+		let addcourseDetailWeekList = false;
+		let item = courseData;
+		let itemLength = item.length;
+		let itemEnd = 0;
 
-		var weekStatus = "";
-		var weekTaskTime = 0;
-		var weekStudyTime = 0;
-		var weekTaskOngoing = 0;
-		var weekDone = 0;
-		var weekDoneNum = 0;
-		var weekTotal = 0;
+		let weekStatus = "";
+		let weekTaskTime = 0;
+		let weekStudyTime = 0;
+		// let weekTaskOngoing = 0;
+		let weekDone = 0;
+		let weekDoneNum = 0;
+		let weekTotal = 0;
 
-		var weekTaskBeoverdue = 0;
-		var weekTaskOngoing = 0;
-		var weekTaskCompleted = 0;
-		var weekTaskNotstarted = 0;
+		let weekTaskTotal = 0;
+		let weekTaskBeoverdue = 0;
+		let weekTaskOngoing = 0;
+		let weekTaskCompleted = 0;
+		let weekTaskNotstarted = 0;
+
+		let videoTotal = 0;
+		let videoBeoverdue = 0;
+		let videoOngoing = 0;
+		let videoCompleted = 0;
+		let videoNotstarted = 0;
+		let videoTime = 0;
+		
+		let examTotal = 0;
+		let examBeoverdue = 0;
+		let examOngoing = 0;
+		let examCompleted = 0;
+		let examNotstarted = 0;
+		let examTime = 0;
+
+		let evaluationStatus = 0;
+		let evaluationTime = 0;
+
+		let liveStatus = 0;
+		let liveTime = 0;
+		let liveStatusText = '';
 
 		if(element.startDate<newDate && element.endDate<newDate){
 			weekStatus = "beoverdue";
 			weekTotalBeoverdue++;
 		}else if(element.startDate<newDate && newDate<element.endDate){
+			weekIngNum = index;
 			weekStatus = "ongoing";
 			weekTaskOngoing++;
 		}if(newDate<element.startDate && newDate<element.endDate){
+			isOpen = "false";
 			weekStatus = "notstarted";
 			weekTaskNotstarted++;
 		}
@@ -242,10 +280,16 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			if(addcourseDetailWeekList){
 
 				if(thisItem.isTasks){
-					weekTaskTime += thisItem.chapterTotalTime;
-					weekStudyTime += thisItem.chapterStudyTime;
-					var taskLength = thisItem.tasks.length;
-					tasksNum+=taskLength;
+
+					weekTaskTime+=thisItem.chapterTotalTime;
+					weekStudyTime+=thisItem.chapterStudyTime;
+					videoTime+=thisItem.videoTime;
+					examTime+=thisItem.examTime;
+					liveTime+=thisItem.openCourseTime;
+
+					let taskLength = thisItem.tasks.length;
+					weekTaskTotal+=taskLength;
+
 					switch(weekStatus){
 						case "completed":
 							taskTotalCompleted+=taskLength;
@@ -288,11 +332,49 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							}
 							break;
 						case "notstarted":
-							taskTotalNotstarted+=taskLength
+							taskTotalNotstarted+=taskLength;
 							break;
 					}
+					thisItem.tasks.forEach(function(element,index){
+						if(element.taskType == "video"){
+							videoTotal++;
+							if(element.state){
+								videoCompleted++;
+							}else{
+								if(element.progress){
+									videoOngoing++;
+								}else{
+									videoNotstarted++;
+								}
+							}
+						}else if(element.taskType == "exam"){
+							examTotal++;
+							if(element.state){
+								examCompleted++;
+							}else{
+								if(element.progress){
+									examOngoing++;
+								}else{
+									examNotstarted++;
+								}
+							}
+						}else if(element.taskType == "knowledgePointExercise"){
+							// evaluationStatus = 1;
+						}else if(element.taskType == "openCourse"){
+							liveStatus = element.state;
+							if(element.state){
+								liveStatusText = "已完成"
+							}else{
+								if(element.progress){
+									liveStatusText = "进行中";
+								}else{
+									liveStatusText = "未开始";
+								}
+							}
+						}
+					})
 				}
-				addCourseDetailList.push(thisItem)
+				addCourseDetailList.push(thisItem);
 			}
 			if(endCategoryId == thisItem.chapterId){
 				addcourseDetailWeekList = false;
@@ -302,51 +384,78 @@ function filterCourseDetailWeekPlan(courseData, planData){
 				break;
 			}
 		}
-		if(tasksNum == weekDoneNum && weekStatus !== "notstarted"){
+		if(weekTaskTotal == weekDoneNum && weekStatus !== "notstarted"){
 			weekDone = 1;
 			weekStatus = "completed";
 			weekTotalCompleted++;
 		}
 
-		taskTotal += tasksNum;
+		taskTotal += weekTaskTotal;
+
 		courseDetailWeekList.push({
-			'planId' : element.id,
-			'title' : element.planTitle,
-			'startDate' : iGlobal.getDate(element.startDate),
-			'endDate' : iGlobal.getDate(element.endDate),
+			'isOpen' : isOpen,
 			'isFinish' : element.isFinish,
 			'list' : addCourseDetailList,
-			'tasksNum' : tasksNum,
-			'weekStatus' : weekStatus,
-			'weekTaskTime' : weekTaskTime,
-			'weekStudyTime' : weekStudyTime,
-			'weekIsFinish' : weekDone,
-			'weekTaskCompleted' : weekTaskCompleted,
-			'weekTaskOngoing' : weekTaskOngoing,
-			'weekTaskBeoverdue' : weekTaskBeoverdue,
-			'weekTaskNotstarted' : weekTaskNotstarted
+			'status' : weekStatus,
+			'isDone' : weekDone,
+			'planId' : element.id,
+			'weekName' : element.planTitle,
+			'weekProgress' : iGlobal.getProgress(weekTaskCompleted,weekTaskTotal),
+			
+			'totalTime' : weekTaskTime,
+			'taskTime' : weekTaskTime,
+			'studyTime' : weekStudyTime,
+			'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
+			'startDate' : iGlobal.getDate(element.startDate),
+			'endDate' : iGlobal.getDate(element.endDate),
+
+			'taskTotal' : weekTaskTotal,
+			'taskCompleted' : weekTaskCompleted,
+			'taskOngoing' : weekTaskOngoing,
+			'taskBeoverdue' : weekTaskBeoverdue,
+			'taskNotstarted' : weekTaskNotstarted,
+
+			'videoTotal' : videoTotal,
+			'videoCompleted' : videoCompleted,
+			'videoOngoing' : videoOngoing,
+			'videoProgress' : iGlobal.getProgress(videoCompleted,videoTotal),
+			'videoTime' : videoTime,
+
+			'examTotal' : examTotal,
+			'examCompleted' : examCompleted,
+			'examOngoing' : examOngoing,
+			'examProgress' : iGlobal.getProgress(examCompleted,examTotal),
+			'examTime' : examTime,
+
+			'evaluationStatus' : evaluationStatus,
+			'evaluationTime' : evaluationTime,
+
+			'liveStatus' : liveStatus,
+			'liveStatusText' : liveStatusText,
+			'liveTime' : iGlobal.getDate(element.startDate)
 		})
 	})
+
 	return  {
+		'weekIngNum' : weekIngNum,
 		'isCoursePlan' : "true",
-		'chapterListWeekList' : courseDetailWeekList,
+		'planInfo' : courseDetailWeekList,
 		"studyInfo" : {
-			"studyProgressTotal" : iGlobal.getProgress(taskTotalCompleted,taskTotal),
-			"weekTotal" : weekTotal,
-			"weekBeoverdue" : weekTotalBeoverdue,
-			"weekCompleted" : weekTotalCompleted,
-			"weekOngoing" : weekTotalOngoing,
-			"weekNotstarted" : weekTotalNotstarted
+			"studyProgressTotal" : iGlobal.getProgress(taskTotalCompleted,taskTotal)
 		},
-		'taskTotalSummary' : {
+		'tasksSummary' : {
 			'total' : taskTotal,
 			'beoverdue' : taskTotalBeoverdue,
 			'completed' : taskTotalCompleted,
 			'ongoing' : taskTotalOngoing,
 			'notstarted' : taskTotalNotstarted
 		},
-		'weekTotalSummary' : {
-			'beoverdue' : weekTotalBeoverdue
+		'weeksSummary' : {
+			'total' : weekTotal,
+			'beoverdue' : weekTotalBeoverdue,
+			'completed' : weekTotalCompleted,
+			'ongoing' : weekTotalOngoing,
+			'notstarted' : weekTotalNotstarted
 		}
 	}
 }
@@ -434,9 +543,7 @@ function filterCourseInfo(courseDetail){
 			courseName : courseDetail.courseName,
 			courseId : courseDetail.courseId,
 			courseImage : constant.host.static + courseDetail.coverPath,
-			expirationTime : courseDetail.effectiveDay,
-			courseProgress : "77",
-			lastLearn : "知识点1 战略规划概述"
+			expirationTime : courseDetail.effectiveDay
 		};
 		let courseModel = JSON.parse(courseDetail.courseModel);
 		if(courseModel && courseModel.length){
@@ -483,14 +590,6 @@ function filterLastLearnChapter(taskProgress){
 			taskName = "";
 		}
 	}
-	// "categoryName" : "CFA Level 2",
-	// "categoryId" : "234u9u",
-	// "courseName" : "CFA L1 基础课（体验课）",
-	// "courseId" : "sdf34522",
-	// "courseImage" : "http://exstatic.zbgedu.com/upload/201712/2938ddcefc4741998a5bae2c6a2e41cf.jpg",
-	// "expirationTime" : "2018/10/22",
-	// "courseProgress" : "77",
-	// "lastLearn" : "知识点1 战略规划概述"
 	return {
 		isLastLearn : isLastLearn,
 		title : title,

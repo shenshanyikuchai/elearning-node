@@ -26,7 +26,7 @@ module.exports = async(ctx, next) => {
 					})
 				}
 
-				if(classCourse){
+				// if(classCourse){
 					classCourseListRes.push({
 						"className" : iGlobal.toString(element.name),
 						"startTime" : iGlobal.toString(element.startTime),
@@ -45,7 +45,7 @@ module.exports = async(ctx, next) => {
 						"planId" : iGlobal.toString(classCourse.planId),
 						"serverTime" : iGlobal.toString(serverTime)
 					})
-				}
+				// }
 				console.log(classCourseListRes)
 			})
 		}

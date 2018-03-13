@@ -3,7 +3,7 @@ const constant = require('../../global/constant');
 const Filter = require('../../filter');
 
 module.exports = async(ctx, next) => {
-	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId && ctx.query.courseCategoryId){
+	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId){
 		await next();
 		ctx.state.data = Filter.classCourse({
 			courseDetail : ctx.state.courseDetail,
