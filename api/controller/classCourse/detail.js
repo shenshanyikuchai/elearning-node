@@ -8,7 +8,7 @@ module.exports = async(ctx, next) => {
 		ctx.state.data = Filter.classCourse({
 			courseDetail : ctx.state.courseDetail,
 			tasksProgress : ctx.state.getTasksProgress,
-			txamDate : ctx.state.getExamDate,
+			examDate : ctx.state.getExamDate,
 			memberGetplan : ctx.state.memberGetplan,
 			courseactivestatus : ctx.state.courseactivestatus
 		})
