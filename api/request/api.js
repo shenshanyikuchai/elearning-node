@@ -4,7 +4,7 @@ module.exports = {
   'classCourseList': {
     'name' : '登录',
     'url': '/api/userAction/study/member/getClass',
-    'mock' : 'classCourseList.json',
+    'mock' : 'getClass.json',
     'defaultData' : {
       'token' : this.token,
       'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
@@ -25,7 +25,7 @@ module.exports = {
     'name' : '课程班级教学大纲',
     'isPrefix' : true,
     'path' : '/teachingProgram',
-    'mock' : '/teachingProgram.json',
+    'mock' : '/courseDetail.json',
     'notMock' : true,
     'queryData' : {
       'courseid' : "123456"
