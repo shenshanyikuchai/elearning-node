@@ -4,7 +4,7 @@ module.exports = {
   'classCourseList': {
     'name' : '登录',
     'url': '/api/userAction/study/member/getClass',
-    'mock' : 'classCourseList.json',
+    'mock' : '/mock/getClass.json',
     'defaultData' : {
       'token' : this.token,
       'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
@@ -14,7 +14,7 @@ module.exports = {
   'classCourseDetail': {
     'name' : '登录',
     'url': '/api/zbids/member/login/v1.0',
-    'mock' : 'classCourseDetail.json',
+    'mock' : '/mock/classCourseDetail.json',
     'defaultData' : {
       'token' : this.token,
       'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
@@ -25,7 +25,7 @@ module.exports = {
     'name' : '课程班级教学大纲',
     'isPrefix' : true,
     'path' : '/teachingProgram',
-    'mock' : '/teachingProgram.json',
+    'mock' : '/mock/courseDetail.json',
     'notMock' : true,
     'queryData' : {
       'courseid' : "123456"
@@ -35,7 +35,7 @@ module.exports = {
     'name' : '课程班级教学计划',
     'isPrefix' : true,
     'path' : '/teachingPlan',
-    'mock' : '/teachingPlan.json',
+    'mock' : '/mock/teachingPlan.json',
     'notMock' : true,
     'queryData' : {
       'courseid' : "123456"
@@ -44,7 +44,7 @@ module.exports = {
   'getClass' : {
     'name' : '获取指定学员班级列表信息',
     'path' : '/api/userAction/study/member/getClass',
-    'mock' : '/getClass.json',
+    'mock' : '/mock/getClass.json',
     'queryData' : {
       'token' : "123456"
     }
@@ -52,17 +52,50 @@ module.exports = {
   'teachingPlan' : {
     'name' : '获取学员在某班级指定课程和学习计划的学习计划进度',
     'path' : '/api/userAction/study/member/getplan',
-    'mock' : '/teachingPlan.json',
+    'mock' : '/mock/teachingPlan.json',
     'queryData' : {
       'token' : "123456",
       'courseCategoryId' : "科目id",
       'courseId' : "课程id"
     }
   },
+  'examReport' : {
+    'name' : '测评成绩报告',
+    // 'url': '/api/business/learning/applyrestudylist',
+    'isPrefix' : true,
+    'path' : '/examReport',
+    'mock' : '/mock/examReport.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
+  'userExamStatus': {
+    'url': '/api/userAction/examen/get_exercise_knowledge_member_status',
+    'name' : '获取用户知识点（或试卷）的答题进度',
+    'isPrefix' : true,
+    'path' : '/userExamStatus',
+    'mock' : '/mock/userExamStatus.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
+  'userExerciseStatus': {
+    'url': '/api/userAction/examen/get_user_knowledge_point_exercise_list',
+    'name' : '获取用户某知识点（或试卷）答题记录',
+    'isPrefix' : true,
+    'path' : '/userExerciseStatus',
+    'mock' : '/mock/userExerciseStatus.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
   'gettoken': {
     'name' : '获取token',
     'url': '/api/zbids/app/gettoken/v1.0/',
-    'mock' : 'token.json',
+    'mock' : '/mock/token.json',
     'defaultData' : {
       "appType": "pc",
       "appId": "pcWeb",
@@ -72,7 +105,7 @@ module.exports = {
   'login': {
     'name' : '登录',
     'url': '/api/zbids/member/login/v1.0',
-    'mock' : 'login.json',
+    'mock' : '/mock/login.json',
     'type': 'POST',
     'defaultData' : {
       'account' : 'zpk',
@@ -87,7 +120,7 @@ module.exports = {
   'mycount': {
     'name' : '我的交流笔记统计',
     'url': '/api/studytools/mycount/v2.1',
-    'mock': 'mycount.json',
+    'mock' : '/mock/mycount.json',
     'defaultData' : {
       'token' : this.token
     }
@@ -95,7 +128,7 @@ module.exports = {
   'slideList': {
     'name' : '活动列表',
     'url': '/api/article/slide/list',
-    'mock': 'slide-list.json',
+    'mock' : '/mock/slide-list.json',
     'defaultData' : {
       'tag' : '0',
       'valid' : 'true',
@@ -105,7 +138,7 @@ module.exports = {
   'getLoginLog': {
     'name' : '登录日志',
     'url': '/api/zbids/member/getLoginLog',
-    'mock': 'getLoginLog.json',
+    'mock' : '/mock/getLoginLog.json',
     'defaultData' : {
       'memberid' : 'ff8080815133db0d0151375bfdf30c0d',
       'pageNo' : 1,
@@ -115,7 +148,7 @@ module.exports = {
   'getExamDate': {
     'name' : '考试时间',
     'url': '/api/business/coursestudy/getExamDate',
-    'mock': 'getExamDate.json',
+    'mock' : '/mock/getExamDate.json',
     'defaultData' : {
       'memberId' : 'ff8080815133db0d0151375bfdf30c0d'
     }
@@ -123,7 +156,7 @@ module.exports = {
   'learningcourse': {
     'name' : '在学的课程',
     'url': '/api/business/learning/learningcourse/v1.0',
-    'mock': 'learningcourse.json',
+    'mock' : '/mock/learningcourse.json',
     'defaultData' : {
       'token' : this.token,
       'pageNo' : 1,
@@ -135,7 +168,7 @@ module.exports = {
     'action': 'true',
     'hostName': 'http://action.zbgedu.com',
     'url': '/api/userAction/course/getCourseProgress/v1.0/',
-    'mock': 'getCourseProgress.json',
+    'mock' : '/mock/getCourseProgress.json',
     'defaultData' : {
       'token' : this.token,
       'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
@@ -145,7 +178,7 @@ module.exports = {
   'messageList': {
     'name' : '消息列表',
     'url': '/api/study/message/list/v1.0',
-    'mock': 'message-list.json',
+    'mock' : '/mock/message-list.json',
     'defaultData' : {
       'token' : this.token,
       // 'type' : '1',
@@ -156,7 +189,7 @@ module.exports = {
   'messageListPageNo2': {
     'name' : '消息列表',
     'url': '/api/study/message/list/v1.0',
-    'mock': 'message-list-pageNo2.json',
+    'mock' : '/mock/message-list-pageNo2.json',
     'defaultData' : {
       'token' : this.token,
       'pageNo' : 1,
@@ -166,7 +199,7 @@ module.exports = {
   'messageListNoRead': {
     'name' : '未阅读消息列表',
     'url': '/api/study/message/list/v1.0',
-    'mock': 'message-list-noread.json',
+    'mock' : '/mock/message-list-noread.json',
     'defaultData' : {
       'token' : this.token,
       'isRead' : '0', // 0 未阅读 1 已阅读
@@ -178,7 +211,7 @@ module.exports = {
   'updateStatus': {
     'name' : '更新消息状态',
     'url': '/api/study/message/updateStatus/v1.0',
-    'mock': 'updateStatus.json',
+    'mock' : '/mock/updateStatus.json',
     'defaultData' : {
       'token' : this.token,
       'messageId' : 'messageId',
@@ -193,14 +226,14 @@ module.exports = {
     'name' : '课程详情',
     'urlDemo': '/api/teachsource/course/courseDetail/data',
     'url': '/api/teachsource/course/courseDetail/data',
-    'mock': 'courseDetail.json',
+    'mock' : '/mock/courseDetail.json',
     'defaultData' : {
       'courseId' : '8a22ecb55e755132015e8361703400c6'
     }
   },
   'courseactivestatus': {
     'url': '/api/business/learning/courseactivestatus',
-    'mock': 'courseactivestatus.json',
+    'mock' : '/mock/courseactivestatus.json',
     'defaultData' : {
       'token':'7a98a7c9-208a-44c3-ab17-7f836287adde',
       'versionId':'ff808081473905e701476205d8740070'
@@ -211,7 +244,7 @@ module.exports = {
     'action': 'true',
     'hostName': 'http://action.zbgedu.com',
     'url': '/api/userAction/course/getTasksProgress/v1.0/',
-    'mock': 'actionGetTasksProgress.json',
+    'mock' : '/mock/actionGetTasksProgress.json',
     'defaultData' : {
       'token': '7a98a7c9-208a-44c3-ab17-7f836287adde',
       'memberId': '8a22ecb553a0b1320153a7251a1e149f',
@@ -219,9 +252,7 @@ module.exports = {
     },
   },
 
-  'exam-list': {
-    'url': '/api/userAction/examen/get_exercise_knowledge_member_status'
-  },
+  
   
   'noActivecourse': {
     'name' : '未激活的课程',
@@ -384,10 +415,7 @@ module.exports = {
   'membercheck': {
     'url': '/api/business/coursegroup/membercheck'
   },
-  'get_user_knowledge_point_exercise_list': {
-    'hostNameDemo': 'http://192.168.10.134:8080',
-    'url': '/api/userAction/examen/get_user_knowledge_point_exercise_list'
-  },
+  
   'get_exercise_knowledge_member_status': {
     'hostNameDemo': 'http://192.168.10.134:8080',
     'url': '/api/userAction/examen/get_exercise_knowledge_member_status',
@@ -471,7 +499,7 @@ module.exports = {
   },
   'searchCourseAlterationsByVersionId' : {
     'url': '/api/teachsource/courseAlteration/searchCourseAlterationsByVersionId',
-    'mock': 'searchCourseAlterationsByVersionId.json',
+    'mock' : '/mock/searchCourseAlterationsByVersionId.json',
     'defaultData' : {
       'versionId':'ff808081473905e701476205d8740070'
     }
@@ -487,7 +515,7 @@ module.exports = {
   'memberGetplan' : {
     'name' : '获取学员学习计划',
     'url': '/api/userAction/study/member/getplan',
-    'mock': 'memberGetplan.json',
+    'mock' : '/mock/memberGetplan.json',
     'defaultData' : {
       'token':'7a98a7c9-208a-44c3-ab17-7f836287adde',
       'courseCategoryId':'ff808081473905e701476204cb6c006f',
@@ -525,7 +553,7 @@ module.exports = {
   'getappdownloadinfo' : {
     'name' : '获取产品版本和下载信息',
     'url': '/api/zbids/app/getappdownloadinfo',
-    'mock': 'getappdownloadinfo.json',
+    'mock' : '/mock/getappdownloadinfo.json',
     'defaultData' : {
       'token':'7a98a7c9-208a-44c3-ab17-7f836287adde'
     }

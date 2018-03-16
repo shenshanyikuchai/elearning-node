@@ -68,7 +68,7 @@
 				"id": "8a22ecb5554cfedf015552142e100052",
 				"taskId": "8a22ecb5554cfedf01555290ecc3007f",
 				"title": "  直播",
-				"taskType": "video",
+				"taskType": "openCourse",
 				"taskLevel": null,
 				"orderTask": 2,
 				"express": null,

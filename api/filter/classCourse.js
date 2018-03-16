@@ -188,6 +188,8 @@ function getChapterListWeekList(memberGetplan){
 }
 function filterCourseDetailPlan(courseData){
 	return  {
+		'weekIngNum' : weekIngNum,
+		'planInfo' : [{}],
 		'isCoursePlan' : "false",
 		'chapterList' : courseData
 	}
@@ -465,6 +467,7 @@ function courseByInFo(coursestatus){
 	let courseExpirationTime = 0;
 	let courseActiveState=0;
 	let courseActiveStateText = "默认未购买";
+	console.log(coursestatus)
 	if(coursestatus && coursestatus.length){
 		var lockStatusNum = 0;
 		for(var i=0;i<coursestatus.length;i++){
@@ -478,8 +481,8 @@ function courseByInFo(coursestatus){
 
 		for(var i=0;i<coursestatus.length;i++){
 			if(coursestatus[i].isExpiration == "false" && coursestatus[i].activeState == "acitve"){
-				courseActiveTime = iGlobal.getDate(coursestatus[i].activeTime*1000);
-				courseExpirationTime = iGlobal.getDate(coursestatus[i].expirationTime*1000);
+				courseActiveTime = coursestatus[i].activeTime;
+				courseExpirationTime = coursestatus[i].expirationTime;
 			}
 		}
 		var datanow=(new Date().getTime())/1000;//当前时间戳
@@ -495,9 +498,7 @@ function courseByInFo(coursestatus){
 				courseActiveState="1";//已激活已过期
 				courseActiveStateText = "已激活已过期";
 			}
-			
 		}
-			
 		if(courseActiveState && lockStatus){
 			courseActiveState="4";//课程已锁定
 			courseActiveStateText = "课程已锁定";
@@ -506,11 +507,23 @@ function courseByInFo(coursestatus){
 	}else{
 
 	}
-	
+	var day = (parseInt((courseExpirationTime-datanow)/(24*60*60))).toString();
+	if(day.length == 1){
+		day = "00" + day;
+	}else if(day.length == 2){
+		day = "0" + day;
+	}else if(day.length == 3){
+
+	}else{
+
+	}
+	let dayArray = day.split('');
 	return {
 		lockStatus : lockStatus,
-		courseActiveTime : courseActiveTime,
-		courseExpirationTime : courseExpirationTime,
+		courseActiveTime : iGlobal.getDate(courseActiveTime*1000),
+		courseExpirationTime : iGlobal.getDate(courseExpirationTime*1000),
+		countDown : day,
+		countDownArray : dayArray,
 		courseActiveState : courseActiveState,
 		courseActiveStateText : courseActiveStateText
 	}

@@ -83,7 +83,7 @@ function ajax(payload){
     var path = require('path');
     // let file = `${process.cwd()}/static/mock/${args.url}`;
     
-    let file = `${__dirname}/../static/mock/${args.url}`;
+    let file = `${__dirname}/../static/${args.url}`;
     return new Promise(function(resolve, reject){
       fs.readFile(file, "utf8", function(err, data){
         if(err){
