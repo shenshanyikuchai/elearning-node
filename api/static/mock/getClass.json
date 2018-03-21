@@ -18,6 +18,21 @@
         "modifyTime" : null,
         "classId" : "19bbf54d003e81e137045c4a51b492df",
         "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseName" : "P1",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      },{
+        "id" : "0116cfac7d223690f24b29a130ce8b8a",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492dd",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseName" : "P2",
         "courseCategoryId" : "ff808081473905e701475cd3c2080001",
         "versionId" : null,
         "planId" : "0de179e85e7e988b1e93578aafcdf91c",
@@ -34,6 +49,72 @@
         "teacherId" : "ff808081473905e701475d7b01bd005d",
         "teacherName" : "Cindy Deng",
         "classId" : "19bbf54d003e81e137045c4a51b492df"
+      },{
+        "id" : "219bb4041e6211e793b064006a5147a1",
+        "createTime" : 1520584358000,
+        "modifyTime" : null,
+        "classCourseId" : "0116cfac7d223690f24b29a130ce8b8a",
+        "teacherId" : "ff808081473905e701475d7b01bd005d",
+        "teacherName" : "sdjfoi",
+        "classId" : "19bbf54d003e81e137045c4a51b492dd"
+      } ]
+    },{
+      "id" : "19bbf54d003e81e137045c4a51b492df",
+      "createTime" : 1498549804000,
+      "modifyTime" : 1501742940000,
+      "name" : "ACCA串讲课程集合2",
+      "memberCount" : 0,
+      "starTime" : 1521043200000,
+      "endTme" : 1523721600000,
+      "classTeacherId" : null,
+      "classTeacherName" : null,
+      "qrCodeUrl" : null,
+      "isDelete" : 0,
+      "classCourse" : [ {
+        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492df",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseName" : "P12",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      },{
+        "id" : "0116cfac7d223690f24b29a130ce8b8a",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492dd",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseName" : "P22",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      } ],
+      "classAssistant" : [ {
+        "id" : "219bb4041e6211e793b064006a5147a1",
+        "createTime" : 1520584358000,
+        "modifyTime" : null,
+        "classCourseId" : "0116cfac7d223690f24b29a130ce8b8e",
+        "teacherId" : "ff808081473905e701475d7b01bd005d",
+        "teacherName" : "Cindy Deng",
+        "classId" : "19bbf54d003e81e137045c4a51b492df"
+      },{
+        "id" : "219bb4041e6211e793b064006a5147a1",
+        "createTime" : 1520584358000,
+        "modifyTime" : null,
+        "classCourseId" : "0116cfac7d223690f24b29a130ce8b8a",
+        "teacherId" : "ff808081473905e701475d7b01bd005d",
+        "teacherName" : "sdjfoi",
+        "classId" : "19bbf54d003e81e137045c4a51b492dd"
       } ]
     }, {
       "id" : "a02c7d182f722c29de16d8c34ac0ab8b",
@@ -76,7 +157,7 @@
       "isDelete" : 1,
       "classAssistant" : null,
       "classCourse" : [ {
-        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "id" : "0116cfac7d223690f24b29a130ce8b8a",
         "createTime" : 1503397777000,
         "modifyTime" : null,
         "classId" : "19bbf54d003e81e137045c4a51b492df",

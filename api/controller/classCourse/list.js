@@ -15,23 +15,40 @@ module.exports = async(ctx, next) => {
 
 		if(classCourseList.data && classCourseList.data.length){
 			classCourseList.data.forEach((element, index) => {
-				let classCourse = '';
+				let classCourse = [];
 				let classAssistant = '';
 				let classAssistantArray = [];
 				
 				let classCourseData = {};
-				if(element.classCourse && element.classCourse.length){
-					classCourse = element.classCourse[0];
-				}
 				if(element.classAssistant && element.classAssistant.length){
 					classAssistant = element.classAssistant;
 				}
-				
-				if(classAssistant && classAssistant.length){
-					classAssistant.forEach((item) => {
-						classAssistantArray.push(item.teacherName)
+
+				if(element.classCourse && element.classCourse.length){
+					element.classCourse.forEach((item,index)=>{
+						classCourse.push({
+							"courseCategoryId" : iGlobal.toString(item.courseCategoryId),
+							"courseId" : iGlobal.toString(item.courseId),
+							"courseName" : iGlobal.toString(item.courseName),
+							"createTime" : iGlobal.toString(item.createTime),
+							"lecturerName" : iGlobal.toString(item.teacherName),
+							"lecturerId" : iGlobal.toString(item.teacherId),
+							"versionId" : iGlobal.toString(item.versionId),
+							"planId" : iGlobal.toString(item.planId),
+						})
+						if(classAssistant && classAssistant.length){
+							classAssistant.forEach((itemAssistant) => {
+								// classAssistantArray.push(item.teacherName)
+								if(itemAssistant.classCourseId == item.id){
+									classCourse[index].assistant = itemAssistant.teacherName
+								}
+							})
+						}
 					})
+
 				}
+				
+				
 				classCourseData = {
 					"className" : iGlobal.toString(element.name),
 					"startTime" : iGlobal.getDate(element.starTime),
@@ -40,14 +57,8 @@ module.exports = async(ctx, next) => {
 					"headmasterId" : iGlobal.toString(element.classTeacherId),
 					"QRCode" : iGlobal.toString(element.qrCodeUrl),
 					
-					"courseCategoryId" : iGlobal.toString(classCourse.courseCategoryId),
-					"courseId" : iGlobal.toString(classCourse.courseId),
-					"createTime" : iGlobal.toString(classCourse.createTime),
-					"lecturerName" : iGlobal.toString(classCourse.teacherName),
-					"lecturerId" : iGlobal.toString(classCourse.teacherId),
-					"assistant" : classAssistantArray || "",
-					"versionId" : iGlobal.toString(classCourse.versionId),
-					"planId" : iGlobal.toString(classCourse.planId),
+					"classCourse" : classCourse,
+					
 					"serverTime" : iGlobal.toString(serverTime)
 				}
 				if(serverTime<element.starTime){
