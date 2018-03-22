@@ -14,6 +14,7 @@ function classCourse(payload){
 	addTaskProgress(payload.tasksProgress);
 	courseRenderData = getChapterListWeekList(payload.memberGetplan);
 
+	formatCourseDetail(courseRenderData);
 	courseRenderData.courseStatus = courseByInFo(payload.courseactivestatus);
 	courseRenderData.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
 	courseRenderData.courseInfo = filterCourseInfo(payload.courseDetail);
@@ -44,7 +45,72 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 		let examTime = 0;
 		let knowledgePointTime = 0;
 		let openCourseTime = 0;
-		if(element.tasks && element.tasks.length){
+		if(element.tasks && element.tasks.length && element.children && element.children.length){
+			let newTasks = [];
+			let completedNum = 0;
+			let ongoingNum = 0;
+			let notstartedNum = 0;
+			element.tasks.forEach(function(element,index){
+				if(element.taskType == "video"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.videoTime);
+					chapterTotalTime+=(+element.videoTime);
+					videoTime+=(+element.videoTime);
+				}else if(element.taskType == "exam"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.taskTime)*60;
+					chapterTotalTime+=(+element.taskTime)*60;
+					examTime+=(+element.taskTime);
+				}else if(element.taskType == "knowledgePointExercise"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (120)*60;
+					chapterTotalTime+=(120)*60;
+					knowledgePointTime+=(+element.taskTime);
+				}else if(element.taskType == "openCourse"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.taskTime);
+					chapterTotalTime+=(+element.taskTime);
+					openCourseTime+=(+element.taskTime);
+				}
+				if(element.state){
+					completedNum++;
+				}else{
+					if(element.progress){
+						ongoingNum++;
+					}else{
+						notstartedNum++;
+					}
+				}
+			})
+			courseDetailList.push({
+				'level' : level,
+				'rootNode' : rootNode,
+				'parentNode' : node,
+				'node' : newNode,
+				'isChildren' : true,
+				'isFree' : element.isFree,
+				'title' : element.chapterTitle,
+				'chapterId' : element.chapterId,
+				'isTasks' : true,
+				'checked' : true,
+				'activeClass' : true,
+				'showClass' : true,
+
+				'tasks' : newTasks,
+				'completedNum' : completedNum,
+				'ongoingNum' : ongoingNum,
+				'notstartedNum' : notstartedNum,
+				'chapterTotalTime' : chapterTotalTime,
+				'chapterStudyTime' : 0,
+				'videoTime' : videoTime,
+				'examTime' : examTime,
+				'knowledgePointTime' : knowledgePointTime,
+				'openCourseTime' : openCourseTime,
+				
+			})
+			
+			filterCourseDetail(element.children, level, newNode, node, rootNode);
+		}else if(element.tasks && element.tasks.length){
 			let newTasks = [];
 			let completedNum = 0;
 			let ongoingNum = 0;
@@ -88,7 +154,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'node' : newNode,
 				'isChildren' : false,
 				'isFree' : element.isFree,
-				'chapterTitle' : element.chapterTitle,
+				'title' : element.chapterTitle,
 				'chapterId' : element.chapterId,
 				'isTasks' : true,
 				'tasks' : newTasks,
@@ -105,8 +171,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'activeClass' : true,
 				'showClass' : true
 			})
-		}
-		if(element.children && element.children.length){
+		}else if(element.children && element.children.length){
 			// courseDetailLevel++;
 			courseDetailList.push({
 				'level' : level,
@@ -115,14 +180,13 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'node' : newNode,
 				'isChildren' : true,
 				'isFree' : element.isFree,
-				'chapterTitle' : element.chapterTitle,
+				'title' : element.chapterTitle,
 				'chapterId' : element.chapterId,
 				'isTasks' : false,
 				'checked' : true,
 				'activeClass' : true,
 				'showClass' : true
 			})
-
 			filterCourseDetail(element.children, level, newNode, node, rootNode);
 		}
 	})
@@ -611,5 +675,28 @@ function filterLastLearnChapter(taskProgress){
 		taskId : taskId,
 		taskName : taskName
 	}
+}
+function formatCourseDetail(courseRenderData){
+	var formatPlanInfo = [];
+	_.each(courseRenderData.planInfo, function(weekElement, weekIndex){
+		formatPlanInfo.push(weekElement);
+		formatPlanInfo[weekIndex].newList = [];
+		_.each(weekElement.list, function(listElement, listIndex){
+			let thisElement = '';
+			let level = listElement.level;
+			let node = listElement.node;
+			let nodeArray = node.split('-');
+			if(level == 1){
+				formatPlanInfo[weekIndex].newList.push(listElement);
+				formatPlanInfo[weekIndex].newList[0].children = [];
+			}else if(level == 2){
+				formatPlanInfo[weekIndex].newList[0].children.push(listElement);
+				formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children = [];
+			}else if(level == 3){
+				formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children.push(listElement)
+			}
+			
+		})
+	})
 }
 module.exports = classCourse
