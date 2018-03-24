@@ -51,6 +51,7 @@ module.exports = async(ctx, next) => {
 				
 				classCourseData = {
 					"className" : iGlobal.toString(element.name),
+					"classId" : iGlobal.toString(element.id),
 					"startTime" : iGlobal.getDate(element.starTime),
 					"endTime" : iGlobal.toString(element.endTme),
 					"headmasterName" : iGlobal.toString(element.classTeacherName),

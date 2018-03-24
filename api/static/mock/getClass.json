@@ -31,7 +31,7 @@
         "createTime" : 1503397777000,
         "modifyTime" : null,
         "classId" : "19bbf54d003e81e137045c4a51b492dd",
-        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseId" : "ff8080814dad5062014dadd9c70d0055",
         "courseName" : "P2",
         "courseCategoryId" : "ff808081473905e701475cd3c2080001",
         "versionId" : null,
@@ -59,7 +59,7 @@
         "classId" : "19bbf54d003e81e137045c4a51b492dd"
       } ]
     },{
-      "id" : "19bbf54d003e81e137045c4a51b492df",
+      "id" : "19bbf54d003e81e137045c4a51b492dd",
       "createTime" : 1498549804000,
       "modifyTime" : 1501742940000,
       "name" : "ACCA串讲课程集合2",
