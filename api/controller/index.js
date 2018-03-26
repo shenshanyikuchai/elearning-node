@@ -1,8 +1,9 @@
 const constant = require('../global/constant');
 // const platform = require('platform');
 module.exports = async (ctx, next) => {
-	ctx.state.mock = ctx.query.mock;
-	ctx.state.mock = true;
+
+	ctx.state.mock = ctx.query.mock || ctx.request.body.mock;
+	// ctx.state.mock = true;
 	ctx.state.fail = [];
 	ctx.state.response = constant.response.success;
 	// const UA = platform.parse(ctx.request.header['user-agent']);
@@ -18,11 +19,15 @@ module.exports = async (ctx, next) => {
  
 	let fail = ctx.state.fail;
 	let responseData = {};
+	console.log(fail)
 	if(fail && fail.length){
 		for(let i=0;i<fail.length;i++){
 			if(fail[i].state == "error"){
+
 				if(fail[i].msg == "nologin"){
-					responseData = constant.response.nologin;
+					
+				}else if(fail[i].msg == "用户名或密码错误"){
+					responseData = constant.response.errorInput;
 				}else{
 					responseData = constant.response.error;
 				}

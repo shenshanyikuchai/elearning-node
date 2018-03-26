@@ -7,8 +7,8 @@ module.exports = {
     "origin" : "http://elearning.zbgedu.com",
     "name": "http://api.zbgedu.com",
     "nameAction": "http://action.zbgedu.com",
-    // "demoName" : "http://demo.caicui.com",
-    "demoName" : "http://192.168.10.112:8083",
+    "demoName" : "http://demo.caicui.com",
+    // "demoName" : "http://192.168.10.112:8083",
     "static" : "http://exstatic.zbgedu.com/",
     "img" : "http://eximg.zbgedu.com",
     "imgAddress" : "http://exstatic.zbgedu.com/",
@@ -58,6 +58,11 @@ module.exports = {
       "code" : "333",
       "msg" : "没有登录",
       "state" : "nologin"
+    },
+    "errorInput" : {
+      "code" : "334",
+      "msg" : "用户名或密码错误",
+      "state" : "errorInput"
     },
     "error" : {
       "code" : "444",

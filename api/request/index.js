@@ -38,6 +38,7 @@ function ajax(payload){
   var thatServer = api[payload.server];
   var hostName = '';
   var thatServerUrl = thatServer.url;
+  console.log(payload.ctxState)
   if(process.env.NODE_ENV == "demo"){ // production development
     if(thatServer.staticDataDemo){
       args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
@@ -59,6 +60,7 @@ function ajax(payload){
       }
     }
   }else{
+
     hostName = COMMON.host.name;
     if(thatServer.hostName){
       hostName = thatServer.hostName;
@@ -71,7 +73,7 @@ function ajax(payload){
       args.type = thatServer.type ? thatServer.type : 'GET';
     }
   }
-  // console.log(args.url+JSON.stringify(payload.data))
+  console.log(args.url+JSON.stringify(payload.data))
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   } else if (args.type === 'GET') {
