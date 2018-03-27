@@ -9,7 +9,6 @@ module.exports = async(ctx, next) => {
 			token: ctx.query.token
 		}
 	}).then((res) => {
-		console.log(res)
 		ctx.state.classCourseList = res;
 		return next();
 	})

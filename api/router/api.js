@@ -107,20 +107,3 @@ module.exports = [
 		}
 	}
 ]
-
-/*
-$.ajax({
-url : 'http://localhost:3080/api/userAction/scene/mobileIndex/login',
-type : 'post',
-data : {
- type: "pcWeb",
-username: "zpk",
-password: "123456"
-},
-success : function(data){
-console.log(data)
-},error : function(err){
-console.log(err)
-}
-})
-*/

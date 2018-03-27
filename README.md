@@ -3,16 +3,17 @@
 使用node+koa2提供学习中心场景缓存api
 
 ```
-	npm install
-	npm run dev
+npm install
+npm run dev
 
 ```
+> prefix : /api/userAction/scene/mobileIndex
 
 ## 阶段1 --- 整合接口
 
 ### 登录 -- `login`
+
 ```
-http://localhost:3080/login?type=pcWeb&username=zpk&password=123456
 
 产品类型 - type : pcWeb/winExe/iPad/iPhone/aPhone/aPad/zbjyjt/zbjyyw
 用户名   - username : zpk

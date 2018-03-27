@@ -3,7 +3,6 @@ const iGlobal = require('../../global');
 const constant = require('../../global/constant');
 
 module.exports = async(ctx, next) => {
-	console.log(ctx.query)
 	if(ctx.query.token){
 		await next();
 		let classCourseList = ctx.state.classCourseList;

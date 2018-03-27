@@ -11,14 +11,11 @@ module.exports = async (ctx, next) => {
 
   console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
 	try {
-		console.log(1)
     await next();
-    console.log(2)
   } catch (err) {
   	console.log(err)
     ctx.state.response = constant.response.nodeerror;
   }
- 	console.log(3)
 	let fail = ctx.state.fail;
 	let responseData = {};
 	if(fail && fail.length){

@@ -226,7 +226,7 @@ module.exports = {
     'name' : '课程详情',
     'urlDemo': '/api/teachsource/course/courseDetail/data',
     'url': '/api/teachsource/course/courseDetail/data',
-    'mock' : '/mock/courseDetail.json',
+    'mock' : '/mock/courseDetail-test.json',
     'defaultData' : {
       'courseId' : '8a22ecb55e755132015e8361703400c6'
     }
@@ -515,7 +515,7 @@ module.exports = {
   'memberGetplan' : {
     'name' : '获取学员学习计划',
     'url': '/api/userAction/study/member/getplan',
-    'mock' : '/mock/memberGetplan.json',
+    'mock' : '/mock/memberGetplan-test.json',
     'defaultData' : {
       'token':'7a98a7c9-208a-44c3-ab17-7f836287adde',
       'courseCategoryId':'ff808081473905e701476204cb6c006f',
