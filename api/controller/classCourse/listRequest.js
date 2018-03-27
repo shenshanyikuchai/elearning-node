@@ -6,9 +6,7 @@ module.exports = async(ctx, next) => {
 		server : "classCourseList",
 		ctxState : ctx.state,
 		data : {
-			token: ctx.query.token,
-  		memberId: ctx.query.memberId,
-  		courseId: ctx.query.courseId
+			token: ctx.query.token
 		}
 	}).then((res) => {
 		ctx.state.classCourseList = res.data;

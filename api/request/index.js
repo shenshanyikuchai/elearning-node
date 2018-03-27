@@ -2,7 +2,7 @@
 const axios = require('axios');
 const config = require('./axios-config');
 const COMMON = require('../global/constant');
-const api = require('./api.js');
+const api = require('./api');
 // axios.defaults.timeout = 0;
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -73,7 +73,11 @@ function ajax(payload){
       args.type = thatServer.type ? thatServer.type : 'GET';
     }
   }
-  console.log(args.url+JSON.stringify(payload.data))
+  var showUrl = args.url;
+  for(var i in payload.data){
+    showUrl += '&' +i +'=' + payload.data[i];
+  }
+  console.log(showUrl)
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   } else if (args.type === 'GET') {

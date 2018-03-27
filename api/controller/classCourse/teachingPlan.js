@@ -1,7 +1,6 @@
 const Request = require('../../request');
 
 module.exports = async(ctx, next) => {
-	ctx.state.mock = true;
 	await Request.ajax({
 		server : "teachingPlan",
 		ctxState : ctx.state,
