@@ -1,8 +1,8 @@
 {
   "name": "elearning-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "使用node+koa提供聚合api",
-  "main": "hello.js",
+  "main": "api/server.js",
   "dependencies": {
     "axios": "^0.17.1",
     "koa": "^2.4.1",
@@ -16,12 +16,15 @@
   },
   "scripts": {
     "dev": "nodemon --inspect api/server.js",
-    "demo": "set NODE_ENV=development && nodemon --inspect api/server.js"
+    "serve": "api/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:zpkweb/elearning-node.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
 }

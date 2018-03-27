@@ -3,6 +3,7 @@ const iGlobal = require('../../global');
 const constant = require('../../global/constant');
 
 module.exports = async(ctx, next) => {
+	console.log(ctx.query)
 	if(ctx.query.token){
 		await next();
 		let classCourseList = ctx.state.classCourseList;
@@ -12,7 +13,6 @@ module.exports = async(ctx, next) => {
 		let classCourseNotStart = [];
 		let classCourseStudyIn = [];
 		let classCourseActivated = [];
-
 		if(classCourseList.data && classCourseList.data.length){
 			classCourseList.data.forEach((element, index) => {
 				let classCourse = [];
