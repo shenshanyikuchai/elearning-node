@@ -33,6 +33,48 @@ module.exports = {
 		}
 		return format;
 	},
+	getLocalTime:function (str,connector){
+    if(str == null){
+        return '';
+    }
+    var timestamp = str.toString();
+    if(timestamp.length > 11){
+        timestamp = timestamp.substring(0,10);
+    }
+    var format = 'yyyy-MM-dd h:m:s';
+    var newDate = new Date(parseInt(timestamp) * 1000);
+    var date = {
+        "M+": newDate.getMonth() + 1,
+        "d+": newDate.getDate(),
+        "h+": newDate.getHours(),
+        "m+": newDate.getMinutes(),
+        "s+": newDate.getSeconds(),
+        "q+": Math.floor((newDate.getMonth() + 3) / 3),
+        "S+": newDate.getMilliseconds()
+    };
+    if (/(y+)/i.test(format)) {
+        format = format.replace(RegExp.$1, (newDate.getFullYear() + '').substr(4 - RegExp.$1.length));
+    }
+    for (var k in date) {
+        if (new RegExp("(" + k + ")").test(format)) {
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ('00' + date[k]).substr(("" + date[k]).length));
+        }
+    }
+    var formatArr = format.split(" ");
+    var time = formatArr[0]+' ';
+    var formatArrs = formatArr[1].split(":");
+    for(var i=0;i<formatArrs.length;i++){
+        if(i>0){
+            time+=':';
+        }
+        if(formatArrs[i].length == 1){
+            time+='0'+formatArrs[i];
+        }else{
+            time+=formatArrs[i];
+        }
+    }
+    return time;
+  },
 	timeago : function (data){
 	    var $_data = parseInt(data);
 	    var $_return_string = '1分钟前';

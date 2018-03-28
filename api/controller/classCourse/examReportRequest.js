@@ -2,14 +2,15 @@ const axios = require('axios');
 const Request = require('../../request');
 
 module.exports = async(ctx, next) => {
-	ctx.state.mock = true;
 	await axios.all([Request.ajax({
   	server : "userExamStatus",
     ctxState : ctx.state,
   	data : {
   	  member_id: ctx.query.memberId,
-  		knowledge_point_id: ctx.query.knowledgePointId,
-  		examenNum : ctx.query.examenNum
+  		knowledge_points: ctx.query.knowledgePointId,
+  		examenNum : ctx.query.examenNum,
+      pageNo : 1,
+      pageSize : 20
   	}
   }),Request.ajax({
   	server : "userExerciseStatus",

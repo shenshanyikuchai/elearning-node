@@ -71,9 +71,11 @@ module.exports = {
     }
   },
   'userExamStatus': {
+    'hostNameDemo': 'http://192.168.10.201:8080',
     'url': '/api/userAction/examen/get_exercise_knowledge_member_status',
     'name' : '获取用户知识点（或试卷）的答题进度',
     'isPrefix' : true,
+    'type' : 'POST',
     'path' : '/userExamStatus',
     'mock' : '/mock/userExamStatus.json',
     'notMock' : true,
@@ -82,6 +84,7 @@ module.exports = {
     }
   },
   'userExerciseStatus': {
+    'hostNameDemo': 'http://192.168.10.201:8080',
     'url': '/api/userAction/examen/get_user_knowledge_point_exercise_list',
     'name' : '获取用户某知识点（或试卷）答题记录',
     'isPrefix' : true,
@@ -167,6 +170,7 @@ module.exports = {
     'name' : '课程进度',
     'action': 'true',
     'hostName': 'http://action.zbgedu.com',
+    'hostNameDemo': 'http://action.zbgedu.com',
     'url': '/api/userAction/course/getCourseProgress/v1.0/',
     'mock' : '/mock/getCourseProgress.json',
     'defaultData' : {
@@ -226,7 +230,8 @@ module.exports = {
     'name' : '课程详情',
     'urlDemo': '/api/teachsource/course/courseDetail/data',
     'url': '/api/teachsource/course/courseDetail/data',
-    'mock' : '/mock/courseDetail-test.json',
+    // 'mock' : '/mock/courseDetail-test.json',
+    'mock' : '/mock/courseDetail.json',
     'defaultData' : {
       'courseId' : '8a22ecb55e755132015e8361703400c6'
     }
@@ -243,6 +248,7 @@ module.exports = {
     'name': '任务进度',
     'action': 'true',
     'hostName': 'http://action.zbgedu.com',
+    'hostNameDemo': 'http://action.zbgedu.com',
     'url': '/api/userAction/course/getTasksProgress/v1.0/',
     'mock' : '/mock/actionGetTasksProgress.json',
     'defaultData' : {
@@ -515,7 +521,8 @@ module.exports = {
   'memberGetplan' : {
     'name' : '获取学员学习计划',
     'url': '/api/userAction/study/member/getplan',
-    'mock' : '/mock/memberGetplan-test.json',
+    // 'mock' : '/mock/memberGetplan-test.json',
+    'mock' : '/mock/memberGetplan.json',
     'defaultData' : {
       'token':'7a98a7c9-208a-44c3-ab17-7f836287adde',
       'courseCategoryId':'ff808081473905e701476204cb6c006f',

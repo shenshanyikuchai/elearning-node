@@ -45,8 +45,8 @@ function ajax(payload){
       args.type = 'GET';
     }else{
       hostName  = COMMON.host.demoName;
-      if(thatServer.hostName){
-        hostName = thatServer.hostName;
+      if(thatServer.hostNameDemo){
+        hostName = thatServer.hostNameDemo;
       }
       if(thatServer.urlDemo){
         thatServerUrl = thatServer.urlDemo;
@@ -79,6 +79,7 @@ function ajax(payload){
   }
   console.log(showUrl)
   if (args.type === 'POST') {
+    console.log(payload.data)
     return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   } else if (args.type === 'GET') {
     return axios.get(args.url, {
@@ -104,6 +105,7 @@ function ajax(payload){
   
 }
 function done(payload, res){
+
   if(res.state == "success"){
     return res;
     if(payload.server == "messageListNoRead"){
@@ -120,6 +122,7 @@ function done(payload, res){
   
 }
 function fail(payload, err){
+  console.log(err)
   if(payload.server == "getappdownloadinfo"){
     return err
   }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){

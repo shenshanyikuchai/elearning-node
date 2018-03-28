@@ -1,12 +1,15 @@
 const iGlobal = require('../global');
 const constant = require('../global/constant');
 const _ = require('lodash');
-
-var courseDetailList = [];
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
+var courseDetailList = [];
 var weekIngNum = 0;
-
+function classCourseClear(){
+	if(courseDetailList && courseDetailList.length){
+		courseDetailList = [];
+	}
+}
 function classCourse(payload){
 	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
 	let courseRenderData = {};
@@ -234,7 +237,7 @@ function addTaskProgress(taskProgress) {
 					}else{
 						notstartedNum++;
 					}
-				})
+				});
 				courseElement.completedNum = completedNum;
 				courseElement.ongoingNum = ongoingNum;
 				courseElement.notstartedNum = notstartedNum;
@@ -259,7 +262,8 @@ function filterCourseDetailPlan(courseData){
 	}
 }
 function filterCourseDetailWeekPlan(courseData, planData){
-
+	console.log(courseData)
+	console.log(planData)
 	let courseDetailWeekList = [];
 	let courseDetailLevel = 0;
 
@@ -324,6 +328,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let liveStatusText = '';
 
 		if(element.startDate<newDate && element.endDate<newDate){
+			// weekIngNum = index;
 			weekStatus = "beoverdue";
 			weekTotalBeoverdue++;
 		}else if(element.startDate<newDate && newDate<element.endDate){
@@ -331,9 +336,12 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			weekStatus = "ongoing";
 			weekTaskOngoing++;
 		}if(newDate<element.startDate && newDate<element.endDate){
+			// weekIngNum = index;
 			isOpen = "false";
 			weekStatus = "notstarted";
 			weekTaskNotstarted++;
+		}else{
+			// weekIngNum = '';
 		}
 		
 		for(var i=itemStart;i<itemLength;i++){
@@ -427,6 +435,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 						}else if(element.taskType == "knowledgePointExercise"){
 							// evaluationStatus = 1;
 						}else if(element.taskType == "openCourse"){
+							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 							liveStatus = element.state;
 							if(element.state){
 								liveStatusText = "已完成"
@@ -461,6 +470,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		courseDetailWeekList.push({
 			'isOpen' : isOpen,
 			'isFinish' : element.isFinish,
+			'isExamDone' : false,
 			'list' : addCourseDetailList,
 			'status' : weekStatus,
 			'isDone' : weekDone,
@@ -526,7 +536,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 	}
 }
 function courseByInFo(coursestatus){
-	let lockStatus = "false";
+	let lockStatus = false;
 	let courseActiveTime = 0;
 	let courseExpirationTime = 0;
 	let courseActiveState=0;
@@ -540,7 +550,7 @@ function courseByInFo(coursestatus){
 			}
 		}
 		if(!lockStatusNum){
-			lockStatus = "true";
+			lockStatus = true;
 		}
 
 		for(var i=0;i<coursestatus.length;i++){
@@ -679,6 +689,7 @@ function filterLastLearnChapter(taskProgress){
 function formatCourseDetail(courseRenderData){
 	var formatPlanInfo = [];
 	_.each(courseRenderData.planInfo, function(weekElement, weekIndex){
+		console.log(weekElement)
 		formatPlanInfo.push(weekElement);
 		formatPlanInfo[weekIndex].newList = [];
 		_.each(weekElement.list, function(listElement, listIndex){
@@ -699,4 +710,4 @@ function formatCourseDetail(courseRenderData){
 		})
 	})
 }
-module.exports = classCourse
+module.exports = { classCourse,classCourseClear }
