@@ -359,7 +359,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 					weekStudyTime+=thisItem.chapterStudyTime;
 					videoTime+=thisItem.videoTime;
 					examTime+=thisItem.examTime;
-					liveTime+=thisItem.openCourseTime;
+					// liveTime+=thisItem.openCourseTime;
 
 					let taskLength = thisItem.tasks.length;
 					weekTaskTotal+=taskLength;
@@ -435,8 +435,10 @@ function filterCourseDetailWeekPlan(courseData, planData){
 						}else if(element.taskType == "knowledgePointExercise"){
 							// evaluationStatus = 1;
 						}else if(element.taskType == "openCourse"){
+							element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 							liveStatus = element.state;
+							liveTime = element.openCourseDate;
 							if(element.state){
 								liveStatusText = "已完成"
 							}else{
@@ -508,7 +510,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 			'liveStatus' : liveStatus,
 			'liveStatusText' : liveStatusText,
-			'liveTime' : iGlobal.getDate(element.startDate)
+			'liveTime' : liveTime
 		})
 	})
 
