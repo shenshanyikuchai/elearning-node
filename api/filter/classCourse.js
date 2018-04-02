@@ -322,6 +322,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 		let evaluationStatus = 0;
 		let evaluationTime = 0;
+		let evaluationId = '';
 
 		let liveStatus = 0;
 		let liveTime = 0;
@@ -432,6 +433,22 @@ function filterCourseDetailWeekPlan(courseData, planData){
 									examNotstarted++;
 								}
 							}
+							if(element.taskLevel == "practice"){ // 练习
+
+							}else if(element.taskLevel == "appraisal"){ // 测评
+								evaluationId = element.id;
+								evaluationStatus = element.state;
+							}else if(element.taskLevel == "midterm"){ // 期中
+
+							}else if(element.taskLevel == "end"){ // 期末
+
+							}else if(element.taskLevel == "core"){ // 核心
+
+							}else if(element.taskLevel == "extension"){ // 扩展
+
+							}else if(element.taskLevel == "backup"){ // 备份
+
+							}
 						}else if(element.taskType == "knowledgePointExercise"){
 							// evaluationStatus = 1;
 						}else if(element.taskType == "openCourse"){
@@ -448,6 +465,8 @@ function filterCourseDetailWeekPlan(courseData, planData){
 									liveStatusText = "未开始";
 								}
 							}
+						
+
 						}
 					})
 				}
@@ -507,6 +526,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 			'evaluationStatus' : evaluationStatus,
 			'evaluationTime' : evaluationTime,
+			'evaluationId' : evaluationId,
 
 			'liveStatus' : liveStatus,
 			'liveStatusText' : liveStatusText,

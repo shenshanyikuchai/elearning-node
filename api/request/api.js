@@ -268,13 +268,13 @@ module.exports = {
     'name' : '过期的课程',
     'url': '/api/business/learning/expirationcourse/v1.0'
   },
-  'courseBaseInfo': {
-    'urlDemo': '/api/v2.1/course/courseBaseInfo/data',
-    'url': '/api/v2.1/course/courseBaseInfo/data',
-    'type': 'POST'
-  },
+  // 'courseBaseInfo': {
+  //   'urlDemo': '/api/v2.1/course/courseBaseInfo/data',
+  //   'url': '/api/v2.1/course/courseBaseInfo/data',
+  //   'type': 'POST'
+  // },
   
-  'coursesBaseInfo': {
+  'courseBaseInfo': {
     'urlDemo': '/api/teachsource/course/courseBaseInfo/data',
     'url': '/api/teachsource/course/courseBaseInfo/data'
   },

@@ -8,8 +8,30 @@ module.exports = async(ctx, next) => {
 		data : {
 			token: ctx.query.token
 		}
-	}).then((res) => {
-		ctx.state.classCourseList = res;
+	}).then(async (res) => {
+
+		let classCourseList = res;
+		for(let elementClassCourse of classCourseList.data){
+			if(elementClassCourse.classCourse.length){
+				for (let courseElement of elementClassCourse.classCourse) {
+			    console.log(courseElement.courseId)
+			    ctx.state.mock = false;
+			    await Request.ajax({
+			    	server : "courseBaseInfo",
+			    	ctxState : ctx.state,
+			    	data : {
+			    		idType: 0,
+			    		courseId : courseElement.courseId
+			    	}
+			    }).then((res) => {
+			    	console.log(res);
+			    	courseElement.courseName = res.data[0].courseName;
+			    })
+			  }
+			}
+		}
+		
+		ctx.state.classCourseList = classCourseList;
 		return next();
 	})
 }

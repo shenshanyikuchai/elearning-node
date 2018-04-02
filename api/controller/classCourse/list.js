@@ -3,6 +3,7 @@ const iGlobal = require('../../global');
 const constant = require('../../global/constant');
 
 module.exports = async(ctx, next) => {
+	// ctx.state.mock = true;
 	if(ctx.query.token){
 		await next();
 		let classCourseList = ctx.state.classCourseList;
@@ -62,6 +63,7 @@ module.exports = async(ctx, next) => {
 					"serverTime" : iGlobal.toString(serverTime)
 				}
 				if(serverTime<element.starTime){
+					console.log("未开始")
 					classCourseData.state = "0";
 					let day = (parseInt((element.starTime-serverTime)/(1000*60*60*24))).toString();
 					if(day.length == 1){
@@ -78,12 +80,15 @@ module.exports = async(ctx, next) => {
 					classCourseData.nowToOpeningTime = day;
 					classCourseData.nowToOpeningTimeArray = dayArray;
 
-					classCourseNotStart.push(classCourseData);
+					// classCourseNotStart.push(classCourseData);
+					classCourseStudyIn.push(classCourseData);
 
 				}else if(element.starTime<serverTime && serverTime<element.endTme){
+					console.log("进行中")
 					classCourseData.state = "1";
 					classCourseStudyIn.push(classCourseData);
 				}else if(element.endTme<serverTime){
+					console.log("已过期")
 					classCourseData.state = "2";
 					classCourseActivated.push(classCourseData);
 				}
