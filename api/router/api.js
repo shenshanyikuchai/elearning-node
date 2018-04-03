@@ -99,7 +99,7 @@ module.exports = [
 		name : "测评成绩报告",
 		path : "examReport",
 		type : "get",
-		modules : ["classCourse/examReport","classCourse/examReportRequest"],
+		modules : ["classCourse/examReport","classCourse/examReportRequest","component/knowledge"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",

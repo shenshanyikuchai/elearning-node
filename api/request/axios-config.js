@@ -30,6 +30,7 @@ module.exports =  {
   timeout: 0,
   withCredentials: false,
   responseType: 'json',
+  // responseType : 'arraybuffer,blob,document,json,text,stream',
   // onUploadProgress: function(progressEvent) {
   //  // Do whatever you want with the native progress event
   // },

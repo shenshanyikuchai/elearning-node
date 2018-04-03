@@ -3,50 +3,114 @@ const constant = require('../global/constant');
 const _ = require('lodash');
 
 function examReport(payload){
-	let exercise = fileterExercise(payload.userExamStatus,payload.userExerciseStatus);
-	let knowledgePoint = "知识点";
-	let subjectId = payload.userExamStatus.subject_id;
-	let courseId = payload.userExamStatus.course_id;
-	let chapterId = payload.userExamStatus.chapter_id;
-	let taskId = payload.userExamStatus.task_id;
-	
+	console.log(payload)
+	payload.exerciseStatus = getExerciseBaseInfo(payload);
+	payload.knowledge = fileterKnowledge(payload);
+	payload.exerciseSummary = getExerciseSummary(payload.exerciseStatus);
+
 	return {
 		examReport : {
-			exercise : exercise,
-			knowledgePoint : knowledgePoint,
-			subjectId : subjectId,
-			courseId : courseId,
-			chapterId : chapterId,
-			taskId : taskId
+			status : payload.exerciseStatus,
+			knowledge : payload.knowledge,
+			summary : payload.exerciseSummary,
+			title : payload.exam.examen_name,
+			subjectId : payload.exam.subject_id,
+			courseId : payload.exam.course_id,
+			chapterId : payload.exam.chapter_id,
+			taskId : payload.exam.task_id
 		}
 	};
 }
+function getExerciseBaseInfo(payload){
+	// 根据试题id去重
+	let newExercise = _.uniqBy(payload.exercise, 'exercise_id');
+	let exerciseStatus = [];
+	payload.baseInfo.forEach((elementBaseInfo, indexBaseInfo) => {
+		exerciseStatus.push({
+			id : elementBaseInfo.id,
+			status : "0"
+		})
+		newExercise.forEach((elementExercise, indexExercis) => {
+			if(elementBaseInfo.id && elementExercise.exercise_id){
+				exerciseStatus[indexBaseInfo].status = elementExercise.status
+			}
+		});
+	});
+	return exerciseStatus;
+}
+function fileterKnowledge(payload){
+	let master = [];
+	let strengthen = [];
 
-function fileterExercise(exam, exercise){
-	let title = '';
-	let total = '';
+	payload.exerciseStatus.forEach((element) => {
+		payload.knowledge.forEach((elementKnowledge) => {
+			for(let knowledgeId in elementKnowledge){
+				if(knowledgeId == element.id){
+					if(element.status == "0" || element.status == "2"){
+						elementKnowledge[knowledgeId].forEach((element) => {
+							strengthen.push({
+								title : element.enTitle,
+								id : element.id
+							})
+						})
+					}else if(element.status == "1"){
+						elementKnowledge[knowledgeId].forEach((element) => {
+							master.push({
+								title : element.enTitle,
+								id : element.id
+							})
+						})
+					}
+				}
+			}
+			
+		})
+	})
+	return {
+		master : master,
+		strengthen : strengthen
+	}
+}
+
+function fileterExercise(payload){
 	let right = '';
 	let error = '';
 	let score = '';
 	let list = [];
-	if(exam.examen_name){
-		title = exam.examen_name;
-	}
-	if(exam.examen_total_num){
-		total = exam.examen_total_num;
-	}
-	exerciseData = getExerciseData(total, exercise);
+	
+
+	
+	exerciseData = getExerciseData(total, payload.exercise);
 	error = exerciseData.errorNum;
 	right = total - error;
 	score = parseInt((right/total)*100);
 	list = exerciseData.list;
 	return {
-		title : exam.examen_name,
-		total : total,
+		title : payload.exam.examen_name,
+		total : payload.baseInfo.length,
 		error : error,
 		right : right,
 		score : score,
 		list : list
+	}
+}
+function getExerciseSummary(exerciseStatus){
+	let total = exerciseStatus.length;
+	let right = 0;
+	let error = 0;
+	let score = 0;
+	exerciseStatus.forEach((element, index) => {
+		if(element.status == "0" || element.status == "2"){
+			error++;
+		}else{
+			right++;
+		}
+	})
+	score = parseInt((right/total)*100);
+	return {
+		error : error,
+		right : right,
+		score : score,
 	}
 }
 function getExerciseData(total, exercise){
@@ -74,5 +138,6 @@ function getExerciseData(total, exercise){
 		list : exerciseArray
 	};
 }
+
 
 module.exports = examReport

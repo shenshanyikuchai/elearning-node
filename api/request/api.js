@@ -70,6 +70,22 @@ module.exports = {
       'courseid' : "123456"
     }
   },
+  'userExerciseStatus': {
+    'hostNameDemo': 'http://192.168.10.201:8080',
+    'url': '/api/userAction/examen/get_user_knowledge_point_exercise_list',
+    'name' : '获取用户某知识点（或试卷）答题记录',
+    'isPrefix' : true,
+    'path' : '/userExerciseStatus',
+    'mock' : '/mock/userExerciseStatus.json',
+    'notMock' : true,
+    'queryData' : {
+      'knowledge_point_id' : "知识点id",
+      'member_id' : '用户id',
+      'examenNum' : '测试批次',
+      'pageNo' : '分页页码',
+      'pageSize' : '每页面记录数'
+    }
+  },
   'userExamStatus': {
     'hostNameDemo': 'http://192.168.10.201:8080',
     'url': '/api/userAction/examen/get_exercise_knowledge_member_status',
@@ -80,19 +96,33 @@ module.exports = {
     'mock' : '/mock/userExamStatus.json',
     'notMock' : true,
     'queryData' : {
-      'courseid' : "123456"
+      'knowledge_point_id' : "知识点id",
+      'member_id' : '用户id',
+      'examenNum' : '测试批次',
+      'type' : '1:通过path模糊搜索，2:通过level1精确检索，3:通过level2精确检索 4:通过knowledge_point_id精确匹配'
     }
   },
-  'userExerciseStatus': {
-    'hostNameDemo': 'http://192.168.10.201:8080',
-    'url': '/api/userAction/examen/get_user_knowledge_point_exercise_list',
-    'name' : '获取用户某知识点（或试卷）答题记录',
+  'getExerciseBaseInfo': {
+    'url': '/api/teachsource/examen/getExerciseBaseInfo/data',
+    'name' : '根据试卷id获取试卷试题基本信息',
     'isPrefix' : true,
-    'path' : '/userExerciseStatus',
-    'mock' : '/mock/userExerciseStatus.json',
+    'path' : '/getExerciseBaseInfo',
+    'mock' : '/mock/getExerciseBaseInfo.json',
     'notMock' : true,
     'queryData' : {
-      'courseid' : "123456"
+      'examenId' : "123456"
+    }
+  },
+  'getKnowledgePointInfoByExerciseIds': {
+    'hostNameDemo': 'http://192.168.10.112:8083',
+    'url': '/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds',
+    'name' : '根据试卷ids获取知识点',
+    'isPrefix' : true,
+    'path' : '/getKnowledgePointInfoByExerciseIds',
+    'mock' : '/mock/getKnowledgePointInfoByExerciseIds.json',
+    'notMock' : true,
+    'queryData' : {
+      'exerciseIds' : "ff8080814ad1f7d3014afc9ef7286b7c,ff8080814a766dea014a767e38fb0003"
     }
   },
   'gettoken': {
@@ -295,10 +325,7 @@ module.exports = {
     'urlDemo': '/api/teachsource/examen/getExerciseIds/data',
     'url': '/api/teachsource/examen/getExerciseIds/data'
   },
-  'getExerciseBaseInfo': {
-    'urlDemo': '/api/teachsource/examen/getExerciseBaseInfo/data',
-    'url': '/api/teachsource/examen/getExerciseBaseInfo/data'
-  },
+  
   'getTasksProgress': {
     'url': '/api/v2/study/getTasksProgress'
   },

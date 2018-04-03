@@ -17,6 +17,7 @@ const api = require('./api');
 //     return Promise.reject(error);
 //   }); 
 axios.interceptors.response.use((res) => {
+  // console.log(JSON.stringify(res.data))
   if (typeof res.data == "string") {
     try {
       res.data = JSON.parse(res.data);
@@ -79,7 +80,6 @@ function ajax(payload){
   }
   console.log(showUrl)
   if (args.type === 'POST') {
-    console.log(payload.data)
     return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
   } else if (args.type === 'GET') {
     return axios.get(args.url, {
@@ -105,7 +105,6 @@ function ajax(payload){
   
 }
 function done(payload, res){
-
   if(res.state == "success"){
     return res;
     if(payload.server == "messageListNoRead"){
