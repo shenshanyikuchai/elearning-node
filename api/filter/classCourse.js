@@ -233,7 +233,7 @@ function addTaskProgress(taskProgress) {
 						taskElement.progress = thatTaskData.progress;
 						taskElement.total = thatTaskData.total;
 						taskElement.state = thatTaskData.state;
-						taskElement.percentage = iGlobal.getPercentage(thatTaskData.progress,thatTaskData.total);
+						taskElement.percentage = iGlobal.getPercentage(thatTaskData);
 					}else{
 						notstartedNum++;
 					}
@@ -494,6 +494,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'isExamDone' : false,
 			'list' : addCourseDetailList,
 			'status' : weekStatus,
+			'weekStatus' : weekStatus,
 			'isDone' : weekDone,
 			'planId' : element.id,
 			'weekName' : element.planTitle,
