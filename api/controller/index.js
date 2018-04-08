@@ -1,7 +1,6 @@
 const constant = require('../global/constant');
 // const platform = require('platform');
 module.exports = async (ctx, next) => {
-
 	ctx.state.mock = ctx.query.mock || ctx.request.body.mock;
 	// ctx.state.mock = true;
 	ctx.state.fail = [];

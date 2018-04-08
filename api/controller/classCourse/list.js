@@ -35,12 +35,16 @@ module.exports = async(ctx, next) => {
 							"lecturerId" : iGlobal.toString(item.teacherId),
 							"versionId" : iGlobal.toString(item.versionId),
 							"planId" : iGlobal.toString(item.planId),
+							"assistant" : []
 						})
 						if(classAssistant && classAssistant.length){
 							classAssistant.forEach((itemAssistant) => {
 								// classAssistantArray.push(item.teacherName)
 								if(itemAssistant.classCourseId == item.id){
-									classCourse[index].assistant = itemAssistant.teacherName
+									classCourse[index].assistant.push({
+										teacherId : itemAssistant.teacherId,
+										teacherName : itemAssistant.teacherName
+									})
 								}
 							})
 						}
