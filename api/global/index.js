@@ -76,26 +76,92 @@ module.exports = {
     return time;
   },
 	timeago : function (data){
-	    var $_data = parseInt(data);
-	    var $_return_string = '1分钟前';
-	    var $_timestamp=parseInt(new Date().getTime()/1000);
-	    var $_reste = $_timestamp - $_data;
-	    if($_reste<0){
-	    	$_reste = 1;
-	    }
-	   	if($_reste <3600){
-	        $_return_string = Math.ceil($_reste/60)+'分钟前';
-	    }else if($_reste>=3600 && $_reste <(3600*24)){
-	        $_return_string = Math.ceil($_reste/3600)+'小时前';
-	    }else if($_reste>=(3600*24) && $_reste <(3600*24*30)){
-	        $_return_string = Math.ceil($_reste/(3600*24))+'天前';
-	    }else if($_reste>=(3600*24*30) && $_reste <(3600*24*30*12)){
-	        $_return_string = Math.ceil($_reste/(3600*24*30))+'月前';
-	    }else{
-	        $_return_string = Math.ceil(parseInt($_reste/(3600*24*30*12)))+'年前';
-	    }
-	    return $_return_string;
+    var $_data = parseInt(data);
+    var $_return_string = '1分钟前';
+    var $_timestamp=parseInt(new Date().getTime()/1000);
+    var $_reste = $_timestamp - $_data;
+    if($_reste<0){
+    	$_reste = 1;
+    }
+   	if($_reste <3600){
+        $_return_string = Math.ceil($_reste/60)+'分钟前';
+    }else if($_reste>=3600 && $_reste <(3600*24)){
+        $_return_string = Math.ceil($_reste/3600)+'小时前';
+    }else if($_reste>=(3600*24) && $_reste <(3600*24*30)){
+        $_return_string = Math.ceil($_reste/(3600*24))+'天前';
+    }else if($_reste>=(3600*24*30) && $_reste <(3600*24*30*12)){
+        $_return_string = Math.ceil($_reste/(3600*24*30))+'月前';
+    }else{
+        $_return_string = Math.ceil(parseInt($_reste/(3600*24*30*12)))+'年前';
+    }
+    return $_return_string;
 	},
+  formatSeconds:function(value,type) {
+    var theTime = parseInt(value);// 秒
+    var theTime1 = 0;// 分
+    var theTime2 = 0;// 小时
+    if(theTime > 60) {
+        theTime1 = parseInt(theTime/60);
+        theTime = parseInt(theTime%60);
+        if(theTime1 > 60) {
+            theTime2 = parseInt(theTime1/60);
+            theTime1 = parseInt(theTime1%60);
+        }
+    }
+    var result = "";
+    if(type == 'h'){
+      if(theTime > 9) {
+          result = parseInt(theTime)+"s";
+      }else if(theTime > 0) {
+          result = "0"+parseInt(theTime)+"s";
+      }else{
+          result = "0"+"s";
+      }
+      if(theTime1 > 9) {
+          result = parseInt(theTime1)+"m"+result;
+      }else if(theTime1 > 0) {
+          result = "0"+parseInt(theTime1)+"m"+result;
+      }else{
+          result = "0"+"m"+result;
+      }
+      // if(theTime > 0) {
+      //     result = parseInt(theTime)+"s"+result;
+      // }
+      // if(theTime1 > 0) {
+      //     result = parseInt(theTime1)+"m"+result;
+      // }
+      // if(theTime2 > 0) {
+      //     result = parseInt(theTime2)+"h"+result;
+      // }
+      if(theTime2 > 9) {
+          result = parseInt(theTime2)+"h"+result;
+      }else if(theTime2 > 0) {
+          result = parseInt(theTime2)+"h"+result;
+      }else{
+          result = "0"+"h"+result;
+      }
+    }else{
+      if(theTime > 9) {
+          result = parseInt(theTime);
+      }else if(theTime > 0) {
+          result = "0"+parseInt(theTime);
+      }else{
+          result = "00";
+      }
+      if(theTime2>0){
+          theTime1=theTime1+theTime2*60;
+      }
+      if(theTime1 > 9) {
+          result = parseInt(theTime1)+":"+result;
+      }else if(theTime1 > 0) {
+          result = "0"+parseInt(theTime1)+":"+result;
+      }else{
+          result = "00"+":"+result;
+      }
+    }
+    
+    return result;
+  },
 	getPercentage : function(payload){
 		let percentage = 1;
 		let progress = payload.progress ? parseInt(payload.progress) : 0;
