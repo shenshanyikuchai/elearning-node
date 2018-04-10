@@ -215,7 +215,6 @@ function addTaskProgress(taskProgress) {
 					});
 
 					if(thatTaskData){
-						console.log(thatTaskData)
 						var studyTime = thatTaskData.taskStudyTotalTime;
 						// if(thatTaskData.taskStudyTimeList && thatTaskData.taskStudyTimeList.length){
 						// 	thatTaskData.taskStudyTimeList.forEach(function(element, index){
@@ -330,16 +329,16 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let liveStatus = 0;
 		let liveTime = 0;
 		let liveStatusText = '';
-
-		if(element.startDate<newDate && element.endDate<newDate){
+		let endDataTime = (element.endDate + 24*60*60*1000);
+		if(element.startDate < newDate && endDataTime < newDate){
 			// weekIngNum = index;
 			weekStatus = "beoverdue";
 			weekTotalBeoverdue++;
-		}else if(element.startDate<newDate && newDate<element.endDate){
+		}else if(element.startDate < newDate && newDate < endDataTime){
 			weekIngNum = index;
 			weekStatus = "ongoing";
 			weekTaskOngoing++;
-		}if(newDate<element.startDate && newDate<element.endDate){
+		}if(newDate < element.startDate && newDate < endDataTime){
 			// weekIngNum = index;
 			isOpen = "false";
 			weekStatus = "notstarted";
@@ -415,6 +414,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 					}
 					let newTasks = [];
 					thisItem.tasks.forEach((element,index) => {
+						element.chapterId = thisItem.chapterId;
 						if(element.taskType == "video"){
 							newTasks.push(element);
 							videoTotal++;
@@ -441,16 +441,19 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							if(element.taskLevel == "practice"){ // 练习
 								newTasks.push(element);
 							}else if(element.taskLevel == "appraisal"){ // 测评
+								element.isFree = thisItem.isFree;
 								weekTask.push(element);
-								thisItem.tasks.splice(index,1);
+								// thisItem.tasks.splice(index,1);
 								evaluationId = element.id;
 								evaluationStatus = element.state;
 							}else if(element.taskLevel == "midterm"){ // 期中
+								element.isFree = thisItem.isFree;
 								weekTask.push(element);
-								thisItem.tasks.splice(index,1);
+								// thisItem.tasks.splice(index,1);
 							}else if(element.taskLevel == "end"){ // 期末
+								element.isFree = thisItem.isFree;
 								weekTask.push(element);
-								thisItem.tasks.splice(index,1);
+								// thisItem.tasks.splice(index,1);
 							}else if(element.taskLevel == "core"){ // 核心
 								newTasks.push(element);
 							}else if(element.taskLevel == "extension"){ // 扩展
@@ -462,8 +465,9 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							// evaluationStatus = 1;
 							newTasks.push(element);
 						}else if(element.taskType == "openCourse"){
+							element.isFree = thisItem.isFree;
 							weekTask.push(element);
-							thisItem.tasks.splice(index,1);
+							// thisItem.tasks.splice(index,1);
 							element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 							liveStatus = element.state;
@@ -477,7 +481,6 @@ function filterCourseDetailWeekPlan(courseData, planData){
 									liveStatusText = "未开始";
 								}
 							}
-						
 
 						}
 					})
@@ -502,6 +505,11 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 		taskTotal += weekTaskTotal;
 
+		let studyTimeTotal = videoTime+examTime+evaluationTime;
+		let evaluationTimePercentage = iGlobal.getProgress(evaluationTime,studyTimeTotal);
+		let examTimePercentage = iGlobal.getProgress(examTime,studyTimeTotal);
+		let videoTimePercentage = iGlobal.getProgress(videoTime,studyTimeTotal);
+
 		courseDetailWeekList.push({
 			'isOpen' : isOpen,
 			'isFinish' : element.isFinish,
@@ -517,7 +525,8 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			
 			'totalTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
 			'taskTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
-			'studyTime' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
+			'studyTime' : videoTime+examTime+evaluationTime,
+			'studyTimeFormat' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
 			'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
 			'startDate' : iGlobal.getDate(element.startDate),
 			'endDate' : iGlobal.getDate(element.endDate),
@@ -532,17 +541,23 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'videoCompleted' : videoCompleted,
 			'videoOngoing' : videoOngoing,
 			'videoProgress' : iGlobal.getProgress(videoCompleted,videoTotal),
-			'videoTime' : iGlobal.formatSeconds(videoTime,'h'),
+			'videoTime' : videoTime,
+			'videoTimeFormat' : iGlobal.formatSeconds(videoTime,'h'),
+			'videoTimePercentage' : videoTimePercentage,
 
 			'examTotal' : examTotal,
 			'examCompleted' : examCompleted,
 			'examOngoing' : examOngoing,
 			'examProgress' : iGlobal.getProgress(examCompleted,examTotal),
-			'examTime' : iGlobal.formatSeconds(examTime,'h'),
+			'examTime' : examTime,
+			'examTimeFormat' : iGlobal.formatSeconds(examTime,'h'),
+			'examTimePercentage' : examTimePercentage,
 
-			'evaluationStatus' : evaluationStatus,
-			'evaluationTime' : iGlobal.formatSeconds(evaluationTime,'h'),
 			'evaluationId' : evaluationId,
+			'evaluationStatus' : evaluationStatus,
+			'evaluationTime' : evaluationTime,
+			'evaluationTimeFormat' : iGlobal.formatSeconds(evaluationTime,'h'),
+			'evaluationTimePercentage' : evaluationTimePercentage,
 
 			'liveStatus' : liveStatus,
 			'liveStatusText' : liveStatusText,

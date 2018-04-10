@@ -6,7 +6,7 @@ function examReport(payload){
 	console.log(payload)
 	payload.exerciseStatus = getExerciseBaseInfo(payload);
 	payload.knowledge = fileterKnowledge(payload);
-	payload.exerciseSummary = getExerciseSummary(payload.exerciseStatus);
+	payload.exerciseSummary = getExerciseSummary(payload);
 
 	return {
 		examReport : {
@@ -40,7 +40,9 @@ function getExerciseBaseInfo(payload){
 }
 function fileterKnowledge(payload){
 	let master = [];
+	let masterLength = 0;
 	let strengthen = [];
+	let strengthenLength = 0;
 
 	payload.exerciseStatus.forEach((element) => {
 		payload.knowledge.forEach((elementKnowledge) => {
@@ -66,7 +68,15 @@ function fileterKnowledge(payload){
 			
 		})
 	})
+	masterLength = master.length;
+	strengthenLength = strengthen.length;
+
 	return {
+		summary : {
+			total : masterLength + strengthenLength,
+			master : masterLength,
+			strengthen : strengthenLength
+		},
 		master : master,
 		strengthen : strengthen
 	}
@@ -94,12 +104,14 @@ function fileterExercise(payload){
 		list : list
 	}
 }
-function getExerciseSummary(exerciseStatus){
-	let total = exerciseStatus.length;
+function getExerciseSummary(payload){
+	console.log(payload)
+	let total = payload.exerciseStatus.length;
 	let right = 0;
 	let error = 0;
+	let time = iGlobal.formatSeconds(payload.exam.total_time,'h');
 	let score = 0;
-	exerciseStatus.forEach((element, index) => {
+	payload.exerciseStatus.forEach((element, index) => {
 		if(element.status == "0" || element.status == "2"){
 			error++;
 		}else{
@@ -108,9 +120,11 @@ function getExerciseSummary(exerciseStatus){
 	})
 	score = parseInt((right/total)*100);
 	return {
+		total : total,
 		error : error,
 		right : right,
 		score : score,
+		time : time
 	}
 }
 function getExerciseData(total, exercise){
