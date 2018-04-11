@@ -3,7 +3,6 @@ const constant = require('../global/constant');
 const _ = require('lodash');
 
 function examReport(payload){
-	console.log(payload)
 	payload.exerciseStatus = getExerciseBaseInfo(payload);
 	payload.knowledge = fileterKnowledge(payload);
 	payload.exerciseSummary = getExerciseSummary(payload);
@@ -105,7 +104,6 @@ function fileterExercise(payload){
 	}
 }
 function getExerciseSummary(payload){
-	console.log(payload)
 	let total = payload.exerciseStatus.length;
 	let right = 0;
 	let error = 0;

@@ -14,7 +14,6 @@ module.exports = async(ctx, next) => {
 		for(let elementClassCourse of classCourseList.data){
 			if(elementClassCourse.classCourse.length){
 				for (let courseElement of elementClassCourse.classCourse) {
-			    console.log(courseElement.courseId)
 			    ctx.state.mock = false;
 			    await Request.ajax({
 			    	server : "courseBaseInfo",
@@ -24,7 +23,6 @@ module.exports = async(ctx, next) => {
 			    		courseId : courseElement.courseId
 			    	}
 			    }).then((res) => {
-			    	console.log(res);
 			    	courseElement.courseName = res.data[0].courseName;
 			    })
 			  }

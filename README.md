@@ -66,11 +66,11 @@ npm run dev
 
 ### 班级课程列表 -- `classCourseList`
 ### 班级课程详情 -- `classCourseDetail`
-### 教学大纲 -- `teachingProgram`
-### 教学计划 -- `teachingPlan`
+
 ### 测评成绩报告 -- `examReport`
 
-
+### 教学大纲 -- `teachingProgram`
+### 教学计划 -- `teachingPlan`
 
 
 ## 阶段2 --- 接口持久化，错误处理

@@ -262,8 +262,6 @@ function filterCourseDetailPlan(courseData){
 	}
 }
 function filterCourseDetailWeekPlan(courseData, planData){
-	console.log(courseData)
-	console.log(planData)
 	let courseDetailWeekList = [];
 	let courseDetailLevel = 0;
 
@@ -594,7 +592,6 @@ function courseByInFo(coursestatus){
 	let courseExpirationTime = 0;
 	let courseActiveState=0;
 	let courseActiveStateText = "默认未购买";
-	console.log(coursestatus)
 	if(coursestatus && coursestatus.length){
 		var lockStatusNum = 0;
 		for(var i=0;i<coursestatus.length;i++){
@@ -742,7 +739,6 @@ function filterLastLearnChapter(taskProgress){
 function formatCourseDetail(courseRenderData){
 	var formatPlanInfo = [];
 	_.each(courseRenderData.planInfo, function(weekElement, weekIndex){
-		console.log(weekElement)
 		formatPlanInfo.push(weekElement);
 		formatPlanInfo[weekIndex].newList = [];
 		_.each(weekElement.list, function(listElement, listIndex){

@@ -1,8 +1,16 @@
-const Request = require('../../request');
 const axios = require('axios');
+const Request = require('../../request');
+const COMMON = require('../../global/constant');
+
 module.exports = async(ctx, next) => {
-	console.log(ctx.state.exerciseIds.toString())
-	await axios.get('http://192.168.10.112:8083/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds', {
+	let hostName = '';
+	if(process.env.NODE_ENV == "demo"){
+		hostName = COMMON.host.demoName;
+	}else{
+		hostName = COMMON.host.name;
+	}
+	console.log(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${ctx.state.exerciseIds.toString()}`)
+	await axios.get(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds`, {
     params: {
       exerciseIds: ctx.state.exerciseIds.toString()
     }
@@ -10,7 +18,7 @@ module.exports = async(ctx, next) => {
     ctx.state.knowledges = res.data;
     return next();
   }).catch(function (error) {
-    console.log(error);
+    
   });
 	// await Request.ajax({
 	//   server : 'getKnowledgePointInfoByExerciseIds',

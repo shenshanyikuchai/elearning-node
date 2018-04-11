@@ -17,7 +17,6 @@ const api = require('./api');
 //     return Promise.reject(error);
 //   }); 
 axios.interceptors.response.use((res) => {
-  // console.log(JSON.stringify(res.data))
   if (typeof res.data == "string") {
     try {
       res.data = JSON.parse(res.data);
@@ -39,7 +38,6 @@ function ajax(payload){
   var thatServer = api[payload.server];
   var hostName = '';
   var thatServerUrl = thatServer.url;
-  console.log(payload.ctxState)
   if(process.env.NODE_ENV == "demo"){ // production development
     if(thatServer.staticDataDemo){
       args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
@@ -121,7 +119,6 @@ function done(payload, res){
   
 }
 function fail(payload, err){
-  console.log(err)
   if(payload.server == "getappdownloadinfo"){
     return err
   }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){

@@ -28,10 +28,6 @@ module.exports = async(ctx, next) => {
       examenId : ctx.query.knowledgePointId
     }
   })]).then(axios.spread(function (userExamStatus, userExerciseStatus, getExerciseBaseInfo) {
-    // console.log(userExamStatus)
-    // console.log(userExerciseStatus)
-    // console.log(getExerciseBaseInfo)
-
   	let userExamStatusData = userExamStatus.data;
   	let userExerciseStatusData = userExerciseStatus.data;
     let getExerciseBaseInfoData = getExerciseBaseInfo.data;

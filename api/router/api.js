@@ -61,9 +61,7 @@ module.exports = [
 		type : "get",
 		modules : ["classCourse/list","classCourse/listRequest"],
 		queryData : {
-			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
-			memberId : "ff8080815133db0d0151375bfdf30c0d",
-			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41"
 		}
 	},{
 		name : "班级课程详情",
