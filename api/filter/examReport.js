@@ -24,13 +24,15 @@ function getExerciseBaseInfo(payload){
 	// 根据试题id去重
 	let newExercise = _.uniqBy(payload.exercise, 'exercise_id');
 	let exerciseStatus = [];
+	console.log(payload.baseInfo)
+	console.log(newExercise)
 	payload.baseInfo.forEach((elementBaseInfo, indexBaseInfo) => {
 		exerciseStatus.push({
 			id : elementBaseInfo.id,
 			status : "0"
 		})
 		newExercise.forEach((elementExercise, indexExercis) => {
-			if(elementBaseInfo.id && elementExercise.exercise_id){
+			if(elementBaseInfo.id == elementExercise.exercise_id){
 				exerciseStatus[indexBaseInfo].status = elementExercise.status
 			}
 		});
