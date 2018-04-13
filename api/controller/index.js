@@ -22,7 +22,7 @@ module.exports = async (ctx, next) => {
 			if(fail[i].state == "error"){
 
 				if(fail[i].msg == "nologin"){
-					
+					responseData = constant.response.nologin;
 				}else if(fail[i].msg == "用户名或密码错误"){
 					responseData = constant.response.errorInput;
 				}else{
@@ -36,7 +36,6 @@ module.exports = async (ctx, next) => {
 		for(let i in ctx.state.response){
 			responseData[i] = ctx.state.response[i];
 		}
-		console.log(ctx.state.data)
 		if(ctx.state.data){
 			for(let i in ctx.state.data){
 				responseData[i] = ctx.state.data[i];

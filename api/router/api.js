@@ -20,8 +20,8 @@ module.exports = [
 			password : "123456"
 		}
 	},{
-		name : "头部",
-		path : "header",
+		name : "pc端布局",
+		path : "layout",
 		type : "get",
 		modules : ["component/header"],
 		queryData : {
@@ -98,6 +98,25 @@ module.exports = [
 		path : "examReport",
 		type : "get",
 		modules : ["classCourse/examReport","classCourse/examReportRequest","component/knowledge"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
+		name : "教学班级列表",
+		path : "teaching/classList",
+		type : "get",
+		modules : ["teaching/classList","teaching/classListRequest","component/loginLog"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			type : "0"
+		}
+	},{
+		name : "教学课程详情",
+		path : "teaching/courseDetail",
+		type : "get",
+		modules : ["teaching/courseDetail","teaching/courseDetailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",

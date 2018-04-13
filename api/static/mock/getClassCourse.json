@@ -1,0 +1,30 @@
+{
+    "data": [
+        {
+            "sort": 50,
+            "classId": "89d4d017c2d93cfee8430363823e1903",
+            "beginTime": 1523808000000,
+            "versionId": "8a22ecb5545a87e801545af5048c0006",
+            "planId": "874bc658024ebaf694eb548d069d0b1e",
+            "courseId": "8a22ecb5545a87e801545af5048c0006",
+            "teacherName": "张世玉",
+            "teacherId": "825571ADB61748B08DCEA1A37C8A04A9",
+            "courseName": "2016 CMA Part I 中文 基础课",
+            "courseCategoryId": "ff808081486933e601489c799f0f0868"
+        },
+        {
+            "sort": 50,
+            "classId": "89d4d017c2d93cfee8430363823e1903",
+            "beginTime": 1523894400000,
+            "versionId": "ff8080814f1c162a014f1f7c34a91317",
+            "planId": null,
+            "courseId": "ff8080814f1c162a014f1f7c34a91317",
+            "teacherName": "张世玉",
+            "teacherId": "825571ADB61748B08DCEA1A37C8A04A9",
+            "courseName": "ACCA F1 Accountant in Business(体验课-ACCA方向班专供)",
+            "courseCategoryId": "ff808081473905e701476204cb6c006f"
+        }
+    ],
+    "state": "success",
+    "msg": ""
+}

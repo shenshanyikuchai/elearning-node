@@ -61,13 +61,37 @@ module.exports = {
   },
   'examReport' : {
     'name' : '测评成绩报告',
-    // 'url': '/api/business/learning/applyrestudylist',
     'isPrefix' : true,
     'path' : '/examReport',
     'mock' : '/mock/examReport.json',
     'notMock' : true,
     'queryData' : {
       'courseid' : "123456"
+    }
+  },
+  'getTeacherClass' : {
+    'name' : '获取教师班级列表信息',
+    'hostNameDemo' : 'http://192.168.10.112:8083',
+    'url': '/api/userAction/study/teacher/getClass',
+    'isPrefix' : true,
+    'path' : '/api/userAction/study/teacher/getClass',
+    'mock' : '/mock/getTeacherClass.json',
+    'notMock' : true,
+    'queryData' : {
+      'token' : '123456',
+      'type' : '0' // 0老师，1班主任，2助教
+    }
+  },
+  'getClassCourse' : {
+    'name' : '获取班级下的课程',
+    'hostNameDemo' : 'http://192.168.10.112:8083',
+    'url': '/api/userAction/study/teacher/getClassCourse',
+    'isPrefix' : true,
+    'path' : '/api/userAction/study/teacher/getClassCourse',
+    'mock' : '/mock/getClassCourse.json',
+    'notMock' : true,
+    'queryData' : {
+      'classId' : "123456"
     }
   },
   'userExerciseStatus': {

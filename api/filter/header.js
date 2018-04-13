@@ -5,11 +5,10 @@ const _ = require('lodash');
 function header(payload){
 	// messageListUnRead messageListUnReadTotalCount aPhoneCourse aPadCourse
 	let headerRender = {};
-
-	headerRender.messageUnRead = filterUnRead(payload.messageListUnRead);
-
-	headerRender.messageUnRead.isUnReadNum = payload.messageListUnReadTotalCount;
-
+	headerRender.messageUnRead = [];
+	if(payload.messageListUnRead.data && payload.messageListUnRead.data.length){
+		headerRender.messageUnRead = filterUnRead(payload.messageListUnRead);
+	}
 	if(payload.aPhoneCourse){
 		headerRender.aPhoneCourseUrl = `${constant.host.static}${payload.aPhoneCourse.appUrl}`;
 	}
@@ -20,6 +19,7 @@ function header(payload){
 	return headerRender; 
 }
 function filterUnRead(message){
+	console.log(message)
 	let messageType = 0;
 	let title = message.title;
 	let content = iGlobal.entities(message.content);
