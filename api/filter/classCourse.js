@@ -256,7 +256,7 @@ function getChapterListWeekList(memberGetplan){
 function filterCourseDetailPlan(courseData){
 	return  {
 		'weekIngNum' : weekIngNum,
-		'planInfo' : [{}],
+		'planInfo' : [],
 		'isCoursePlan' : "false",
 		'chapterList' : courseData
 	}
@@ -738,25 +738,27 @@ function filterLastLearnChapter(taskProgress){
 }
 function formatCourseDetail(courseRenderData){
 	var formatPlanInfo = [];
-	_.each(courseRenderData.planInfo, function(weekElement, weekIndex){
-		formatPlanInfo.push(weekElement);
-		formatPlanInfo[weekIndex].newList = [];
-		_.each(weekElement.list, function(listElement, listIndex){
-			let thisElement = '';
-			let level = listElement.level;
-			let node = listElement.node;
-			let nodeArray = node.split('-');
-			if(level == 1){
-				formatPlanInfo[weekIndex].newList.push(listElement);
-				formatPlanInfo[weekIndex].newList[0].children = [];
-			}else if(level == 2){
-				formatPlanInfo[weekIndex].newList[0].children.push(listElement);
-				formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children = [];
-			}else if(level == 3){
-				formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children.push(listElement)
-			}
-			
+	if(courseRenderData.planInfo && courseRenderData.planInfo.length){
+		_.each(courseRenderData.planInfo, function(weekElement, weekIndex){
+			formatPlanInfo.push(weekElement);
+			formatPlanInfo[weekIndex].newList = [];
+			_.each(weekElement.list, function(listElement, listIndex){
+				let thisElement = '';
+				let level = listElement.level;
+				let node = listElement.node;
+				let nodeArray = node.split('-');
+				if(level == 1){
+					formatPlanInfo[weekIndex].newList.push(listElement);
+					formatPlanInfo[weekIndex].newList[0].children = [];
+				}else if(level == 2){
+					formatPlanInfo[weekIndex].newList[0].children.push(listElement);
+					formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children = [];
+				}else if(level == 3){
+					formatPlanInfo[weekIndex].newList[0].children[+nodeArray[1]].children.push(listElement)
+				}
+				
+			})
 		})
-	})
+	}
 }
 module.exports = { classCourse,classCourseClear }
