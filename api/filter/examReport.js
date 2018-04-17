@@ -4,13 +4,14 @@ const _ = require('lodash');
 
 function examReport(payload){
 	payload.exerciseStatus = getExerciseBaseInfo(payload);
-	payload.knowledge = fileterKnowledge(payload);
+	payload.knowledges = fileterKnowledge(payload);
 	payload.exerciseSummary = getExerciseSummary(payload);
+	console.log(payload)
 
 	return {
 		examReport : {
 			status : payload.exerciseStatus,
-			knowledge : payload.knowledge,
+			knowledge : payload.knowledges,
 			summary : payload.exerciseSummary,
 			title : payload.exam.examen_name,
 			subjectId : payload.exam.subject_id,
@@ -67,8 +68,26 @@ function fileterKnowledge(payload){
 			
 		})
 	})
-	masterLength = master.length;
-	strengthenLength = strengthen.length;
+	let newMaster = _.uniqBy(master, 'id');
+	let newStrengthen = _.uniqBy(strengthen, 'id');
+	let rightMaster = [];
+	newMaster.forEach((elementMaster, indexMaster) => {
+		let addRight = false;
+
+		newStrengthen.forEach((elementStrengthen, indexStrengthen) => {
+			if(elementStrengthen.id !== elementMaster.id){
+				addRight = true;
+			}
+		})
+		if(addRight){
+			rightMaster.push(elementMaster)
+		}
+		
+	})
+	
+
+	masterLength = rightMaster.length;
+	strengthenLength = newStrengthen.length;
 
 	return {
 		summary : {
@@ -76,8 +95,30 @@ function fileterKnowledge(payload){
 			master : masterLength,
 			strengthen : strengthenLength
 		},
-		master : master,
-		strengthen : strengthen
+		master : rightMaster,
+		strengthen : newStrengthen
+	}
+}
+function getExerciseSummary(payload){
+	let total = payload.exerciseStatus.length;
+	let right = 0;
+	let error = 0;
+	let time = iGlobal.formatSeconds(payload.exam.total_time,'h');
+	let score = 0;
+	payload.exerciseStatus.forEach((element, index) => {
+		if(element.status == "0" || element.status == "2"){
+			error++;
+		}else{
+			right++;
+		}
+	})
+	score = parseInt((right/total)*100);
+	return {
+		total : total,
+		error : error,
+		right : right,
+		score : score,
+		time : time
 	}
 }
 
@@ -103,28 +144,7 @@ function fileterExercise(payload){
 		list : list
 	}
 }
-function getExerciseSummary(payload){
-	let total = payload.exerciseStatus.length;
-	let right = 0;
-	let error = 0;
-	let time = iGlobal.formatSeconds(payload.exam.total_time,'h');
-	let score = 0;
-	payload.exerciseStatus.forEach((element, index) => {
-		if(element.status == "0" || element.status == "2"){
-			error++;
-		}else{
-			right++;
-		}
-	})
-	score = parseInt((right/total)*100);
-	return {
-		total : total,
-		error : error,
-		right : right,
-		score : score,
-		time : time
-	}
-}
+
 function getExerciseData(total, exercise){
 	let newExercise = _.uniqBy(exercise, 'sort');
 	let exerciseArray = [];

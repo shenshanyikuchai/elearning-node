@@ -2,7 +2,7 @@ module.exports = {
   'demo' : true,
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'classCourseList': {
-    'name' : '登录',
+    'name' : '班级课程列表',
     'url': '/api/userAction/study/member/getClass',
     'mock' : '/mock/getClass.json',
     'defaultData' : {
@@ -12,7 +12,7 @@ module.exports = {
     }
   },
   'classCourseDetail': {
-    'name' : '登录',
+    'name' : '班级课程详情',
     'url': '/api/zbids/member/login/v1.0',
     'mock' : '/mock/classCourseDetail.json',
     'defaultData' : {
@@ -163,6 +163,17 @@ module.exports = {
     'name' : '登录',
     'url': '/api/zbids/member/login/v1.0',
     'mock' : '/mock/login.json',
+    'type': 'POST',
+    'defaultData' : {
+      'account' : 'zpk',
+      'password' : '123456',
+      'token' : this.token
+    }
+  },
+  'teacherLogin': {
+    'name' : '登录',
+    'url': '/api/zbids/member/login/v1.0',
+    'mock' : '/mock/teacherLogin.json',
     'type': 'POST',
     'defaultData' : {
       'account' : 'zpk',

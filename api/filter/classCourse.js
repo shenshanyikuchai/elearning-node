@@ -631,7 +631,7 @@ function courseByInFo(coursestatus){
 	}else{
 
 	}
-	var day = (parseInt((courseExpirationTime-datanow)/(24*60*60))).toString();
+	var day = (parseInt((courseExpirationTime-datanow)/(24*60*60)) +1).toString();
 	if(day.length == 1){
 		day = "00" + day;
 	}else if(day.length == 2){

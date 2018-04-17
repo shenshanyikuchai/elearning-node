@@ -104,6 +104,16 @@ module.exports = [
 			courseId : "8a22ecb5577562b70157b6fc00e8011c"
 		}
 	},{
+		name : "教师端登录",
+		path : "teacher/login",
+		type : "post",
+		modules : ["login/getToken","login/teacherLogin"],
+		queryData : {
+			type : "pcWeb",
+			username : "zpk",
+			password : "123456"
+		}
+	},{
 		name : "教学班级列表",
 		path : "teaching/classList",
 		type : "get",

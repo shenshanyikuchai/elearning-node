@@ -50,6 +50,7 @@ function ajax(payload){
       if(thatServer.urlDemo){
         thatServerUrl = thatServer.urlDemo;
       }
+      console.log(payload)
       if(payload.ctxState.mock){
         args.url = thatServer.mock;
         args.type = 'JSON';
