@@ -6,7 +6,6 @@ function examReport(payload){
 	payload.exerciseStatus = getExerciseBaseInfo(payload);
 	payload.knowledges = fileterKnowledge(payload);
 	payload.exerciseSummary = getExerciseSummary(payload);
-	console.log(payload)
 
 	return {
 		examReport : {
@@ -73,15 +72,27 @@ function fileterKnowledge(payload){
 	let rightMaster = [];
 	newMaster.forEach((elementMaster, indexMaster) => {
 		let addRight = false;
-
-		newStrengthen.forEach((elementStrengthen, indexStrengthen) => {
-			if(elementStrengthen.id !== elementMaster.id){
-				addRight = true;
-			}
-		})
-		if(addRight){
+		if(!_.find(newStrengthen,elementMaster)){
 			rightMaster.push(elementMaster)
 		}
+		// try{
+		// 	newStrengthen.forEach((elementStrengthen, indexStrengthen) => {
+		// 		if(elementStrengthen.id !== elementMaster.id){
+		// 			addRight = true;
+		// 			foreach.break=new Error("StopIteration");
+		// 		}
+		// 	})
+		// }catch(e){  
+		// 	if(e.message==="foreach is not defined") {  
+		// 		return;  
+		// 	}else{
+		// 		throw e;
+		// 	}  
+  //   }
+		
+		// if(addRight){
+		// 	rightMaster.push(elementMaster)
+		// }
 		
 	})
 	
