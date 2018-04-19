@@ -162,6 +162,34 @@ module.exports = {
     
     return result;
   },
+  formatTimeToDay : function(startTime, endTime, serverTime){
+    let time = '0';
+    let day = '';
+    let dayArray = [];
+    let msec = 1000*60*60*24;
+    if(serverTime<startTime){
+      time = startTime - serverTime;
+    }else if(startTime<serverTime && serverTime<endTime){
+      time = serverTime - startTime;
+    }else if(endTime<serverTime){
+      time = serverTime - startTime;
+    }
+    day = (parseInt(time/msec) +1).toString();
+    if(day.length == 1){
+      day = "00" + day;
+    }else if(day.length == 2){
+      day = "0" + day;
+    }else if(day.length == 3){
+
+    }else{
+
+    }
+    dayArray = day.split('');
+    return {
+      day : day,
+      dayArray : dayArray
+    }
+  },
 	getPercentage : function(payload){
 		let percentage = 1;
 		let progress = payload.progress ? parseInt(payload.progress) : 0;

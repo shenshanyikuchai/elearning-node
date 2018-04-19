@@ -20,11 +20,14 @@ module.exports = async(ctx, next) => {
 				let classAssistantArray = [];
 				
 				let classCourseData = {};
+				let classCoverPath = '';
+				let formatTimeToDay = iGlobal.formatTimeToDay(element.starTime, element.endTme, serverTime);
 				if(element.classAssistant && element.classAssistant.length){
 					classAssistant = element.classAssistant;
 				}
 
 				if(element.classCourse && element.classCourse.length){
+					classCoverPath = element.classCourse[0].coverPath;
 					element.classCourse.forEach((item,index)=>{
 						classCourse.push({
 							"courseCategoryId" : iGlobal.toString(item.courseCategoryId),
@@ -57,36 +60,23 @@ module.exports = async(ctx, next) => {
 					"className" : iGlobal.toString(element.name),
 					"classId" : iGlobal.toString(element.id),
 					"startTime" : iGlobal.getDate(element.starTime),
-					"endTime" : iGlobal.toString(element.endTme),
+					"endTime" : iGlobal.getDate(element.endTme),
+					"nowToOpeningTime" : formatTimeToDay.day,
+					"nowToOpeningTimeArray" : formatTimeToDay.dayArray,
 					"headmasterName" : iGlobal.toString(element.classTeacherName),
 					"headmasterId" : iGlobal.toString(element.classTeacherId),
 					"QRCode" : iGlobal.toString(element.qrCodeUrl),
-					
+					"coverPath" : classCoverPath,
 					"classCourse" : classCourse,
 					
-					"serverTime" : iGlobal.toString(serverTime)
+					// "serverTime" : iGlobal.toString(serverTime)
 				}
+				
 				if(serverTime<element.starTime){
 					// console.log("未开始")
 					classCourseData.state = "0";
-					let day = (parseInt((element.starTime-serverTime)/(1000*60*60*24))).toString();
-					if(day.length == 1){
-						day = "00" + day;
-					}else if(day.length == 2){
-						day = "0" + day;
-					}else if(day.length == 3){
-
-					}else{
-
-					}
-					let dayArray = day.split('');
-
-					classCourseData.nowToOpeningTime = day;
-					classCourseData.nowToOpeningTimeArray = dayArray;
-
 					// classCourseNotStart.push(classCourseData);
 					classCourseStudyIn.push(classCourseData);
-
 				}else if(element.starTime<serverTime && serverTime<element.endTme){
 					// console.log("进行中")
 					classCourseData.state = "1";

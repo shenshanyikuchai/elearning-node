@@ -24,6 +24,7 @@ module.exports = async(ctx, next) => {
 			    	}
 			    }).then((res) => {
 			    	courseElement.courseName = res.data[0].courseName;
+			    	courseElement.coverPath = res.data[0].coverPath;
 			    })
 			  }
 			}
