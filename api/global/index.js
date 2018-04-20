@@ -199,7 +199,8 @@ module.exports = {
 			if(a>0 && a<0.01){
 				a = 0.01
 			}
-			percentage = parseInt(a*100);
+      percentage = Math.round(a*100);
+
 		}
 		if(percentage >= 100){
 			percentage = 100;
@@ -222,7 +223,7 @@ module.exports = {
       if(a>0 && a<0.01){
         a = 0.01
       }
-      percentage = parseInt(a*100);
+      percentage = Math.round(a*100);
     }else if(lastProgress){
       percentage = 1;
     }

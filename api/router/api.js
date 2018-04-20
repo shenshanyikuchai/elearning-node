@@ -114,12 +114,23 @@ module.exports = [
 			password : "123456"
 		}
 	},{
+		name : "教师端首页",
+		path : "teacher/index",
+		type : "get",
+		modules : ["teaching/index","teaching/indexRequest"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : 'ff8080815133db0d0151375bfdf30c0d',
+			userLevel : "0"
+		}
+	},{
 		name : "教学班级列表",
 		path : "teaching/classList",
 		type : "get",
 		modules : ["teaching/classList","teaching/classListRequest","component/loginLog"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : 'ff8080815133db0d0151375bfdf30c0d',
 			type : "0"
 		}
 	},{

@@ -6,6 +6,48 @@ module.exports = async(ctx, next) => {
 	// ctx.state.mock = true;
 	if(ctx.query.memberId && ctx.query.token && ctx.query.userLevel){
 		await next();
+		let teacherClassList = [];
+		
+		let serverTime = new Date().getTime();
+		let classState = "0";
+		ctx.state.teacherClass.forEach((classElement, classIndex) => {
+			let classCourseList = [];
+			if(serverTime < classElement.starTime){
+				classState = "0";
+			}else if(classElement.starTime<serverTime && serverTime<classElement.endTme){
+				classState = "1";
+			}else if(classElement.endTme<serverTime){
+				classState = "2";
+			}
+			
+
+			classElement.courseList.forEach((courseElement, courseIndex) => {
+				classCourseList.push({
+					"startTime" : iGlobal.getDate(courseElement.beginTime),
+					"courseCategoryId" : courseElement.courseCategoryId,
+					"courseId" : courseElement.courseId,
+					"courseName" : courseElement.courseName,
+					"planId" : courseElement.planId,
+					"teacherId" : courseElement.teacherId,
+					"teacherName" : courseElement.teacherName,
+					"versionId" : courseElement.versionId,
+					"sort" : courseElement.sort
+				})
+
+			})
+			teacherClassList.push({
+				"state" : classState,
+				"startTime" : iGlobal.getDate(classElement.starTime),
+				"endTime" : iGlobal.getDate(classElement.endTime),
+				"classId" : classElement.id,
+				"className" : classElement.name,
+				"classTeacherName" : classElement.classTeacherName,
+				"classTeacherId" : classElement.classTeacherId,
+				"classAssistant" : classElement.classAssistant,
+				"QRCode" : classElement.qrCodeUrl,
+				"classCourse" : classCourseList
+			})
+		})
 		// let classCourseList = ctx.state.classCourseList;
 		// let serverTime = parseInt(classCourseList['server-time']);
 		// let classCourseListRes = [];
@@ -105,7 +147,7 @@ module.exports = async(ctx, next) => {
 		}
 		ctx.state.data = {
 			loginTimeago : loginTimeago,
-			teacherClass : ctx.state.teacherClass
+			teacherClass : teacherClassList
 		};
 		// ctx.state.data = {
 		// 	teacherClass : teacherClass,

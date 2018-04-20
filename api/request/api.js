@@ -73,10 +73,8 @@ module.exports = {
     'name' : '获取教师班级列表信息',
     'hostNameDemo' : 'http://192.168.10.112:8083',
     'url': '/api/userAction/study/teacher/getClass',
-    'isPrefix' : true,
     'path' : '/api/userAction/study/teacher/getClass',
     'mock' : '/mock/getTeacherClass.json',
-    'notMock' : true,
     'queryData' : {
       'token' : '123456',
       'type' : '0' // 0老师，1班主任，2助教
@@ -86,12 +84,19 @@ module.exports = {
     'name' : '获取班级下的课程',
     'hostNameDemo' : 'http://192.168.10.112:8083',
     'url': '/api/userAction/study/teacher/getClassCourse',
-    'isPrefix' : true,
     'path' : '/api/userAction/study/teacher/getClassCourse',
     'mock' : '/mock/getClassCourse.json',
-    'notMock' : true,
     'queryData' : {
       'classId' : "123456"
+    }
+  },
+  'getTeacherLiveCourselist': {
+    'name' : '获取教师直播课列表',
+    'hostNameDemo': 'http://192.168.10.112:8083',
+    'url': '/api/teachsource/course/getteacheropencourselist',
+    // 'mock': '/static/mock/getClassCourse.json',
+    'defaultData' : {
+      'teacherId' : 'teacherId',
     }
   },
   'userExerciseStatus': {
