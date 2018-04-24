@@ -52,7 +52,13 @@ module.exports = async(ctx, next) => {
 	    })
 		}
 		ctx.state.teacherClass = teacherClass;
-		ctx.state.liveList = livelistData.data;
+		
+		if(livelistData){
+			ctx.state.liveList = livelistData.data;
+		}else{
+			ctx.state.liveList = {};
+		}
+		
 		return next();
 	}));
 	// await Request.ajax({

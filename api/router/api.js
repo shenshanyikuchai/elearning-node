@@ -36,7 +36,41 @@ module.exports = [
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d"
 		}
-	},{
+	},
+	{
+		name : "在学课程",
+		path : "myCourse/studyIn",
+		type : "get",
+		modules : ["myCourse/studyIn"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d"
+		}
+	},
+	{
+		name : "未激活课程",
+		path : "myCourse/noActive",
+		type : "get",
+		modules : ["myCourse/noActive"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			pageNo : "0",
+			pageSize : "999"
+		}
+	},
+	{
+		name : "已过期课程",
+		path : "myCourse/expiration",
+		type : "get",
+		modules : ["myCourse/expiration"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			pageNo : "0",
+			pageSize : "999"
+		}
+	},
+	{
 		name : "pc端首页",
 		path : "pcIndex",
 		type : "get",
@@ -45,7 +79,8 @@ module.exports = [
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d"
 		}
-	},{
+	},
+	{
 		name : "pc端课程首页",
 		path : "pcCourseIndex",
 		type : "get",
@@ -66,6 +101,16 @@ module.exports = [
 	},{
 		name : "班级课程详情",
 		path : "classCourseDetail",
+		type : "get",
+		modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
+		name : "课程计划详情",
+		path : "coursePlanDetail",
 		type : "get",
 		modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {

@@ -236,6 +236,17 @@ module.exports = {
       'pageSize' : 999
     }
   },
+  'noActivecourse': {
+    'name' : '未激活的课程',
+    'url': '/api/business/learning/noActivecourse/v1.0',
+    'mock' : '/mock/noActivecourse.json'
+  },
+  'expirationcourse': {
+    'name' : '过期的课程',
+    'url': '/api/business/learning/expirationcourse/v1.0',
+    'mock' : '/mock/expirationcourse.json'
+  },
+  
   'getCourseProgress': {
     'name' : '课程进度',
     'action': 'true',
@@ -330,14 +341,7 @@ module.exports = {
 
   
   
-  'noActivecourse': {
-    'name' : '未激活的课程',
-    'url': '/api/business/learning/noActivecourse/v1.0'
-  },
-  'expirationcourse': {
-    'name' : '过期的课程',
-    'url': '/api/business/learning/expirationcourse/v1.0'
-  },
+
   // 'courseBaseInfo': {
   //   'urlDemo': '/api/v2.1/course/courseBaseInfo/data',
   //   'url': '/api/v2.1/course/courseBaseInfo/data',
