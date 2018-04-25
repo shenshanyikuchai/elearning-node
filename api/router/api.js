@@ -162,7 +162,7 @@ module.exports = [
 		name : "教师端首页",
 		path : "teacher/index",
 		type : "get",
-		modules : ["teaching/index","teaching/indexRequest"],
+		modules : ["teaching/index", "teaching/indexRequest", "component/loginLog"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : 'ff8080815133db0d0151375bfdf30c0d',

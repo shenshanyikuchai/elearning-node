@@ -286,6 +286,17 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 	let itemStart = 0;
 	let newDate = new Date().getTime();
+	let weekStartTime = planData[0].startDate;
+	let dayIngNum = 0;
+	let dayNoStartNum = 0;
+	let dayTime = 24*60*60*1000;
+
+	let weekLiveDate = '';
+	if(weekStartTime < newDate){
+		dayIngNum = Math.ceil((newDate-weekStartTime)/dayTime)
+	}else if(newDate < weekStartTime){
+		dayNoStartNum = Math.ceil((weekStartTime-newDate)/dayTime)
+	}
 
 	planData.forEach(function(element,index){
 		let isOpen = 'true';
@@ -332,7 +343,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let evaluationId = '';
 
 		let liveStatus = 0;
-		let liveTime = 0;
+		let liveTime = '暂无直播';
 		let liveStatusText = '';
 		let endDataTime = (element.endDate + 24*60*60*1000);
 		if(element.startDate < newDate && endDataTime < newDate){
@@ -485,7 +496,6 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 							liveStatus = element.state;
-							liveTime = element.openCourseDate;
 							if(element.state){
 								liveStatusText = "已完成"
 							}else{
@@ -523,6 +533,22 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let evaluationTimePercentage = iGlobal.getProgress(evaluationTime,studyTimeTotal);
 		let examTimePercentage = iGlobal.getProgress(examTime,studyTimeTotal);
 		let videoTimePercentage = iGlobal.getProgress(videoTime,studyTimeTotal);
+
+		// weekLiveDate
+		if(weekTask && weekTask.length){
+			weekTask.forEach((weekTaskElement) => {
+				if(weekTaskElement.taskType == "openCourse"){
+					if(weekTaskElement.openCourseStartTime){
+						weekLiveDate = iGlobal.getLocalTime(weekTaskElement.openCourseStartTime);
+						liveTime = iGlobal.getDate(weekTaskElement.openCourseStartTime);
+					}else{
+						weekLiveDate = '暂无直播';
+						liveTime = '暂无直播';
+					}
+					
+				}
+			})
+		}
 
 		courseDetailWeekList.push({
 			'isOpen' : isOpen,
@@ -575,7 +601,8 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 			'liveStatus' : liveStatus,
 			'liveStatusText' : liveStatusText,
-			'liveTime' : liveTime
+			'liveTime' : liveTime,
+			'liveDate' : weekLiveDate
 		})
 	})
 
@@ -594,6 +621,10 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'notstarted' : taskTotalNotstarted
 		},
 		'weeksSummary' : {
+			'dayTotal' : weekTotal*7,
+			'weekIngNum' : weekIngNum,
+			'dayIngNum' : dayIngNum,
+			'dayNoStartNum' : dayNoStartNum,
 			'total' : weekTotal,
 			'beoverdue' : weekTotalBeoverdue,
 			'completed' : weekTotalCompleted,

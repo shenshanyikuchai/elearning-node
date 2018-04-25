@@ -325,7 +325,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let evaluationId = '';
 
 		let liveStatus = 0;
-		let liveTime = 0;
+		let liveTime = '暂无直播';
 		let liveStatusText = '';
 		let endDataTime = (element.endDate + 24*60*60*1000);
 		if(element.startDate < newDate && endDataTime < newDate){
@@ -469,7 +469,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 							liveStatus = element.state;
-							liveTime = element.openCourseDate;
+							// liveTime = element.openCourseDate;
 							if(element.state){
 								liveStatusText = "已完成"
 							}else{
@@ -508,6 +508,22 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let examTimePercentage = iGlobal.getProgress(examTime,studyTimeTotal);
 		let videoTimePercentage = iGlobal.getProgress(videoTime,studyTimeTotal);
 
+		// weekLiveDate
+		if(weekTask && weekTask.length){
+			weekTask.forEach((weekTaskElement) => {
+				if(weekTaskElement.taskType == "openCourse"){
+					if(weekTaskElement.openCourseStartTime){
+						weekLiveDate = iGlobal.getLocalTime(weekTaskElement.openCourseStartTime);
+						liveTime = iGlobal.getDate(weekTaskElement.openCourseStartTime);
+					}else{
+						weekLiveDate = '暂无直播';
+						liveTime = '暂无直播';
+					}
+					
+				}
+			})
+		}
+		
 		courseDetailWeekList.push({
 			'isOpen' : isOpen,
 			'isFinish' : element.isFinish,

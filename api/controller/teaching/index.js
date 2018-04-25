@@ -13,7 +13,7 @@ module.exports = async(ctx, next) => {
 		if(ctx.state.teacherClass && ctx.state.teacherClass.length){
 			ctx.state.teacherClass.forEach((classElement, classIndex) => {
 				let classCourseList = [];
-				let classCourseStudyIn = '';
+				let learningNum = 0;
 				if(serverTime < classElement.starTime){
 					classState = "0";
 				}else if(classElement.starTime<serverTime && serverTime<classElement.endTme){
@@ -24,7 +24,7 @@ module.exports = async(ctx, next) => {
 
 				classElement.courseList.forEach((courseElement, courseIndex) => {
 					if(courseElement.beginTime < serverTime){
-						classCourseStudyIn = courseElement;
+						learningNum = courseIndex;
 					}
 					classCourseList.push({
 						"beginTime" : courseElement.beginTime,
@@ -36,14 +36,12 @@ module.exports = async(ctx, next) => {
 						"teacherId" : courseElement.teacherId,
 						"teacherName" : courseElement.teacherName,
 						"versionId" : courseElement.versionId,
-						"sort" : courseElement.sort
+						"sort" : courseElement.sort,
+						"coursePlanDetail" : []
 					})
 
 				})
-				if(!classCourseStudyIn){
-					classCourseStudyIn = classElement.courseList[0];
-				}
-				classCourseStudyIn.startTime = iGlobal.getDate(classCourseStudyIn.beginTime)
+				
 				teacherClassList.push({
 					"state" : classState,
 					"startTime" : iGlobal.getDate(classElement.starTime),
@@ -55,7 +53,10 @@ module.exports = async(ctx, next) => {
 					"classAssistant" : classElement.classAssistant,
 					"QRCode" : classElement.qrCodeUrl,
 					"classCourse" : classCourseList,
-					"classCourseStudyIn" : classCourseStudyIn
+					"learningNum" : learningNum,
+					"dayTotal" : "0",
+					"dayIngNum" : "0",
+					"dayNoStartNum" : "0"
 				})
 			})
 		}
