@@ -40,7 +40,7 @@ function ajax(payload){
   var thatServerUrl = thatServer.url;
   if(process.env.NODE_ENV == "demo"){ // production development
     if(thatServer.staticDataDemo){
-      args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
+      args.url = thatServer.staticDataDemo;
       args.type = 'GET';
     }else{
       hostName  = COMMON.host.demoName;
@@ -55,7 +55,7 @@ function ajax(payload){
         args.url = thatServer.mock;
         args.type = 'JSON';
       }else{
-        args.url = hostName + thatServerUrl  + "?verTT=" + new Date().getTime();
+        args.url = hostName + thatServerUrl;
         args.type = thatServer.type ? thatServer.type : 'GET';
       }
     }
@@ -69,21 +69,22 @@ function ajax(payload){
       args.url = thatServer.mock;
       args.type = 'JSON';
     }else{
-      args.url = hostName + thatServerUrl  + "?verTT=" + new Date().getTime();
+      args.url = hostName + thatServerUrl;
       args.type = thatServer.type ? thatServer.type : 'GET';
     }
   }
+
   var showUrl = args.url;
   for(var i in payload.data){
     showUrl += '&' +i +'=' + payload.data[i];
   }
   console.log(showUrl)
   if (args.type === 'POST') {
-    return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
+    return axios.post(args.url, payload.data, config).then(res => done(args, payload, res)).catch(err => fail(args, payload, err));
   } else if (args.type === 'GET') {
     return axios.get(args.url, {
       params: payload.data
-    }, config).then(res => done(payload, res)).catch(err => fail(payload, err));
+    }, config).then(res => done(args, payload, res)).catch(err => fail(args, payload, err));
   }else if(args.type === 'JSON'){
     var fs = require('fs');
     var path = require('path');
@@ -103,7 +104,7 @@ function ajax(payload){
 
   
 }
-function done(payload, res){
+function done(args, payload, res){
   if(res.state == "success"){
     return res;
     if(payload.server == "messageListNoRead"){
@@ -113,18 +114,29 @@ function done(payload, res){
     }
     
   }else if(res.state == "error"){
-    
+    err.request = {
+      url : args.url,
+      type : args.type,
+      data : payload.data,
+      error : err.msg
+    }
     payload.ctxState.fail.push(res);
     return res;
   }
   
 }
-function fail(payload, err){
+function fail(args, payload, err){
   if(payload.server == "getappdownloadinfo"){
     return err
   }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){
     return err
   }else{
+    err.request = {
+      url : args.url,
+      type : args.type,
+      data : payload.data,
+      error : err.msg
+    }
     payload.ctxState.fail.push(err);
   }
   

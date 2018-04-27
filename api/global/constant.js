@@ -48,6 +48,11 @@ module.exports = {
       "appKey": "f7e4ebaa872f38db7b548b870c13e79e"
     }
   },
+  "request" : {
+    "url" : "",
+    "type" : "",
+    "data" : ""
+  },
   "response" : {
     "success" : {
       "code" : "200",
@@ -89,29 +94,30 @@ module.exports = {
     "id" : "ff808081473905e701475d5bb8cc004a",
     "name" : "默认等级",
     "type" : ""
-  },{
-    "id" : "ff80808147816dbc0147a07edb4c0041",
-    "name" : "第一级",
-    "type" : ""
-  },{
-    "id" : "ff80808147816dbc0147a07f31710042",
-    "name" : "第二级",
-    "type" : ""
-  },{
-    "id" : "ff8080814a709fa2014a750aed1a07c1",
-    "name" : "中博内部用户",
-    "type" : ""
-  },{
-    "id" : "0216ec613eee11e8904f64006a5147e8",
-    "name" : "讲师",
-    "type" : "0"
-  },{
-    "id" : "17099c893eee11e8904f64006a5147e8",
-    "name" : "助教",
-    "type" : "2"
-  },{
-    "id" : "1dc54b253eee11e8904f64006a5147e8",
-    "name" : "班主任",
-    "type" : "1"
-  }]
+    },{
+      "id" : "ff80808147816dbc0147a07edb4c0041",
+      "name" : "第一级",
+      "type" : ""
+    },{
+      "id" : "ff80808147816dbc0147a07f31710042",
+      "name" : "第二级",
+      "type" : ""
+    },{
+      "id" : "ff8080814a709fa2014a750aed1a07c1",
+      "name" : "中博内部用户",
+      "type" : ""
+    },{
+      "id" : "0216ec613eee11e8904f64006a5147e8",
+      "name" : "讲师",
+      "type" : "0"
+    },{
+      "id" : "17099c893eee11e8904f64006a5147e8",
+      "name" : "助教",
+      "type" : "2"
+    },{
+      "id" : "1dc54b253eee11e8904f64006a5147e8",
+      "name" : "班主任",
+      "type" : "1"
+    }
+  ]
 }

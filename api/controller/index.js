@@ -19,17 +19,21 @@ module.exports = async (ctx, next) => {
 	let responseData = {};
 	if(fail && fail.length){
 		for(let i=0;i<fail.length;i++){
-			if(fail[i].state == "error"){
-
-				if(fail[i].msg == "nologin"){
+			let thisFail = fail[i];
+			let thisRequest = thisFail.request;
+			if(thisFail.state == "error"){
+				if(thisFail.msg == "nologin"){
 					responseData = constant.response.nologin;
-				}else if(fail[i].msg == "用户名或密码错误"){
+				}else if(thisFail.msg == "用户名或密码错误"){
 					responseData = constant.response.errorInput;
+					responseData.request = thisRequest;
 				}else{
 					responseData = constant.response.error;
+					responseData.request = thisRequest;
 				}
 			}else{
-				responseData = constant.response.error
+				responseData = constant.response.error;
+				responseData.request = thisRequest;
 			}
 		}
 	}else{

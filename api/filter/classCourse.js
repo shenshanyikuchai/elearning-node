@@ -565,7 +565,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			
 			'totalTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
 			'taskTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
-			'studyTime' : videoTime+examTime+evaluationTime,
+			'studyTime' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
 			'studyTimeFormat' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
 			'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
 			'startDate' : iGlobal.getDate(element.startDate),
