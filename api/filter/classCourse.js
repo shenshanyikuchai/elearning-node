@@ -5,13 +5,23 @@ const _ = require('lodash');
 // var courseDetailLevel = 0;
 var courseDetailList = [];
 var weekIngNum = 0;
-function classCourseClear(){
+function initData(){
 	if(courseDetailList && courseDetailList.length){
 		courseDetailList = [];
 	}
 }
 function classCourse(payload){
-	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
+	// 参数
+	// { 
+	// 	courseDetail：课程详情, 
+	// 	tasksProgress：任务进度,
+	// 	memberGetplan：教学计划, 
+	// 	courseactivestatus：课程状态 
+	// 	examDate：考试时间, 
+	// }
+	// 初始化数据
+	initData();
+
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);
@@ -91,7 +101,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'rootNode' : rootNode,
 				'parentNode' : node,
 				'node' : newNode,
-				'isChildren' : true,
+				'isChildren' : "true",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
 				'chapterId' : element.chapterId,
@@ -156,7 +166,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'rootNode' : rootNode,
 				'parentNode' : node,
 				'node' : newNode,
-				'isChildren' : false,
+				'isChildren' : "false",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
 				'chapterId' : element.chapterId,
@@ -182,7 +192,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'rootNode' : rootNode,
 				'parentNode' : node,
 				'node' : newNode,
-				'isChildren' : true,
+				'isChildren' : "true",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
 				'chapterId' : element.chapterId,
@@ -808,4 +818,4 @@ function formatCourseDetail(courseRenderData){
 		})
 	}
 }
-module.exports = { classCourse,classCourseClear }
+module.exports = { classCourse }

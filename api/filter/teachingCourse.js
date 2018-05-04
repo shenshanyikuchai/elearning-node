@@ -5,12 +5,12 @@ const _ = require('lodash');
 // var courseDetailLevel = 0;
 var courseDetailList = [];
 var weekIngNum = 0;
-function classCourseClear(){
+function teachingCourseClear(){
 	if(courseDetailList && courseDetailList.length){
 		courseDetailList = [];
 	}
 }
-function classCourse(payload){
+function teachingCourse(payload){
 	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);

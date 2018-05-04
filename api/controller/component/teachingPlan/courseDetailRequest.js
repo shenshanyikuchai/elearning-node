@@ -1,5 +1,5 @@
 const axios = require('axios');
-const Request = require('../../request');
+const Request = require('../../../request');
 
 module.exports = async(ctx, next) => {
   ctx.state.mock = true;
