@@ -119,5 +119,7 @@ module.exports = {
       "name" : "班主任",
       "type" : "1"
     }
-  ]
+  ],
+  "weekDay" : 7,
+  "dayTime" : 86400000
 }

@@ -6,12 +6,12 @@ module.exports = async(ctx, next) => {
 	
 	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId){
 		await next();
-		ctx.state.data = Filter.courseDetail({
+		ctx.state.data = Filter.coursePlanDetail({
 			courseDetail : ctx.state.courseDetail,
 			tasksProgress : ctx.state.getTasksProgress,
 			examDate : ctx.state.getExamDate,
-			memberGetplan : ctx.state.memberGetplan,
-			courseactivestatus : ctx.state.courseactivestatus
+			coursePlan : ctx.state.memberGetplan,
+			courseStatus : ctx.state.courseactivestatus
 		})
 	}else{
 		ctx.state.response = constant.response.noparameter;

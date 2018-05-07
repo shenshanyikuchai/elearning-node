@@ -76,7 +76,11 @@ function ajax(payload){
 
   var showUrl = args.url;
   for(var i in payload.data){
-    showUrl += '&' +i +'=' + payload.data[i];
+    if(i){
+      showUrl += '?' +i +'=' + payload.data[i];
+    }else{
+      showUrl += '&' +i +'=' + payload.data[i];
+    }
   }
   console.log(showUrl)
   if (args.type === 'POST') {
