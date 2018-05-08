@@ -1,6 +1,16 @@
 module.exports = {
   'demo' : true,
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
+  'getClassPlanDetail': {
+    'name' : '班级课程列表',
+    'url': '/api/userAction/php/class/getClassPlanDetail',
+    'mock' : '/mock/memberGetplan.json',
+    'defaultData' : {
+      'classId' : 'b8d924a90d42ca12685cec1ed32fb23e',
+      'courseId' : 'c0709cf3baf8fc1b4cb6932f4af165c4',
+      'planType' : 1
+    }
+  },
   'classCourseList': {
     'name' : '班级课程列表',
     'url': '/api/userAction/study/member/getClass',

@@ -3,6 +3,10 @@ const iGlobal = require('../../global');
 const constant = require('../../global/constant');
 var { resCourseDetail } = require('../../resData/courseDetail');
 var globalCourseDetail = {};
+
+// format 
+// iGlobal.formatSeconds(studyTime,'h')
+
 function initData(){ // 初始化数据
 	globalCourseDetail = {
 		courseDetail : {}, // 课程详情
@@ -15,7 +19,6 @@ function initData(){ // 初始化数据
 	}
 }
 function coursePlanDetail(payload){
-	// console.log(resCourseDetail)
 	// 初始化数据
 	initData();
 	globalCourseDetail = {...globalCourseDetail, ...payload};
@@ -78,7 +81,6 @@ function flatCourseDetail(payload){ // 将多层课程结构转换为一层结�
 			nodeDataTasks = flatCourseTasks(element);
 		}
 		globalCourseDetail.courseDetailList.push({...nodeData, ...nodeDataTasks});
-
 		if(element.children && element.children.length){
 			flatCourseDetail({
 				chapters : element.children,
@@ -89,19 +91,9 @@ function flatCourseDetail(payload){ // 将多层课程结构转换为一层结�
 			})
 		}
 	})
-	// return payload.flatCourseDetail;
 }
 function flatCourseTasks(chapter){ // 添加章节任务数据
 	let tasks = chapter.tasks;
-	// let totalSummary = videoSummary = examSummary = knowledgePointSummary = openCourseSummary = {
-	// 	totalTime : 0,
-	// 	studyTime : 0,
-	// 	totalNum : 0,
-	// 	completedNum : 0,
-	// 	ongoingNum : 0,
-	// 	notstartedNum : 0
-	// }
-	// let examTypeSummary = {};
 	_.forEach(tasks, (element, index) => {
 		var thisTaskProgress = getTaskProgress(element);
 		tasks[index] = {
@@ -114,134 +106,12 @@ function flatCourseTasks(chapter){ // 添加章节任务数据
 			courseId : globalCourseDetail.courseDetail.courseId,
 			courseName : globalCourseDetail.courseDetail.courseName,
 			chapterId : chapter.chapterId,
+			chapterTitle : chapter.title,
 			isFree : chapter.isFree
 		};
-		// studyTime += thisTaskProgress.studyTime;
-		// tasksTotalNum++;
-		// switch(element.taskType){
-		// 	case "video":
-		// 		videoNum++;
-		// 		totalTime += parseInt(element.videoTime);
-		// 		videoTime += parseInt(element.videoTime);
-		// 		videoStudyTime += parseInt(thisTaskProgress.studyTime);
-		// 		if(thisTaskProgress.state){
-		// 			videoCompletedNum++;
-		// 		}else{
-		// 			if(thisTaskProgress.progress){
-		// 				videoOngoingNum++;
-		// 			}else{
-		// 				videoNotstartedNum++;
-		// 			}
-		// 		}
-		// 		break;
-		// 	case "exam":
-		// 		// examNum++;
-		// 		// totalTime+=parseInt(element.taskTime)*60;
-		// 		// examTime+=parseInt(element.taskTime)*60;
-		// 		if(element.taskLevel == "appraisal" || element.taskLevel == "midterm" || element.taskLevel == "end"){ // 测评，期中，期末
-		// 			// isFree
-		// 			tasks[index].isFree = chapter.isFree;
-		// 			// evaluationStudyTime += parseInt(thisTaskProgress.studyTime);
-		// 		}else{
-		// 			examStudyTime += parseInt(thisTaskProgress.studyTime);
-		// 		}
-				
-		// 		getExamSummary(element.taskLevel, examSummary);
-		// 		if(thisTaskProgress.state){
-		// 			examCompletedNum++;
-		// 		}else{
-		// 			if(thisTaskProgress.progress){
-		// 				examOngoingNum++;
-		// 			}else{
-		// 				examNotstartedNum++;
-		// 			}
-		// 		}
-		// 		break;
-		// 	case "knowledgePointExercise":
-		// 		knowledgePointNum++;
-		// 		totalTime+=(120)*60;
-		// 		knowledgePointTime+=parseInt(element.taskTime);
-		// 		knowledgePointStudyTime += parseInt(thisTaskProgress.studyTime);
-		// 		if(thisTaskProgress.state){
-		// 			knowledgePointCompletedNum++;
-		// 		}else{
-		// 			if(thisTaskProgress.progress){
-		// 				knowledgePointOngoingNum++;
-		// 			}else{
-		// 				knowledgePointNotstartedNum++;
-		// 			}
-		// 		}
-		// 		break;
-		// 	case "openCourse":
-		// 		openCourseNum++;
-		// 		totalTime+=parseInt(element.taskTime);
-		// 		openCourseTime+=parseInt(element.taskTime);
-		// 		openCourseStudyTime += parseInt(thisTaskProgress.studyTime);
-		// 		if(thisTaskProgress.state){
-		// 			openCourseCompletedNum++;
-		// 		}else{
-		// 			if(thisTaskProgress.progress){
-		// 				openCourseOngoingNum++;
-		// 			}else{
-		// 				openCourseNotstartedNum++;
-		// 			}
-		// 		}
-		// 		break;
-		// }
 	})
 	return {
-		'tasks' : tasks,
-		// 'totalSummary' : totalSummary,
-		// 'videoSummary' : videoSummary,
-		// 'examSummary' : examSummary,
-		// 'knowledgePointSummary' : knowledgePointSummary,
-		// 'openCourseSummary' : openCourseSummary,
-
-
-		// 'completedNum' : completedNum,
-		// 'ongoingNum' : ongoingNum,
-		// 'notstartedNum' : notstartedNum,
-
-		// 'videoCompletedNum' : videoCompletedNum,
-		// 'videoOngoingNum' : videoOngoingNum,
-		// 'videoNotstartedNum' : videoNotstartedNum,
-
-		// 'examCompletedNum' : examCompletedNum,
-		// 'examOngoingNum' : examOngoingNum,
-		// 'examNotstartedNum' : examNotstartedNum,
-
-		// 'knowledgePointCompletedNum' : knowledgePointCompletedNum,
-		// 'knowledgePointOngoingNum' : knowledgePointOngoingNum,
-		// 'knowledgePointNotstartedNum' : knowledgePointNotstartedNum,
-
-		// 'openCourseCompletedNum' : openCourseCompletedNum,
-		// 'openCourseOngoingNum' : openCourseOngoingNum,
-		// 'openCourseNotstartedNum' : openCourseNotstartedNum,
-
-		// 'totalTime' : totalTime,
-		// 'totalTimeFormat' : iGlobal.formatSeconds(totalTime,'h'),
-		// 'videoStudyTime' : videoStudyTime,
-		// 'examStudyTime' : examStudyTime,
-		// 'knowledgePointStudyTime' : knowledgePointStudyTime,
-		// 'openCourseStudyTime' : openCourseStudyTime,
-		// 'studyTime' : studyTime,
-		// 'studyTimeFormat' : iGlobal.formatSeconds(studyTime,'h'),
-		// 'videoTime' : videoTime,
-		// 'videoTimeFormat' : iGlobal.formatSeconds(videoTime,'h'),
-		// 'examTime' : examTime,
-		// 'examTimeFormat' : iGlobal.formatSeconds(examTime,'h'),
-		// 'evaluationStudyTime' : evaluationStudyTime,
-		// 'knowledgePointTime' : knowledgePointTime,
-		// 'knowledgePointTimeFormat' : iGlobal.formatSeconds(knowledgePointTime,'h'),
-		// 'openCourseTime' : openCourseTime,
-		// 'openCourseTimeFormat' : iGlobal.formatSeconds(openCourseTime,'h'),
-
-		// 'tasksTotalNum' : tasksTotalNum,
-		// 'examSummary' : examSummary,
-		// 'videoNum' : videoNum,
-		// 'examNum' : examNum,
-		// 'knowledgePointNum' : knowledgePointNum,
-		// 'openCourseNum' : openCourseNum
+		'tasks' : tasks
 	}
 }
 function getExamSummary(examLevel, examSummary){ //试卷个数统计
@@ -250,28 +120,8 @@ function getExamSummary(examLevel, examSummary){ //试卷个数统计
 	}else{
 		examSummary[examLevel] = 1;
 	}
-	// switch(examLevel){
-	// 	case "practice": // 练习
-	// 		break;
-	// 	case "appraisal": // 测评
-	// 		break;
-	// 	case "midterm": // 期中
-	// 		break;
-	// 	case "end": // 期末
-	// 		break;
-	// 	case "core": // 核心
-	// 		break;
-	// 	case "extension": // 扩展
-	// 		break;
-	// 	case "backup": // 备份
-	// 		break;
-	// }
 }
 function getTaskProgress(taskElement){ // 给任务注入任务进度
-	let studyTime = 0;
-	let completedNum = 0;
-	let ongoingNum = 0;
-	let notstartedNum = 0;
 	let taskProgress = {
 		studyTime : 0, // 学习时长
 		state : 0, // 任务状态
@@ -295,43 +145,134 @@ function getTaskProgress(taskElement){ // 给任务注入任务进度
 }
 
 function getCourseWeekPlan(courseDetail, coursePlan){ // 根据计划划分课程结构
-	// Statistics
-	let coursePlanWeekList = []; // 课程计划周列表
-
-	// 周统计 天统计 任务统计
-	let weekStatistic = dayStatistic = taskStatistic = {
-		'totalNum' : 0, // 总数
-		'ingNum' : 0, // 正在进行数
-		'beoverdueNum' : 0, // 逾期数
-		'completedNum' : 0, // 完成数
-		'onGoingNum' : 0, // 进行数
-		'notStartedNum' : 0, // 未开始数
-	}
 	
 
-	let courseTotalStatistic = courseVideoStatistic = courseExamStatistic = courseKnowledgePointStatistic = courseOpenCourseStatistic = {
-		'totalTime' : 0, // 总时间
-		'studyTime' : 0, // 学习时间
-		'totalNum' : 0, // 总数
-		'beoverdueNum' : 0, // 逾期数
-		'completedNum' : 0, // 完成数
-		'onGoingNum' : 0, // 进行数
-		'notStartedNum' : 0 // 未开始数
+	let courseWeekPlanData = {
+		isCoursePlan : "true",
+		coursePlanWeekList : [], // 课程计划周列表
+		courseStatistics : {
+			week : {
+				'name' : "课程周统计",
+				'totalNum' : 0, // 总数
+				'ingNum' : 0, // 正在进行数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0, // 未开始数
+			},
+			day : {
+				'name' : "课程天统计",
+				'totalNum' : 0, // 总数
+				'ingNum' : 0, // 正在进行数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0, // 未开始数
+			},
+			task : {
+				'name' : "课程任务统计",
+				'totalNum' : 0, // 总数
+				'ingNum' : 0, // 正在进行数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0, // 未开始数
+			}
+		},
+		courseTaskStatistics : {
+			total : {
+				'name' : '课程总数统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			video : {
+				'name' : '课程视频统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			video : {
+				'name' : '课程试题统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			knowledgePoint : {
+				'name' : '课程知识点统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			openCourse : {
+				'name' : '课程公开课统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			appraisal : {
+				'name' : '课程测评统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			midterm : {
+				'name' : '课程期中统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			},
+			end : {
+				'name' : '课程期末统计',
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdueNum' : 0, // 逾期数
+				'completedNum' : 0, // 完成数
+				'onGoingNum' : 0, // 进行数
+				'notStartedNum' : 0 // 未开始数
+			}
+		}
 	}
 
-
-	let newDate = new Date().getTime();
 	let weekStartTime = coursePlan[0].startDate;
+	let newDate = new Date().getTime();
 
-	let weekLiveDate = '';
-
-	weekStatistic.totalNum = coursePlan.length;
-	dayStatistic.totalNum = weekStatistic.totalNum*constant.weekDay;
+	courseWeekPlanData.courseStatistics.week.totalNum = coursePlan.length;
+	courseWeekPlanData.courseStatistics.day.totalNum = courseWeekPlanData.courseStatistics.week.totalNum*constant.weekDay;
 
 	if(weekStartTime < newDate){
-		dayStatistic.dayIngNum = Math.ceil((newDate-weekStartTime)/constant.dayTime)
+		courseWeekPlanData.courseStatistics.day.ingNum = Math.ceil((newDate-weekStartTime)/constant.dayTime)
 	}else if(newDate < weekStartTime){
-		dayStatistic.dayNoStartNum = Math.ceil((weekStartTime-newDate)/constant.dayTime)
+		courseWeekPlanData.courseStatistics.day.notStartedNum = Math.ceil((weekStartTime-newDate)/constant.dayTime)
 	}
 
 	_.forEach(coursePlan, (element, index) => {
@@ -343,171 +284,133 @@ function getCourseWeekPlan(courseDetail, coursePlan){ // 根据计划划分课�
 		})
 		// 找不到开始章节或者结束章节
 		if(startIndex == -1 || endIndex == -1){
-			return false;
+			coursePlanWeekList = "找不到开始章节或者结束章节";
+			return coursePlanWeekList;
 		}
-
-		let addCourseDetailList = []; // 周计划详情
-		let weekTask = []; // 周任务
-		let weekInfo = {
-			'isOpen' : true, // 周计划是否开启
-			'status' : '', // 周状态
-			'state' : '', // 周是否完成
+		let weekData = {
+			weekPlanDetail : [], // 周计划详情
+			weekTask : [], // 周任务
+			weekInfo : { // 周基础信息
+				'isOpen' : "true", // 周计划是否开启
+				'status' : '', // 周状态描述
+				'state' : 0, // 周是否完成
+			},
+			weekTaskStatistic : {
+				'name' : "周任务统计",
+				'totalTime' : 0, // 总时间
+				'studyTime' : 0, // 学习时间
+				'totalNum' : 0, // 总数
+				'beoverdue' : 0, // 逾期数
+				'completed' : 0, // 完成数
+				'onGoing' : 0, // 进行数
+				'notStarted' : 0 // 未开始数
+			},
+			taskStatistic : {
+				video : {
+					'name' : "周视频统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				exam : {
+					'name' : "周试题统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				knowledgePoint : {
+					'name' : "周知识点统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				openCourse : {
+					'name' : "周公开课统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				appraisal : {
+					'name' : "周测评统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				midterm : {
+					'name' : "周期中统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				},
+				end : {
+					'name' : "周期末统计",
+					'totalTime' : 0, // 总时间
+					'studyTime' : 0, // 学习时间
+					'totalNum' : 0, // 总数
+					'beoverdue' : 0, // 逾期数
+					'completed' : 0, // 完成数
+					'onGoing' : 0, // 进行数
+					'notStarted' : 0 // 未开始数
+				}
+			}
 		}
-		let weekTotalStatistic = weekVideoStatistic = weekExamStatistic = weekKnowledgePointStatistic = weekOpenCourseStatistic = {
-			'totalTime' : 0, // 总时间
-			'studyTime' : 0, // 学习时间
-			'totalNum' : 0, // 总数
-			'beoverdueNum' : 0, // 逾期数
-			'completedNum' : 0, // 完成数
-			'onGoingNum' : 0, // 进行数
-			'notStartedNum' : 0 // 未开始数
-		}
-
-		let liveStatus = 0;
-		let liveTime = '暂无直播';
-		let liveStatusText = '';
+		// let liveStatus = 0;
+		// let liveTime = '暂无直播';
+		// let liveStatusText = '';
 
 		let weekStartTime = element.startDate;
 		let weekEndTime = (element.endDate + constant.dayTime);
 
 		if(weekStartTime < newDate && weekEndTime < newDate){
-			weekStatus = "beoverdue";
-			weekTotalStatistic.beoverdueNum++;
+			weekData.weekInfo.status = "beoverdue";
+			weekData.weekTaskStatistic.beoverdue++;
 		}else if(weekStartTime < newDate && newDate < weekEndTime){
 			weekIngNum = index;
-			weekStatus = "ongoing";
-			weekTotalStatistic.onGoingNum++;
+			weekData.weekInfo.status = "ongoing";
+			weekData.weekTaskStatistic.onGoing++;
 		}if(newDate < weekStartTime && newDate < weekEndTime){
-			isOpen = "false";
-			weekStatus = "notstarted";
-			weekTotalStatistic.notStartedNum++;
+			weekData.weekInfo.isOpen = "false";
+			weekData.weekInfo.status = "notstarted";
+			weekData.weekTaskStatistic.notStarted++;
 		}
-
-		
 		for (let i = startIndex; i <= endIndex; i++) {
 			let thisItem = courseDetail[i];
-		  if(thisItem.isTasks){
-		  	
-		  	weekTaskTime+=thisItem.totalTime;
-		  	weekStudyTime+=thisItem.studyTime;
-		  	weekVideoStudyTime += thisItem.videoStudyTime;
-		  	weekExamStudyTime += thisItem.examStudyTime;
-		  	weekKnowledgePointStudyTime += thisItem.knowledgePointStudyTime;
-		  	weekOpenCourseStudyTime += thisItem.openCourseStudyTime;
-		  	weekEvaluationStudyTime += thisItem.evaluationStudyTime;
-
-		  	videoTotal+=thisItem.videoNum;
-		  	videoCompleted+=thisItem.videoCompletedNum;
-		  	videoOngoing+=thisItem.videoOngoingNum;
-		  	videoNotstarted+=thisItem.videoNotstartedNum;
-
-		  	examTotal+=thisItem.examNum;
-		  	examCompleted+=thisItem.examCompletedNum;
-		  	examOngoing+=thisItem.examOngoingNum;
-		  	examNotstarted+=thisItem.examNotstartedNum;
-		  	// liveTime+=thisItem.openCourseTime;
-		  	
-		  	let newTasks = [];
-		  	thisItem.tasks.forEach((element,index) => {
-		  		if(element.taskType == "video"){
-		  			newTasks.push(element);
-		  		}else if(element.taskType == "exam"){
-
-		  			if(element.taskLevel == "practice"){ // 练习
-		  				newTasks.push(element);
-		  			}else if(element.taskLevel == "appraisal"){ // 测评
-		  				weekTask.push(element);
-		  			}else if(element.taskLevel == "midterm"){ // 期中
-		  				weekTask.push(element);
-		  			}else if(element.taskLevel == "end"){ // 期末
-		  				weekTask.push(element);
-		  			}else if(element.taskLevel == "core"){ // 核心
-		  				newTasks.push(element);
-		  			}else if(element.taskLevel == "extension"){ // 扩展
-		  				newTasks.push(element);
-		  			}else if(element.taskLevel == "backup"){ // 备份
-		  				newTasks.push(element);
-		  			}
-		  		}else if(element.taskType == "knowledgePointExercise"){
-		  			newTasks.push(element);
-		  		}else if(element.taskType == "openCourse"){
-		  			weekTask.push(element);
-		  			// thisItem.tasks.splice(index,1);
-		  			element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
-		  			element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
-		  			liveStatus = element.state;
-		  			if(element.state){
-		  				liveStatusText = "已完成"
-		  			}else{
-		  				if(element.progress){
-		  					liveStatusText = "进行中";
-		  				}else{
-		  					liveStatusText = "未开始";
-		  				}
-		  			}
-		  		}
-		  	})
-		  	thisItem.tasks = newTasks;
-
-		  	let taskLength = thisItem.tasks.length;
-		  	weekTaskTotal+=taskLength;
-
-		  	switch(weekStatus){
-		  		case "completed":
-		  			taskTotalCompleted+=taskLength;
-		  			break;
-		  		case "beoverdue":
-		  			// taskTotalBeoverdue+=taskLength;
-		  			for(var j=0;j<taskLength;j++){
-		  				if(thisItem.tasks[j].state){
-		  					weekDoneNum++;
-		  					taskTotalCompleted++;
-		  					weekTaskCompleted++;
-		  				}else{
-
-		  					if(thisItem.tasks[j].progress){
-		  						taskTotalOngoing++;
-		  						weekTaskOngoing++;
-		  					}else{
-		  						taskTotalBeoverdue++;
-		  						weekTaskBeoverdue++;
-		  						// taskTotalNotstarted++;
-		  					}
-		  				}
-		  			}
-		  			break;
-		  		case "ongoing":
-		  			for(var j=0;j<taskLength;j++){
-		  				if(thisItem.tasks[j].state){
-		  					weekDoneNum++;
-		  					taskTotalCompleted++;
-		  					weekTaskCompleted++;
-		  				}else{
-		  					if(thisItem.tasks[j].progress){
-		  						taskTotalOngoing++;
-		  						weekTaskOngoing++;
-		  					}else{
-		  						taskTotalNotstarted++;
-		  						weekTaskNotstarted++;
-		  					}
-		  				}
-		  			}
-		  			break;
-		  		case "notstarted":
-		  			taskTotalNotstarted+=taskLength;
-		  			break;
-		  	}
+		  if(thisItem.tasks && thisItem.tasks.length){
+		  	taskStatistic(weekData, thisItem);
 		  }
-		  
-		  addCourseDetailList.push(thisItem);
-		}
-		if(weekTaskTotal == weekDoneNum && weekStatus !== "notstarted"){
-			weekDone = 1;
-			weekStatus = "completed";
-			weekTotalCompleted++;
+		  weekData.weekPlanDetail.push(thisItem);
 		}
 
-		taskTotal += weekTaskTotal;
+		if(weekData.weekTaskStatistic.totalNum == weekData.weekTaskStatistic.completedNum && weekData.weekInfo.status !== "notstarted"){
+			weekData.weekInfo.state = 1;
+			weekData.weekInfo.status = "completed";
+			weekData.weekStatistic.completedNum++;
+		}
+
 
 		// let studyTimeTotal = weekVideoStudyTime+weekExamStudyTime+weekEvaluationStudyTime;
 		// let evaluationTimePercentage = iGlobal.getProgress(weekEvaluationStudyTime,studyTimeTotal);
@@ -515,88 +418,99 @@ function getCourseWeekPlan(courseDetail, coursePlan){ // 根据计划划分课�
 		// let videoTimePercentage = iGlobal.getProgress(weekVideoStudyTime,studyTimeTotal);
 
 		// weekLiveDate
-		if(weekTask && weekTask.length){
-			weekTask.forEach((weekTaskElement) => {
-				if(weekTaskElement.taskType == "openCourse"){
-					if(weekTaskElement.openCourseStartTime){
-						weekLiveDate = iGlobal.getLocalTime(weekTaskElement.openCourseStartTime);
-						liveTime = iGlobal.getDate(weekTaskElement.openCourseStartTime);
-					}else{
-						weekLiveDate = '暂无直播';
-						liveTime = '暂无直播';
-					}
+		// if(weekTask && weekTask.length){
+		// 	weekTask.forEach((weekTaskElement) => {
+		// 		if(weekTaskElement.taskType == "openCourse"){
+		// 			if(weekTaskElement.openCourseStartTime){
+		// 				weekLiveDate = iGlobal.getLocalTime(weekTaskElement.openCourseStartTime);
+		// 				liveTime = iGlobal.getDate(weekTaskElement.openCourseStartTime);
+		// 			}else{
+		// 				weekLiveDate = '暂无直播';
+		// 				liveTime = '暂无直播';
+		// 			}
 					
-				}
-			})
-		}
-
-		coursePlanWeekList.push({
-			'isOpen' : isOpen,
-			'isFinish' : element.isFinish,
-			'isExamDone' : false,
-			'list' : addCourseDetailList,
-			'status' : weekStatus,
-			'weekStatus' : weekStatus,
+		// 		}
+		// 	})
+		// }
+		courseWeekPlanData.coursePlanWeekList.push(weekData);
+		/*
+		weekPlanDetail.push({
 			'weekTask' : weekTask,
-			'isDone' : weekDone,
-			'planId' : element.id,
-			'weekName' : element.planTitle,
-			'weekProgress' : iGlobal.getProgress(weekTaskCompleted,weekTaskTotal),
+			'weekInfo' : weekInfo,
+			'weekTaskStatistic' : weekTaskStatistic,
+			'weekTotalStatistic' : weekTotalStatistic,
+			'weekVideoStatistic' : weekVideoStatistic,
+			'weekExamStatistic' : weekExamStatistic,
+			'weekKnowledgePointStatistic' : weekKnowledgePointStatistic,
+			'weekOpenCourseStatistic' : weekOpenCourseStatistic,
+			'list' : weekPlanDetail
+
+			// 'isOpen' : weekInfo.isOpen,
+			// 'isFinish' : element.isFinish,
+			// 'isExamDone' : false,
+			// 'list' : addCourseDetailList,
+			// 'status' : weekInfo.status,
+			// 'weekStatus' : weekInfo.status,
+			// 'weekTask' : weekTask,
+			// 'isDone' : weekDone,
+			// 'planId' : element.id,
+			// 'weekName' : element.planTitle,
+			// 'weekProgress' : iGlobal.getProgress(weekTaskCompleted,weekTaskTotal),
 			
-			'totalTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
-			'taskTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
-			'studyTime' : iGlobal.formatSeconds(weekVideoStudyTime+weekExamStudyTime+weekEvaluationStudyTime,'h'),
-			'studyTimeFormat' : iGlobal.formatSeconds(weekVideoStudyTime+weekExamStudyTime+weekEvaluationStudyTime,'h'),
-			'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
-			'startDate' : element.startDate,
-			'startDateFormat' : iGlobal.getDate(element.startDate),
-			'endDate' : element.endDate,
-			'endDateFormat' : iGlobal.getDate(element.endDate),
+			// 'totalTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
+			// 'taskTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
+			// 'studyTime' : iGlobal.formatSeconds(weekVideoStudyTime+weekExamStudyTime+weekEvaluationStudyTime,'h'),
+			// 'studyTimeFormat' : iGlobal.formatSeconds(weekVideoStudyTime+weekExamStudyTime+weekEvaluationStudyTime,'h'),
+			// 'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
+			// 'startDate' : element.startDate,
+			// 'startDateFormat' : iGlobal.getDate(element.startDate),
+			// 'endDate' : element.endDate,
+			// 'endDateFormat' : iGlobal.getDate(element.endDate),
 
-			'taskTotal' : weekTaskTotal,
-			'taskCompleted' : weekTaskCompleted,
-			'taskOngoing' : weekTaskOngoing,
-			'taskBeoverdue' : weekTaskBeoverdue,
-			'taskNotstarted' : weekTaskNotstarted,
+			// 'taskTotal' : weekTaskTotal,
+			// 'taskCompleted' : weekTaskCompleted,
+			// 'taskOngoing' : weekTaskOngoing,
+			// 'taskBeoverdue' : weekTaskBeoverdue,
+			// 'taskNotstarted' : weekTaskNotstarted,
 
-			'videoTotal' : videoTotal,
-			'videoCompleted' : videoCompleted,
-			'videoOngoing' : videoOngoing,
-			'videoProgress' : iGlobal.getProgress(videoCompleted,videoTotal),
-			'videoTime' : weekVideoStudyTime,
-			'videoTimeFormat' : iGlobal.formatSeconds(weekVideoStudyTime,'h'),
-			'videoTimePercentage' : videoTimePercentage,
-			'videoStudyTime' : weekVideoStudyTime,
+			// 'videoTotal' : videoTotal,
+			// 'videoCompleted' : videoCompleted,
+			// 'videoOngoing' : videoOngoing,
+			// 'videoProgress' : iGlobal.getProgress(videoCompleted,videoTotal),
+			// 'videoTime' : weekVideoStudyTime,
+			// 'videoTimeFormat' : iGlobal.formatSeconds(weekVideoStudyTime,'h'),
+			// 'videoTimePercentage' : videoTimePercentage,
+			// 'videoStudyTime' : weekVideoStudyTime,
 
-			'examTotal' : examTotal,
-			'examCompleted' : examCompleted,
-			'examOngoing' : examOngoing,
-			'examProgress' : iGlobal.getProgress(examCompleted,examTotal),
-			'examTime' : weekExamStudyTime,
-			'examTimeFormat' : iGlobal.formatSeconds(weekExamStudyTime,'h'),
-			'examTimePercentage' : examTimePercentage,
-			'examStudyTime' : weekExamStudyTime,
+			// 'examTotal' : examTotal,
+			// 'examCompleted' : examCompleted,
+			// 'examOngoing' : examOngoing,
+			// 'examProgress' : iGlobal.getProgress(examCompleted,examTotal),
+			// 'examTime' : weekExamStudyTime,
+			// 'examTimeFormat' : iGlobal.formatSeconds(weekExamStudyTime,'h'),
+			// 'examTimePercentage' : examTimePercentage,
+			// 'examStudyTime' : weekExamStudyTime,
 
-			'evaluationId' : evaluationId,
-			'evaluationStatus' : evaluationStatus,
-			'evaluationTime' : weekEvaluationStudyTime,
-			'evaluationTimeFormat' : iGlobal.formatSeconds(weekEvaluationStudyTime,'h'),
-			'evaluationTimePercentage' : evaluationTimePercentage,
+			// 'evaluationId' : evaluationId,
+			// 'evaluationStatus' : evaluationStatus,
+			// 'evaluationTime' : weekEvaluationStudyTime,
+			// 'evaluationTimeFormat' : iGlobal.formatSeconds(weekEvaluationStudyTime,'h'),
+			// 'evaluationTimePercentage' : evaluationTimePercentage,
 
-			'liveStatus' : liveStatus,
-			'liveStatusText' : liveStatusText,
-			'liveTime' : liveTime,
-			'liveDate' : weekLiveDate
+			// 'liveStatus' : liveStatus,
+			// 'liveStatusText' : liveStatusText,
+			// 'liveTime' : liveTime,
+			// 'liveDate' : weekLiveDate
 		})
-
+		*/
 	})
-
+	return courseWeekPlanData;
 	return  {
-		'weekStatistic' : weekStatistic,
-		'dayStatistic' : dayStatistic,
-		'taskStatistic' : taskStatistic,
-		'isCoursePlan' : "true",
-		'planInfo' : coursePlanWeekList,
+		// 'isCoursePlan' : "true",
+		// 'weekStatistic' : courseWeekPlanData.weekStatistic,
+		// 'dayStatistic' : courseWeekPlanData.dayStatistic,
+		// 'taskStatistic' : courseWeekPlanData.taskStatistic,
+		// 'planInfo' : courseWeekPlanData.coursePlanWeekList,
 		// "studyInfo" : {
 		// 	"studyProgressTotal" : iGlobal.getProgress(taskTotalCompleted,taskTotal)
 		// },
@@ -620,7 +534,96 @@ function getCourseWeekPlan(courseDetail, coursePlan){ // 根据计划划分课�
 		// }
 	}
 }
+function taskStatistic(weekData, chapterData){
+	let newTasks = [];
+	chapterData.tasks.forEach((element, index) => {
+		let isWeekTask = false;
+		let taskType = element.taskType;
+		if(taskType == "exam"){
+			chapterData.tasks[index].taskTime = parseInt(element.taskTime)*60
+			// appraisal:测评,midterm:期中,end:期末,
+			// practice:练习,core:核心,extension:扩展,backup:备份
+			let taskLevel = element.taskLevel;
+			if(taskLevel == "appraisal" || taskLevel == "midterm" || taskLevel == "end"){
+				isWeekTask = true;
+				taskType = taskLevel;
+			}
+		}else if(taskType == "openCourse"){
+			isWeekTask = true;
+			chapterData.tasks[index].openCourseDate = iGlobal.getDate(element.openCourseStartTime);
+			chapterData.tasks[index].openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
+		}
+		if(isWeekTask){
+			weekData.weekTask.push(element);
+		}else{
+			newTasks.push(element);
+		}
+		setTaskStatistic(weekData, element, taskType);
+	})
+	chapterData.tasks = newTasks;
+}
+function setTaskStatistic(weekData, task, taskType){
+	let status = weekData.weekInfo.status;
+	let weekTask = weekData.taskStatistic[taskType];
+	let studyTime = parseInt(task.studyTime);
+	let taskTime = parseInt(task.taskTime);
 
+	weekData.weekTaskStatistic.totalNum++;
+	weekData.weekTaskStatistic.studyTime += studyTime;
+	weekData.weekTaskStatistic.totalTime += taskTime;
+	weekTask.totalNum++;
+	weekTask.studyTime += studyTime;
+	weekTask.totalTime += taskTime;
+
+	switch(status){
+		case "notstarted": // 未开始
+			weekTask.notStarted++;
+			break;
+		case "completed": // 完成
+			weekTask.completed++;
+			break;
+		case "ongoing": // 进行中
+		case "beoverdue": // 逾期
+			if(task.state){
+				weekTask.completed++;
+			}else{
+				if(task.progress){
+					weekTask.onGoing++;
+				}else{
+					weekTask.notStarted++;
+				}
+			}
+			break;
+	}
+}
+
+function setWeekStatistic(weekData, task, taskType){
+	let status = weekData.weekInfo.status;
+	weekData.weekTaskStatistic.totalNum++;
+
+	weekData[taskType+'WeekStatistic'].totalNum++;
+	switch(status){
+		case "notstarted": // 未开始
+			weekData[taskType+'WeekStatistic'].notStarted++;
+			break;
+		case "completed": // 完成
+			weekData[taskType+'WeekStatistic'].completed++;
+			break;
+		case "ongoing":
+		case "beoverdue": // 逾期
+			if(task.state){
+				weekData[taskType+'WeekStatistic'].completed++;
+			}else{
+				if(task.progress){
+					weekData[taskType+'WeekStatistic'].onGoing++;
+				}else{
+					weekData[taskType+'WeekStatistic'].notStarted++;
+				}
+				
+			}
+			break;
+	}
+}
 
 function courseByInFo(coursestatus){
 	let lockStatus = false;
