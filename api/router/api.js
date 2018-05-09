@@ -119,6 +119,16 @@ module.exports = [
 			courseId : "8a22ecb5577562b70157b6fc00e8011c"
 		}
 	},{
+		name : "学习中心-教学计划-课程详情",
+		path : "studycenter/teachingPlan/courseDetail",
+		type : "get",
+		modules : ["studycenter/teachingPlan/courseDetail","component/teachingPlan/courseDetailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		queryData : {
+			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
+			memberId : "ff8080815133db0d0151375bfdf30c0d",
+			courseId : "8a22ecb5577562b70157b6fc00e8011c"
+		}
+	},{
 		name : "课程计划详情",
 		path : "coursePlanDetail",
 		type : "get",

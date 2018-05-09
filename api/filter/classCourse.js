@@ -27,7 +27,7 @@ function classCourse(payload){
 	addTaskProgress(payload.tasksProgress);
 	courseRenderData = getChapterListWeekList(payload.memberGetplan);
 
-	formatCourseDetail(courseRenderData);
+	// formatCourseDetail(courseRenderData);
 	courseRenderData.courseStatus = courseByInFo(payload.courseactivestatus);
 	courseRenderData.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
 	courseRenderData.courseInfo = filterCourseInfo(payload.courseDetail);
@@ -455,7 +455,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 								}
 							}
 						}else if(element.taskType == "exam"){
-							examTotal++;
+							
 							if(element.state){
 								examCompleted++;
 							}else{
@@ -467,6 +467,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							}
 							if(element.taskLevel == "practice"){ // 练习
 								examTime+=element.studyTime ? element.studyTime : 0;
+								examTotal++;
 								newTasks.push(element);
 							}else if(element.taskLevel == "appraisal"){ // 测评
 								evaluationTime+=element.studyTime ? element.studyTime : 0;
@@ -487,12 +488,15 @@ function filterCourseDetailWeekPlan(courseData, planData){
 								// thisItem.tasks.splice(index,1);
 							}else if(element.taskLevel == "core"){ // 核心
 								examTime+=element.studyTime ? element.studyTime : 0;
+								examTotal++;
 								newTasks.push(element);
 							}else if(element.taskLevel == "extension"){ // 扩展
 								examTime+=element.studyTime ? element.studyTime : 0;
+								examTotal++;
 								newTasks.push(element);
 							}else if(element.taskLevel == "backup"){ // 备份
 								examTime+=element.studyTime ? element.studyTime : 0;
+								examTotal++;
 								newTasks.push(element);
 							}
 						}else if(element.taskType == "knowledgePointExercise"){

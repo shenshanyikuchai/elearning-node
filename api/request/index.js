@@ -74,15 +74,12 @@ function ajax(payload){
     }
   }
 
-  var showUrl = args.url;
+  let showUrl = args.url;
+  let requestParameter = '';
   for(var i in payload.data){
-    if(i){
-      showUrl += '?' +i +'=' + payload.data[i];
-    }else{
-      showUrl += '&' +i +'=' + payload.data[i];
-    }
+    requestParameter += '&' +i +'=' + payload.data[i];
   }
-  console.log(showUrl)
+  console.log(showUrl+'?'+requestParameter.substr(1))
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(args, payload, res)).catch(err => fail(args, payload, err));
   } else if (args.type === 'GET') {
