@@ -21,47 +21,30 @@ function examReport(payload){
 	};
 }
 function getExerciseBaseInfo(payload){
-	// 根据题号判断试题状态
 	let exerciseStatus = [];
-	for(let i=0;i<+payload.exam.examen_total_num;i++){
-		let elementData = '';
-		for(let j=0;j<payload.exercise.length;j++){
-			if(i == payload.exercise[j].sort){
-				elementData = payload.exercise[j];
-				break;
-			}
-		}
-		if(elementData){
-			if(parseInt(elementData.status) == 1){
-				exerciseStatus.push({
-					status : "1"
-				})
-			}else if(parseInt(elementData.status) == 2){
-				exerciseStatus.push({
-					status : "2"
-				})
-			}
-		}else{
-			exerciseStatus.push({
-				status : "0"
-			})
-		}
-		
-	}
-	// 根据试题id去重
-	// let newExercise = _.uniqBy(payload.exercise, 'exercise_id');
 	
+	// 根据试题id去重
+	let newExercise = _.uniqBy(payload.exercise, 'exercise_id');
+	for(let i=0;i<payload.baseInfo.length;i++){
+		let elementBaseInfo = payload.baseInfo[i];
+		exerciseStatus.push({
+			id : elementBaseInfo.id,
+			status : "0"
+		})
+		newExercise.forEach((elementExercise, indexExercis) => {
+			// if(elementBaseInfo.id == elementExercise.exercise_id){
+			if(i == elementExercise.sort){
+				exerciseStatus[i].status = elementExercise.status;
+			}
+		})
+	}
 	// payload.baseInfo.forEach((elementBaseInfo, indexBaseInfo) => {
 	// 	exerciseStatus.push({
 	// 		id : elementBaseInfo.id,
 	// 		status : "0"
 	// 	})
-	// 	_.each(data, function(element, index){
-	// 		if(i == element.sort){
-	// 			elementData = element;
-	// 		}
-	// 	})
 	// 	newExercise.forEach((elementExercise, indexExercis) => {
+
 	// 		if(elementBaseInfo.id == elementExercise.exercise_id){
 	// 			exerciseStatus[indexBaseInfo].status = elementExercise.status
 	// 		}

@@ -3,7 +3,7 @@ const courseIndex = require('./courseIndex');
 const { classCourse } = require('./classCourse');
 const { teachingCourse, teachingCourseClear } = require('./teachingCourse');
 const examReport = require('./examReport');
-const { coursePlanDetail,studycenterCoursePlanDetail } = require('./modules/coursePlanDetail');
+const { coursePlanDetail } = require('./modules/coursePlanDetail');
 
 module.exports = {
 	header : header,
@@ -12,6 +12,5 @@ module.exports = {
 	teachingCourse : teachingCourse,
 	teachingCourseClear : teachingCourseClear,
 	examReport : examReport,
-	coursePlanDetail : coursePlanDetail,
-	studycenterCoursePlanDetail : studycenterCoursePlanDetail
+	coursePlanDetail : coursePlanDetail
 }

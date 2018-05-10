@@ -3,7 +3,6 @@ const constant = require('../../global/constant');
 const Filter = require('../../filter');
 
 module.exports = async(ctx, next) => {
-	// ctx.state.mock = true;
 	if(ctx.query.memberId && ctx.query.knowledgePointId && ctx.query.examenNum){
 		await next();
 		ctx.state.data = Filter.examReport({

@@ -3,6 +3,7 @@ module.exports = {
   'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'getClassPlanDetail': {
     'name' : '班级课程列表',
+    'hostNameDemo' : 'http://192.168.10.201:9995',
     'url': '/api/userAction/php/class/getClassPlanDetail',
     'mock' : '/mock/memberGetplan.json',
     'defaultData' : {

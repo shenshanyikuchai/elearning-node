@@ -3,10 +3,12 @@ const constant = require('../global/constant');
 const _ = require('lodash');
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
+var courseDetail = {};
 var courseDetailList = [];
 var weekIngNum = 0;
 function initData(){
 	if(courseDetailList && courseDetailList.length){
+		courseDetail = {};
 		courseDetailList = [];
 	}
 }
@@ -21,7 +23,8 @@ function classCourse(payload){
 	// }
 	// 初始化数据
 	initData();
-
+	courseDetail = payload.courseDetail;
+	console.log(courseDetail)
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);
@@ -59,11 +62,24 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 		let knowledgePointTime = 0;
 		let openCourseTime = 0;
 		if(element.tasks && element.tasks.length && element.children && element.children.length){
+			let chapter = element;
 			let newTasks = [];
 			let completedNum = 0;
 			let ongoingNum = 0;
 			let notstartedNum = 0;
 			element.tasks.forEach(function(element,index){
+				element.tasks[index] = {
+					...element,
+					categoryId : courseDetail.categoryId,
+					categoryName : courseDetail.categoryName,
+					subjectId : courseDetail.subjectId,
+					subjectName : courseDetail.subjectName,
+					courseId : courseDetail.courseId,
+					courseName : courseDetail.courseName,
+					chapterId : chapter.chapterId,
+					chapterTitle : chapter.title,
+					isFree : chapter.isFree
+				};
 				if(element.taskType == "video"){
 					newTasks.push(element);
 					// courseTimeTotalNum += (+element.videoTime);
@@ -309,6 +325,17 @@ function filterCourseDetailWeekPlan(courseData, planData){
 	}
 
 	planData.forEach(function(element,index){
+		let startIndex = _.findIndex(courseData, (o) => { // 周开始章节节点
+			return o.chapterId == element.startCategoryId;
+		})
+		let endIndex = _.findIndex(courseData, (o) => { // 周结束章节节点
+			return o.chapterId == element.endCategoryId;
+		})
+		// 找不到开始章节或者结束章节
+		if(startIndex == -1 || endIndex == -1){
+			return courseDetailWeekList = "找不到开始章节或者结束章节";
+		}
+
 		let isOpen = 'true';
 		let startCategoryId = element.startCategoryId;
 		let endCategoryId = element.endCategoryId;
@@ -373,7 +400,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			// weekIngNum = '';
 		}
 		
-		for(var i=itemStart;i<itemLength;i++){
+		for(var i=startIndex;i<=endIndex;i++){
 			weekTotal++;
 			var thisItem = item[i];
 			thisItem.index = i;
