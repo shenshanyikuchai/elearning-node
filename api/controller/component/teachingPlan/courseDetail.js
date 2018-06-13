@@ -11,7 +11,7 @@ module.exports = async(ctx, next) => {
 			tasksProgress : ctx.state.getTasksProgress,
 			examDate : ctx.state.getExamDate,
 			coursePlan : ctx.state.memberGetplan,
-			courseStatus : ctx.state.courseactivestatus
+			courseactivestatus : ctx.state.courseactivestatus
 		})
 	}else{
 		ctx.state.response = constant.response.noparameter;

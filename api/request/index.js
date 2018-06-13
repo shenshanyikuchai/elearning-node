@@ -50,7 +50,6 @@ function ajax(payload){
       if(thatServer.urlDemo){
         thatServerUrl = thatServer.urlDemo;
       }
-      console.log(payload)
       if(payload.ctxState.mock){
         args.url = thatServer.mock;
         args.type = 'JSON';
@@ -73,7 +72,7 @@ function ajax(payload){
       args.type = thatServer.type ? thatServer.type : 'GET';
     }
   }
-
+  
   let showUrl = args.url;
   let requestParameter = '';
   for(var i in payload.data){
@@ -115,7 +114,15 @@ function done(args, payload, res){
     }
     
   }else if(res.state == "error"){
+    let path = '';
+    if(args.type == "GET"){
+      for(var i in payload.data){
+        path += '&' +i +'=' + payload.data[i];
+      }
+      path = args.url+'?'+path.substr(1)
+    }
     err.request = {
+      path : path,
       url : args.url,
       type : args.type,
       data : payload.data,
@@ -127,18 +134,27 @@ function done(args, payload, res){
   
 }
 function fail(args, payload, err){
-  if(payload.server == "getappdownloadinfo"){
+  if(payload.server == "getappdownloadinfo" || payload.server == "getTeacherLiveCourselist" || payload.server == "applyrestudylist"){
     return err
   }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){
     return err
   }else{
+    let path = '';
+    if(args.type == "GET"){
+      for(var i in payload.data){
+        path += '&' +i +'=' + payload.data[i];
+      }
+      path = args.url+'?'+path.substr(1)
+    }
     err.request = {
+      path : path,
       url : args.url,
       type : args.type,
       data : payload.data,
       error : err.msg
     }
     payload.ctxState.fail.push(err);
+    return err;
   }
   
   

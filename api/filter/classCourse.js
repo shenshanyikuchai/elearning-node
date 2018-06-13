@@ -38,6 +38,7 @@ function classCourse(payload){
 
 	return courseRenderData;
 }
+
 function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 	if(level){
 		level++;
@@ -61,15 +62,16 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 		let examTime = 0;
 		let knowledgePointTime = 0;
 		let openCourseTime = 0;
+		let chapter = element;
 		if(element.tasks && element.tasks.length && element.children && element.children.length){
-			let chapter = element;
+			
 			let newTasks = [];
 			let completedNum = 0;
 			let ongoingNum = 0;
 			let notstartedNum = 0;
-			element.tasks.forEach(function(element,index){
-				element.tasks[index] = {
-					...element,
+			element.tasks.forEach((taskElement,taskIndex) => {
+				taskElement = {
+					...taskElement,
 					categoryId : courseDetail.categoryId,
 					categoryName : courseDetail.categoryName,
 					subjectId : courseDetail.subjectId,
@@ -77,35 +79,35 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 					courseId : courseDetail.courseId,
 					courseName : courseDetail.courseName,
 					chapterId : chapter.chapterId,
-					chapterTitle : chapter.title,
+					chapterTitle : chapter.chapterTitle,
 					isFree : chapter.isFree
 				};
-				if(element.taskType == "video"){
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.videoTime);
-					chapterTotalTime+=(+element.videoTime);
-					videoTime+=(+element.videoTime);
-				}else if(element.taskType == "exam"){
+				if(taskElement.taskType == "video"){
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.videoTime);
+					chapterTotalTime+=(+taskElement.videoTime);
+					videoTime+=(+taskElement.videoTime);
+				}else if(taskElement.taskType == "exam"){
 
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.taskTime)*60;
-					chapterTotalTime+=(+element.taskTime)*60;
-					examTime+=(+element.taskTime);
-				}else if(element.taskType == "knowledgePointExercise"){
-					newTasks.push(element);
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.taskTime)*60;
+					chapterTotalTime+=(+taskElement.taskTime)*60;
+					examTime+=(+taskElement.taskTime);
+				}else if(taskElement.taskType == "knowledgePointExercise"){
+					newTasks.push(taskElement);
 					// courseTimeTotalNum += (120)*60;
 					chapterTotalTime+=(120)*60;
-					knowledgePointTime+=(+element.taskTime);
-				}else if(element.taskType == "openCourse"){
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.taskTime);
-					chapterTotalTime+=(+element.taskTime);
-					openCourseTime+=(+element.taskTime);
+					knowledgePointTime+=(+taskElement.taskTime);
+				}else if(taskElement.taskType == "openCourse"){
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.taskTime);
+					chapterTotalTime+=(+taskElement.taskTime);
+					openCourseTime+=(+taskElement.taskTime);
 				}
-				if(element.state){
+				if(taskElement.state){
 					completedNum++;
 				}else{
-					if(element.progress){
+					if(taskElement.progress){
 						ongoingNum++;
 					}else{
 						notstartedNum++;
@@ -141,36 +143,50 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 			
 			filterCourseDetail(element.children, level, newNode, node, rootNode);
 		}else if(element.tasks && element.tasks.length){
+
 			let newTasks = [];
 			let completedNum = 0;
 			let ongoingNum = 0;
 			let notstartedNum = 0;
-			element.tasks.forEach(function(element,index){
-				if(element.taskType == "video"){
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.videoTime);
-					chapterTotalTime+=(+element.videoTime);
-					videoTime+=(+element.videoTime);
-				}else if(element.taskType == "exam"){
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.taskTime)*60;
-					chapterTotalTime+=(+element.taskTime)*60;
-					examTime+=(+element.taskTime);
-				}else if(element.taskType == "knowledgePointExercise"){
-					newTasks.push(element);
+			element.tasks.forEach((taskElement,taskIndex) => {
+				taskElement = {
+					...taskElement,
+					categoryId : courseDetail.categoryId,
+					categoryName : courseDetail.categoryName,
+					subjectId : courseDetail.subjectId,
+					subjectName : courseDetail.subjectName,
+					courseId : courseDetail.courseId,
+					courseName : courseDetail.courseName,
+					chapterId : chapter.chapterId,
+					chapterTitle : chapter.chapterTitle,
+					isFree : chapter.isFree
+				};
+				if(taskElement.taskType == "video"){
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.videoTime);
+					chapterTotalTime+=(+taskElement.videoTime);
+					videoTime+=(+taskElement.videoTime);
+				}else if(taskElement.taskType == "exam"){
+
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.taskTime)*60;
+					chapterTotalTime+=(+taskElement.taskTime)*60;
+					examTime+=(+taskElement.taskTime);
+				}else if(taskElement.taskType == "knowledgePointExercise"){
+					newTasks.push(taskElement);
 					// courseTimeTotalNum += (120)*60;
 					chapterTotalTime+=(120)*60;
-					knowledgePointTime+=(+element.taskTime);
-				}else if(element.taskType == "openCourse"){
-					newTasks.push(element);
-					// courseTimeTotalNum += (+element.taskTime);
-					chapterTotalTime+=(+element.taskTime);
-					openCourseTime+=(+element.taskTime);
+					knowledgePointTime+=(+taskElement.taskTime);
+				}else if(taskElement.taskType == "openCourse"){
+					newTasks.push(taskElement);
+					// courseTimeTotalNum += (+taskElement.taskTime);
+					chapterTotalTime+=(+taskElement.taskTime);
+					openCourseTime+=(+taskElement.taskTime);
 				}
-				if(element.state){
+				if(taskElement.state){
 					completedNum++;
 				}else{
-					if(element.progress){
+					if(taskElement.progress){
 						ongoingNum++;
 					}else{
 						notstartedNum++;
@@ -332,8 +348,13 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			return o.chapterId == element.endCategoryId;
 		})
 		// 找不到开始章节或者结束章节
-		if(startIndex == -1 || endIndex == -1){
-			return courseDetailWeekList = "找不到开始章节或者结束章节";
+		if(startIndex == -1){
+			courseDetailWeekList.push("找不到开始章节")
+			return false;
+		}
+		if(endIndex == -1){
+			courseDetailWeekList.push("找不到结束章节")
+			return false;
 		}
 
 		let isOpen = 'true';
@@ -381,7 +402,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 		let liveStatus = 0;
 		let liveTime = '暂无直播';
-		let liveStatusText = '';
+		let liveStatusText = '暂无直播';
 		let endDataTime = (element.endDate + 24*60*60*1000);
 		if(element.startDate < newDate && endDataTime < newDate){
 			// weekIngNum = index;
@@ -482,49 +503,29 @@ function filterCourseDetailWeekPlan(courseData, planData){
 								}
 							}
 						}else if(element.taskType == "exam"){
-							
-							if(element.state){
-								examCompleted++;
-							}else{
-								if(element.progress){
-									examOngoing++;
-								}else{
-									examNotstarted++;
-								}
-							}
-							if(element.taskLevel == "practice"){ // 练习
+							if(element.taskLevel == "practice" || element.taskLevel == "core" || element.taskLevel == "extension" || element.taskLevel == "backup"){
 								examTime+=element.studyTime ? element.studyTime : 0;
 								examTotal++;
 								newTasks.push(element);
-							}else if(element.taskLevel == "appraisal"){ // 测评
+								if(element.state){
+									examCompleted++;
+								}else{
+									if(element.progress){
+										examOngoing++;
+									}else{
+										examNotstarted++;
+									}
+								}
+							}else if(element.taskLevel == "appraisal"){
 								evaluationTime+=element.studyTime ? element.studyTime : 0;
 								element.isFree = thisItem.isFree;
 								weekTask.push(element);
-								// thisItem.tasks.splice(index,1);
 								evaluationId = element.id;
 								evaluationStatus = element.state;
-							}else if(element.taskLevel == "midterm"){ // 期中
+							}else if(element.taskLevel == "midterm" || element.taskLevel == "end"){
 								evaluationTime+=element.studyTime ? element.studyTime : 0;
 								element.isFree = thisItem.isFree;
 								weekTask.push(element);
-								// thisItem.tasks.splice(index,1);
-							}else if(element.taskLevel == "end"){ // 期末
-								evaluationTime+=element.studyTime ? element.studyTime : 0;
-								element.isFree = thisItem.isFree;
-								weekTask.push(element);
-								// thisItem.tasks.splice(index,1);
-							}else if(element.taskLevel == "core"){ // 核心
-								examTime+=element.studyTime ? element.studyTime : 0;
-								examTotal++;
-								newTasks.push(element);
-							}else if(element.taskLevel == "extension"){ // 扩展
-								examTime+=element.studyTime ? element.studyTime : 0;
-								examTotal++;
-								newTasks.push(element);
-							}else if(element.taskLevel == "backup"){ // 备份
-								examTime+=element.studyTime ? element.studyTime : 0;
-								examTotal++;
-								newTasks.push(element);
 							}
 						}else if(element.taskType == "knowledgePointExercise"){
 							examTime+=element.studyTime ? element.studyTime : 0;

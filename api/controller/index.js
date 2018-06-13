@@ -26,15 +26,13 @@ module.exports = async (ctx, next) => {
 					responseData = constant.response.nologin;
 				}else if(thisFail.msg == "用户名或密码错误"){
 					responseData = constant.response.errorInput;
-					responseData.request = thisRequest;
 				}else{
 					responseData = constant.response.error;
-					responseData.request = thisRequest;
 				}
 			}else{
 				responseData = constant.response.error;
-				responseData.request = thisRequest;
 			}
+			responseData.request = thisRequest;
 		}
 	}else{
 		for(let i in ctx.state.response){

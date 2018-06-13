@@ -3,11 +3,14 @@ const constant = require('../global/constant');
 const _ = require('lodash');
 
 function examReport(payload){
+	console.log(payload)
+	let isExamReport = hasExamReport(payload);
 	payload.exerciseStatus = getExerciseBaseInfo(payload);
 	payload.knowledges = fileterKnowledge(payload);
 	payload.exerciseSummary = getExerciseSummary(payload);
 
 	return {
+		isExamReport : isExamReport,
 		examReport : {
 			status : payload.exerciseStatus,
 			knowledge : payload.knowledges,
@@ -20,9 +23,17 @@ function examReport(payload){
 		}
 	};
 }
+function hasExamReport(payload){
+	let isExamReport = false;
+	if(payload.isExam){
+		if(payload.exam.is_finish == "1"){
+			isExamReport = true;
+		}
+	}
+	return isExamReport;
+}
 function getExerciseBaseInfo(payload){
 	let exerciseStatus = [];
-	
 	// 根据试题id去重
 	let newExercise = _.uniqBy(payload.exercise, 'exercise_id');
 	for(let i=0;i<payload.baseInfo.length;i++){
@@ -32,8 +43,7 @@ function getExerciseBaseInfo(payload){
 			status : "0"
 		})
 		newExercise.forEach((elementExercise, indexExercis) => {
-			// if(elementBaseInfo.id == elementExercise.exercise_id){
-			if(i == elementExercise.sort){
+			if(i == parseInt(elementExercise.sort)){
 				exerciseStatus[i].status = elementExercise.status;
 			}
 		})
@@ -57,7 +67,6 @@ function fileterKnowledge(payload){
 	let masterLength = 0;
 	let strengthen = [];
 	let strengthenLength = 0;
-
 	payload.exerciseStatus.forEach((element) => {
 		payload.knowledge.forEach((elementKnowledge) => {
 			for(let knowledgeId in elementKnowledge){
@@ -65,6 +74,7 @@ function fileterKnowledge(payload){
 					if(element.status == "0" || element.status == "2"){
 						elementKnowledge[knowledgeId].forEach((element) => {
 							strengthen.push({
+								state : 0,
 								title : element.enTitle,
 								id : element.id
 							})
@@ -72,6 +82,7 @@ function fileterKnowledge(payload){
 					}else if(element.status == "1"){
 						elementKnowledge[knowledgeId].forEach((element) => {
 							master.push({
+								state : 1,
 								title : element.enTitle,
 								id : element.id
 							})

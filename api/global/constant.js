@@ -91,9 +91,9 @@ module.exports = {
     }
   },
   "userLevel" : [{
-    "id" : "ff808081473905e701475d5bb8cc004a",
-    "name" : "默认等级",
-    "type" : ""
+      "id" : "ff808081473905e701475d5bb8cc004a",
+      "name" : "默认等级",
+      "type" : ""
     },{
       "id" : "ff80808147816dbc0147a07edb4c0041",
       "name" : "第一级",

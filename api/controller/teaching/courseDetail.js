@@ -5,7 +5,6 @@ const Filter = require('../../filter');
 module.exports = async(ctx, next) => {
 	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId){
 		await next();
-		Filter.teachingCourseClear();
 		ctx.state.data = Filter.teachingCourse({
 			courseDetail : ctx.state.courseDetail,
 			tasksProgress : ctx.state.getTasksProgress,

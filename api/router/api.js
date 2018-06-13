@@ -102,7 +102,8 @@ module.exports = [
 		name : "班级课程详情",
 		path : "classCourseDetail",
 		type : "get",
-		modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		// modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		modules : ["component/teachingPlan/courseDetail","component/teachingPlan/courseDetailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",
@@ -132,7 +133,8 @@ module.exports = [
 		name : "课程计划详情",
 		path : "coursePlanDetail",
 		type : "get",
-		modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		// modules : ["classCourse/detail","classCourse/detailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
+		modules : ["component/teachingPlan/courseDetail","component/teachingPlan/courseDetailRequest","component/memberGetplan","component/courseactivestatus","component/searchCourseAlterationsByVersionId"],
 		queryData : {
 			token : "dd68b8cb-9c9c-4da4-9d24-7cbc92006d41",
 			memberId : "ff8080815133db0d0151375bfdf30c0d",

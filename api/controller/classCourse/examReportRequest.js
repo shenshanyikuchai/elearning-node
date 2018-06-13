@@ -17,9 +17,7 @@ module.exports = async(ctx, next) => {
   	data : {
   		knowledge_point_id: ctx.query.knowledgePointId,
       member_id: ctx.query.memberId,
-      examenNum : ctx.query.examenNum,
-      pageNo : 1,
-      pageSize : 20
+      examenNum : ctx.query.examenNum
   	}
   }),Request.ajax({
     server : "getExerciseBaseInfo",
@@ -32,8 +30,10 @@ module.exports = async(ctx, next) => {
   	let userExerciseStatusData = userExerciseStatus.data;
     let getExerciseBaseInfoData = getExerciseBaseInfo.data;
   	if(userExamStatusData && userExamStatusData.length){
+      ctx.state.isUserExamStatus = true;
   		ctx.state.userExamStatus = userExamStatusData[0];
   	}else{
+      ctx.state.isUserExamStatus = false;
   		ctx.state.userExamStatus = {};
   	}
   	if(userExerciseStatusData && userExerciseStatusData.length){

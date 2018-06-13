@@ -53,7 +53,7 @@ module.exports = async(ctx, next) => {
 		}
 		ctx.state.teacherClass = teacherClass;
 		
-		if(livelistData){
+		if(livelistData && livelistData.data){
 			ctx.state.liveList = livelistData.data;
 		}else{
 			ctx.state.liveList = {};

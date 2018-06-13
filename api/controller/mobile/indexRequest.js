@@ -38,11 +38,12 @@ module.exports =  async(ctx, next) => {
     }else{
       ctx.state.slideList = [];
     }
+    let courseIds = [];
     if(learningcourseData && learningcourseData.courselist && learningcourseData.courselist.length){
       ctx.state.learningcourse = learningcourseData.courselist;
       let learningcourse = learningcourseData.courselist;
       let learningcourseLength = learningcourse.length;
-      let courseIds = [];
+      
       for(var i=0;i<learningcourseLength;i++){
         courseIds.push(learningcourse[i].courseId);
       }
@@ -50,7 +51,9 @@ module.exports =  async(ctx, next) => {
     }else{
       ctx.state.learningcourse = [];
     }
-
-    return next();
+    if(courseIds && courseIds.length){
+      return next();
+    }
+    
   }));
 }

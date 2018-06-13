@@ -659,7 +659,6 @@ module.exports = {
   },
   'applyrestudylist' : {
     'name' : '学员申请重听审核状态列表',
-    'url': '/api/business/learning/applyrestudylist',
-    'type': 'POST'
+    'url': '/api/business/learning/applyrestudylist'
   }
 }

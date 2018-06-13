@@ -61,9 +61,20 @@ module.exports = async(ctx, next) => {
 			})
 		}
 		let liveList = [];
+		
 		if(ctx.state.liveList && ctx.state.liveList.length){
 			ctx.state.liveList.forEach((liveElement, liveIndex) => {
+				let liveState = 0;
+				if(serverTime < liveElement.startTime){
+					liveState = 0; // 未开始
+				}else if(liveElement.startTime<serverTime && serverTime<liveElement.endTime){
+					liveState = 2; // 进行中
+				}else if(liveElement.endTime<serverTime){
+					liveState = 1; // 完成
+				}
 				liveList.push({
+					"index" : liveIndex,
+					"state" : liveState,
 					"title" : liveElement.title,
 					"startTime" : liveElement.startTime,
 					"endTime" : liveElement.endTime
