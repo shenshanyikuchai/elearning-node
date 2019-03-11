@@ -34,21 +34,33 @@ module.exports = async(ctx, next) => {
 	    	}
 	    }).then(async (res) => {
 	    	elementClass.courseList = res.data;
-	    	// for(let elementCourse of res.data){
-	    	// 	ctx.state.mock = true;
-	    	// 	await Request.ajax({
-	    	// 	  server : 'memberGetplan',
-	    	// 	  ctxState : ctx.state,
-	    	// 	  data : {
-	    	// 	    token: ctx.query.token,
-	    	// 	    courseCategoryId: elementCourse.courseCategoryId,
-	    	// 	    courseId: elementCourse.courseId
-	    	// 	  }
-	    	// 	}).then(async (res) => {
-	    	// 		elementCourse.planList = res.data;
-	    	// 	})
-	    	// }
-	    	// ctx.state.mock = false;
+	    	for(let elementCourse of elementClass.courseList){
+	    		await Request.ajax({
+	    			server : "courseBaseInfo",
+	    			ctxState : ctx.state,
+	    			data : {
+	    				idType: 0,
+	    				courseId : elementCourse.courseId
+	    			}
+	    		}).then((res) => {
+	    			elementCourse.courseName = res.data[0].courseName;
+	    			elementCourse.coverPath = res.data[0].coverPath;
+	    			elementCourse.categoryId = res.data[0].categoryId;
+	    			elementCourse.subjectId = res.data[0].subjectId;
+	    		})
+	    		// await Request.ajax({
+	    		//   server : 'memberGetplan',
+	    		//   ctxState : ctx.state,
+	    		//   data : {
+	    		//     token: ctx.query.token,
+	    		//     courseCategoryId: elementCourse.courseCategoryId,
+	    		//     courseId: elementCourse.courseId
+	    		//   }
+	    		// }).then(async (res) => {
+	    		// 	elementCourse.planList = res.data;
+	    		// })
+	    	}
+	    	ctx.state.mock = false;
 	    })
 		}
 		ctx.state.teacherClass = teacherClass;

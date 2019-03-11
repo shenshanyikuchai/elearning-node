@@ -1,48 +1,46 @@
-const constant = require('../global/constant');
-// const platform = require('platform');
 module.exports = async (ctx, next) => {
-	ctx.state.mock = ctx.query.mock || ctx.request.body.mock;
-	// ctx.state.mock = true;
-	ctx.state.fail = [];
-	ctx.state.response = constant.response.success;
-	// const UA = platform.parse(ctx.request.header['user-agent']);
-	// ctx.state.UA = UA;
-
-  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-	try {
-    await next();
-  } catch (err) {
-  	console.log(err)
-    ctx.state.response = constant.response.nodeerror;
-  }
-	let fail = ctx.state.fail;
+	// debugger;
 	let responseData = {};
-	if(fail && fail.length){
-		for(let i=0;i<fail.length;i++){
-			let thisFail = fail[i];
-			let thisRequest = thisFail.request;
-			if(thisFail.state == "error"){
-				if(thisFail.msg == "nologin"){
-					responseData = constant.response.nologin;
-				}else if(thisFail.msg == "用户名或密码错误"){
-					responseData = constant.response.errorInput;
-				}else{
-					responseData = constant.response.error;
-				}
-			}else{
-				responseData = constant.response.error;
-			}
-			responseData.request = thisRequest;
-		}
-	}else{
-		for(let i in ctx.state.response){
-			responseData[i] = ctx.state.response[i];
-		}
-		if(ctx.state.data){
-			for(let i in ctx.state.data){
-				responseData[i] = ctx.state.data[i];
-			}
+	ctx.state = {
+		newTime : new Date().getTime(),
+		mock : ctx.query.mock || false,
+		fail : [],
+		response : ctx.constant.response.success,
+		UAType : ctx.Filter.getCoursePlanDetailType(ctx)
+	};
+
+
+	console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+	try {
+		await next();
+	} catch (err) {
+		console.log(err)
+		ctx.state.response = ctx.constant.response.nodeerror;
+	}
+	if (ctx.state.fail && ctx.state.fail.length) {
+		responseData = ZBG.iGlobal.filterFail(ctx.state.fail);
+	} else {
+		if(ctx.state.response.code == "200"){
+			responseData = {
+				...ctx.state.data,
+				...ctx.state.response
+			};
+		}else{
+			responseData = ctx.state.response;
 		}
 	}
-	ctx.body = responseData;
+	// 开启短信/邮箱预警
+	if(ZBG.isSendErrorSms){
+		ZBG.iGlobal.isCallMe(responseData);
+	}
+	
+	if(responseData.isWxGetToken){
+		ctx.body = responseData.echostr;
+	}else{
+		ctx.body = responseData;
+	}
+	if(ZBG.isDb){
+		ctx.DB.logs(ctx);
+	}
+	ctx.state = {};
 }

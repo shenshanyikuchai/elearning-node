@@ -13,78 +13,90 @@ module.exports = async(ctx, next) => {
 		let classCourseNotStart = [];
 		let classCourseStudyIn = [];
 		let classCourseActivated = [];
+		let querySource = ctx.query.source;
+		console.log(classCourseList)
 		if(classCourseList.data && classCourseList.data.length){
 			classCourseList.data.forEach((element, index) => {
-				let classCourse = [];
-				let classAssistant = '';
-				let classAssistantArray = [];
-				
-				let classCourseData = {};
-				let classCoverPath = '';
-				let formatTimeToDay = iGlobal.formatTimeToDay(element.starTime, element.endTme, serverTime);
-				if(element.classAssistant && element.classAssistant.length){
-					classAssistant = element.classAssistant;
+				let source = parseInt(element.dataSource);
+				let isAdd = true;
+				if(source == 2 && querySource != "pc"){
+					isAdd = false;
 				}
-
-				if(element.classCourse && element.classCourse.length){
-					classCoverPath = element.classCourse[0].coverPath;
-					element.classCourse.forEach((item,index)=>{
-						classCourse.push({
-							"courseCategoryId" : iGlobal.toString(item.courseCategoryId),
-							"courseId" : iGlobal.toString(item.courseId),
-							"courseName" : iGlobal.toString(item.courseName),
-							"createTime" : iGlobal.toString(item.createTime),
-							"lecturerName" : iGlobal.toString(item.teacherName),
-							"lecturerId" : iGlobal.toString(item.teacherId),
-							"versionId" : iGlobal.toString(item.versionId),
-							"planId" : iGlobal.toString(item.planId),
-							"assistant" : []
-						})
-						if(classAssistant && classAssistant.length){
-							classAssistant.forEach((itemAssistant) => {
-								// classAssistantArray.push(item.teacherName)
-								if(itemAssistant.classCourseId == item.id){
-									classCourse[index].assistant.push({
-										teacherId : itemAssistant.teacherId,
-										teacherName : itemAssistant.teacherName
-									})
-								}
-							})
-						}
-					})
-
-				}
-				
-				
-				classCourseData = {
-					"className" : iGlobal.toString(element.name),
-					"classId" : iGlobal.toString(element.id),
-					"startTime" : iGlobal.getDate(element.starTime),
-					"endTime" : iGlobal.getDate(element.endTme),
-					"nowToOpeningTime" : formatTimeToDay.day,
-					"nowToOpeningTimeArray" : formatTimeToDay.dayArray,
-					"headmasterName" : iGlobal.toString(element.classTeacherName),
-					"headmasterId" : iGlobal.toString(element.classTeacherId),
-					"QRCode" : iGlobal.toString(element.qrCodeUrl),
-					"coverPath" : classCoverPath,
-					"classCourse" : classCourse,
+				if(isAdd){
+					let classCourse = [];
+					let classAssistant = '';
+					let classAssistantArray = [];
 					
-					// "serverTime" : iGlobal.toString(serverTime)
-				}
-				
-				if(serverTime<element.starTime){
-					// console.log("未开始")
-					classCourseData.state = "0";
-					// classCourseNotStart.push(classCourseData);
-					classCourseStudyIn.push(classCourseData);
-				}else if(element.starTime<serverTime && serverTime<element.endTme){
-					// console.log("进行中")
-					classCourseData.state = "1";
-					classCourseStudyIn.push(classCourseData);
-				}else if(element.endTme<serverTime){
-					// console.log("已过期")
-					classCourseData.state = "2";
-					classCourseActivated.push(classCourseData);
+					let classCourseData = {};
+					let classCoverPath = '';
+					let formatTimeToDay = iGlobal.formatTimeToDay(element.starTime, element.endTme, serverTime);
+					if(element.classAssistant && element.classAssistant.length){
+						classAssistant = element.classAssistant;
+					}
+					if(element.classCourse && element.classCourse.length){
+						classCoverPath = element.classCourse[0].coverPath;
+						element.classCourse.forEach((item,index)=>{
+							classCourse.push({
+								// "courseCategoryId" : iGlobal.toString(item.courseCategoryId), 0
+								"courseCategoryId" : item.subjectId,
+								"subjectId" : item.subjectId,
+								"courseId" : iGlobal.toString(item.courseId),
+								"courseName" : iGlobal.toString(item.courseName),
+								"createTime" : iGlobal.toString(item.createTime),
+								"lecturerName" : iGlobal.toString(item.teacherName),
+								"lecturerId" : iGlobal.toString(item.teacherId),
+								"versionId" : iGlobal.toString(item.versionId),
+								"planId" : iGlobal.toString(item.planId),
+								"assistant" : []
+							})
+							if(classAssistant && classAssistant.length){
+								classAssistant.forEach((itemAssistant) => {
+									// classAssistantArray.push(item.teacherName)
+									if(itemAssistant.classCourseId == item.courseId){
+										classCourse[index].assistant.push({
+											teacherId : itemAssistant.teacherId,
+											teacherName : itemAssistant.teacherName
+										})
+									}
+								})
+							}
+						})
+
+					}
+					
+					
+					classCourseData = {
+						"dataSource": source,
+						"className" : iGlobal.toString(element.name),
+						"classId" : iGlobal.toString(element.id),
+						"startTime" : iGlobal.getDate(element.starTime),
+						"endTime" : iGlobal.getDate(element.endTme),
+						"nowToOpeningTime" : formatTimeToDay.day,
+						"nowToOpeningTimeArray" : formatTimeToDay.dayArray,
+						"headmasterName" : iGlobal.toString(element.classTeacherName),
+						"headmasterId" : iGlobal.toString(element.classTeacherId),
+						"QRCode" : iGlobal.toString(element.qrCodeUrl),
+						"coverPath" : classCoverPath,
+						"classCourse" : classCourse,
+						
+						// "serverTime" : iGlobal.toString(serverTime)
+					}
+					
+					if(serverTime<element.starTime){
+						// console.log("未开始")
+						classCourseData.state = "0";
+						// classCourseNotStart.push(classCourseData);
+
+						classCourseStudyIn.push(classCourseData);
+					}else if(element.starTime<serverTime && serverTime<element.endTme){
+						// console.log("进行中")
+						classCourseData.state = "1";
+						classCourseStudyIn.push(classCourseData);
+					}else if(element.endTme<serverTime){
+						// console.log("已过期")
+						classCourseData.state = "2";
+						classCourseActivated.push(classCourseData);
+					}
 				}
 			})
 		}

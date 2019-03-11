@@ -1,4 +1,93 @@
+const constant = require('./constant');
+const { ajax } = require('../request');
+const { callMeTime, callMe } = require('./callMe');
 module.exports = {
+  requestErrorTimer: function (time) {
+    setInterval( () => {
+      ZBG.requestError = [];
+    }, time)
+  },
+  isCallMe : function (filterFailData) {
+    let isCallMe = false;
+    let filterFailRequestData = [];
+    if(ZBG.requestError.length){
+      if(filterFailData && filterFailData.request && filterFailData.request.length){
+        for(let item of filterFailData.request){
+          let isAddRequestData = true;
+          let thisRequestError = {};
+          for(let elem of ZBG.requestError){
+            if(item.url == elem.url){
+              isAddRequestData = false;
+              thisRequestError = elem;
+              break;
+            }
+          }
+          if(isAddRequestData){
+            if(item.isCallMe){
+              isCallMe = true;
+              this.addRequestData(item)
+            }
+          }else{
+            this.addRequestData(item, thisRequestError)
+          }
+        }
+      }
+    }else{
+      if(filterFailData && filterFailData.request && filterFailData.request.length){
+        for(let item of filterFailData.request){
+          if(item.isCallMe){
+            isCallMe = true;
+            this.addRequestData(item)
+          }
+        }
+      }
+    }
+    for(let item of ZBG.requestError){
+      if(item.isCallMe){
+        item.isCallMe = false;
+        callMe(ZBG.admin, item)
+      }
+      
+    }
+  },
+  addRequestData : function (item, elem) {
+    let newTime = new Date().getTime();
+    if(elem){
+      if(newTime - elem.time > ZBG.callMeTime){
+        elem.time = newTime;
+        elem.isCallMe = true;
+      }
+    }else{
+      item.time = newTime;
+      ZBG.requestError.push(item);
+    }
+  },
+  filterFail : function(fail){
+    let responseData = {};
+    let requestFail = [];
+    for(let thisFail of fail){
+      
+      if (thisFail.state == "error") {
+        if (thisFail.msg == "nologin" ) {
+          responseData = constant.response.nologin;
+        } else if (thisFail.msg == "用户名或密码错误") {
+          responseData = constant.response.errorInput;
+        } else {
+          responseData = constant.response.error;
+          thisFail.request.isCallMe = true;
+          // callMe(constant.admin, responseData);
+        }
+      } else {
+        responseData = constant.response.error;
+        thisFail.request.isCallMe = true;
+        // callMe(constant.admin, responseData);
+      }
+      requestFail.push(thisFail.request);
+    }
+    responseData.request = requestFail;
+    return responseData;
+  },
+  
 	getDate : function(str,connector){
 		if(str == null){
 		    return '';

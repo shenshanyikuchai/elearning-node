@@ -6,7 +6,8 @@ module.exports = async(ctx, next) => {
 	  ctxState : ctx.state,
 	  data : {
   		token : ctx.query.token,
-  		versionId: ctx.state.courseDetail.versionId
+  		versionId: ctx.state.courseDetail.versionId,
+  		classId : ctx.query.classId,
   	}
 	}).then((res) => {
 	  ctx.state.courseactivestatus = res.data;

@@ -52,6 +52,8 @@ module.exports = async (ctx, next) => {
 								learningcourse[i].courseProgress = getCourseProgress[j].courseProgress;
 		            learningcourse[i].createDate = getCourseProgress[j].createDate;
 
+		            
+
 		            learningcourse[i].chapterId = getCourseProgress[j].chapterId;
 		            learningcourse[i].chapterName = getCourseProgress[j].chapterName;
 		            learningcourse[i].progress = getCourseProgress[j].progress;
@@ -115,14 +117,25 @@ module.exports = async (ctx, next) => {
 		    		expirationTime = iGlobal.getDate(recentCourses[i].expirationTime);
 		    	}
 		    	
+		    	let categoryId = "";
+		    	if(recentCourses[i].categoryId){
+		    		categoryId = recentCourses[i].categoryId;
+		    	}
+
+		    	let categoryName = "";
+		    	if(recentCourses[i].categoryName){
+		    		categoryName = recentCourses[i].categoryName;
+		    	}
+
 		    	let percentages = iGlobal.getPercentage({
 		    		"progress" : recentCourses[i].courseProgress,
 		    		"total" : recentCourses[i].taskTotal,
 		    		"lastPorgress" : recentCourses[i].progress
 		    	})
 		    	
-		    	
 		    	newRecentCourses.push({
+		    		"categoryId": categoryId,
+		    		"categoryName": categoryName,
 		    		"courseName" : courseName,// 课程名称
 		    		"courseId" : courseId,// 课程id
 		    		"versionId" : versionId,// 课程版本id

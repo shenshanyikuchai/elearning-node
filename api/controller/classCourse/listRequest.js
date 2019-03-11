@@ -11,25 +11,30 @@ module.exports = async(ctx, next) => {
 	}).then(async (res) => {
 
 		let classCourseList = res;
-		for(let elementClassCourse of classCourseList.data){
-			if(elementClassCourse.classCourse.length){
-				for (let courseElement of elementClassCourse.classCourse) {
-			    ctx.state.mock = false;
-			    await Request.ajax({
-			    	server : "courseBaseInfo",
-			    	ctxState : ctx.state,
-			    	data : {
-			    		idType: 0,
-			    		courseId : courseElement.courseId
-			    	}
-			    }).then((res) => {
-			    	courseElement.courseName = res.data[0].courseName;
-			    	courseElement.coverPath = res.data[0].coverPath;
-			    })
-			  }
+		if(classCourseList.data && classCourseList.data.length){
+			for(let elementClassCourse of classCourseList.data){
+				if(elementClassCourse.classCourse && elementClassCourse.classCourse.length){
+					for (let courseElement of elementClassCourse.classCourse) {
+				    await Request.ajax({
+				    	server : "courseBaseInfo",
+				    	ctxState : ctx.state,
+				    	data : {
+				    		idType: 0,
+				    		courseId : courseElement.courseId
+				    	}
+				    }).then((res) => {
+				    	if(res.data && res.data.length){
+  				    	courseElement.courseName = res.data[0].courseName;
+  				    	courseElement.coverPath = res.data[0].coverPath;
+  				    	courseElement.categoryId = res.data[0].categoryId;
+  		    			courseElement.subjectId = res.data[0].subjectId;
+				    	}
+				    	
+				    })
+				  }
+				}
 			}
 		}
-		
 		ctx.state.classCourseList = classCourseList;
 		return next();
 	})

@@ -24,12 +24,28 @@ module.exports = async(ctx, next) => {
   		memberId: ctx.query.memberId
   	}
   })]).then(axios.spread(function (courseDetail, getTasksProgress, getExamDate) {
+    console.log(courseDetail)
+    console.log(typeof courseDetail)
+    if(typeof courseDetail == "string"){
+      try{
+        console.log(1)
+        courseDetail = JSON.parse(courseDetail);
+        console.log(2)
+      }catch(err){
+        console.log(3)
+        console.log(err)
+      }
+      
+
+    }
+    let isNext = true;
   	let courseDetailData = courseDetail.data;
   	let getTasksProgressData = getTasksProgress.data;
   	let getExamDateData = getExamDate.data;
   	if(courseDetailData && courseDetailData.length){
   		ctx.state.courseDetail = courseDetailData[0];
   	}else{
+      isNext = false;
   		ctx.state.courseDetail = {
   			subjectId : '',
   			versionId : ''
@@ -38,6 +54,7 @@ module.exports = async(ctx, next) => {
   	if(getTasksProgressData && getTasksProgressData.length){
   		ctx.state.getTasksProgress = getTasksProgressData;
   	}else{
+
   		ctx.state.getTasksProgress = [];
   	}
   	if(getExamDateData && getExamDateData.length){
@@ -45,6 +62,9 @@ module.exports = async(ctx, next) => {
   	}else{
   		ctx.state.getExamDate = [];
   	}
-  	return next();
+    if(isNext){
+      return next();
+    }
+  	
   }))
 }
