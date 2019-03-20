@@ -10,7 +10,7 @@ var req = http.request(options,function(respones){
       str += chunk;
     });
     respones.on('end',function(){
-      console.log(str);
+      
     });
 });
 req.end();

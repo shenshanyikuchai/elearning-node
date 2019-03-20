@@ -24,7 +24,6 @@ function classCourse(payload){
 	// 初始化数据
 	initData();
 	courseDetail = payload.courseDetail;
-	console.log(courseDetail)
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);

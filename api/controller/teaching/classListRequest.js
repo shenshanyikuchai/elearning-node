@@ -15,7 +15,8 @@ module.exports = async(ctx, next) => {
 		ctxState : ctx.state,
 		data : {
 			token: ctx.query.token,
-			type: type
+			type: 0
+			// type: type
 		}
 	}).then(async (res) => {
 

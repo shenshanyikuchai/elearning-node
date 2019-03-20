@@ -8,33 +8,6 @@ const iGlobal = require('../../global');
 module.exports = async(ctx, next) => {
 	// ctx.state.mock = true;
 	if(ctx.query.memberId && ctx.query.token){
-		// await Request.ajax({
-	 //  	server : "applyrestudylist",
-	 //    ctxState : ctx.state,
-	 //  	data : {
-	 //  	  memberId: '8a22ecb55f758dff015fa4f5c41007a3'
-	 //  	}
-	 //  }).then((res) => {
-	 //     console.log(res)
-	 //   }).catch((error) =>{
-	 //     console.log(error)
-	 //   });
-		// let hostName = '';
-		// if(process.env.NODE_ENV == "demo"){
-		// 	hostName = COMMON.host.demoName;
-		// }else{
-		// 	hostName = COMMON.host.name;
-		// }
-	 // 	await axios.get(`${hostName}/api/business/learning/applyrestudylist`, {
-	 //     params: {
-	 //       memberId: '8a22ecb55f758dff015fa4f5c41007a3'
-	 //     }
-	 //   }).then((res) => {
-	 //     console.log(res)
-	 //   }).catch((error) =>{
-	 //     console.log(error)
-	 //   });
-
 		await axios.all([Request.ajax({
 	  	server : "expirationcourse",
 	    ctxState : ctx.state,

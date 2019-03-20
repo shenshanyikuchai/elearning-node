@@ -19,7 +19,6 @@ function header(payload){
 	return headerRender; 
 }
 function filterUnRead(message){
-	console.log(message)
 	let messageType = 0;
 	let title = message.title;
 	let content = iGlobal.entities(message.content);

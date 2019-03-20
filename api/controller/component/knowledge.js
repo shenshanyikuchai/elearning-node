@@ -4,31 +4,27 @@ const COMMON = require('../../global/constant');
 
 module.exports = async(ctx, next) => {
 	let hostName = '';
-	if(process.env.NODE_ENV == "demo"){
-		hostName = COMMON.host.demoName;
+	if (process.env.NODE_ENV == "dev"){
+		hostName = COMMON.host.apiDev;
+	}else if(process.env.NODE_ENV == "demo"){
+		hostName = COMMON.host.apiDemo;
 	}else{
-		hostName = COMMON.host.name;
+		hostName = COMMON.host.api;
 	}
-	console.log(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${ctx.state.exerciseIds.toString()}`)
-	await axios.get(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds`, {
-    params: {
-      exerciseIds: ctx.state.exerciseIds.toString()
-    }
-  }).then((res) => {
-    ctx.state.knowledges = res.data;
+	
+	let exerciseIds = "";
+	if(ctx.state.exerciseIds){
+		exerciseIds = ctx.state.exerciseIds.toString()
+	}
+	console.log(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${exerciseIds}`)
+	await axios.post(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds`, {
+			params: {
+				exerciseIds: exerciseIds
+			}
+		}).then((res) => {
+				ctx.state.knowledges = res.data;
     return next();
   }).catch(function (error) {
     
   });
-	// await Request.ajax({
-	//   server : 'getKnowledgePointInfoByExerciseIds',
-	//   ctxState : ctx.state,
-	//   data : {
- //  		exerciseIds: ctx.state.exerciseIds
- //  	}
-	// }).then((res) => {
-	//   console.log(JSON.stringify(res))
-	//   ctx.state.knowledges = res.data;
-	//   return next();
-	// })
 }

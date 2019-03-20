@@ -19,6 +19,7 @@ module.exports =  async(ctx, next) => {
     server : "learningcourse",
     ctxState : ctx.state,
     data : {
+      techType: ctx.query.type || 'onlinecourse',
       token: ctx.query.token,
       pageNo: 1,
       pageSize: 999
@@ -51,9 +52,6 @@ module.exports =  async(ctx, next) => {
     }else{
       ctx.state.learningcourse = [];
     }
-    if(courseIds && courseIds.length){
-      return next();
-    }
-    
+    return next();
   }));
 }

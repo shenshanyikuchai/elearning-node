@@ -2,6 +2,7 @@ const axios = require('axios');
 const Request = require('../../request');
 const _ = require('lodash');
 module.exports = async(ctx, next) => {
+  
 	await axios.all([Request.ajax({
   	server : "userExamStatus",
     ctxState : ctx.state,
@@ -26,6 +27,7 @@ module.exports = async(ctx, next) => {
       examenId : ctx.query.knowledgePointId
     }
   })]).then(axios.spread(function (userExamStatus, userExerciseStatus, getExerciseBaseInfo) {
+    
   	let userExamStatusData = userExamStatus.data;
   	let userExerciseStatusData = userExerciseStatus.data;
     let getExerciseBaseInfoData = getExerciseBaseInfo.data;
