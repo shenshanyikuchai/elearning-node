@@ -11,7 +11,11 @@ const app = new Koa();
 const config = require('./config');
 const configDemo = require('./config/demo');
 
+<<<<<<< HEAD
 process.env.NODE_ENV = "demo";
+=======
+// process.env.NODE_ENV = "demo";
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.context.config = configDemo;

@@ -98,6 +98,10 @@ function exerciseIdList(payload) {
 	globalExerciseIdList = [];
 	globalExercise = [];
 	filterExerciseId(payload.exerciseIdList)
+<<<<<<< HEAD
+=======
+	// console.log(globalExerciseIdList.join(','))
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	return {
 		"exerciseIdList": globalExerciseIdList,
 		"exercise": globalExercise

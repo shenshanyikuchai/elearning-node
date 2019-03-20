@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 const _ = require('lodash');
 const iGlobal = require('../../global');
 const constant = require('../../global/constant');
@@ -28,6 +31,10 @@ function initData() { // 初始化数据
 }
 
 function ezCoursePlanDetail(payload) {
+<<<<<<< HEAD
+=======
+	console.log(payload)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	// debugger;
 	initData();
 	globalCourseDetail = { 
@@ -38,7 +45,10 @@ function ezCoursePlanDetail(payload) {
 		chapters: globalCourseDetail.courseDetail.chapters
 	})
 	globalCourseDetail.lastLearn = filterLastLearnChapter(globalCourseDetail.courseDetailListBack, payload.tasksProgress);
+<<<<<<< HEAD
 	/* PHP coursePlan
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	for(let index in globalCourseDetail.coursePlan){
 		if (globalCourseDetail.coursePlan[index] && globalCourseDetail.coursePlan[index].length) {
 			let newCoursePlan = filterCoursePlan(globalCourseDetail.coursePlan[index]);
@@ -51,6 +61,7 @@ function ezCoursePlanDetail(payload) {
 			// globalCourseDetail.courseStatistic = courseWeekPlan.courseStatistic;
 		}
 	}
+<<<<<<< HEAD
 	*/
 	// java coursePlan
 
@@ -67,6 +78,9 @@ function ezCoursePlanDetail(payload) {
 			// globalCourseDetail.courseStatistic = courseWeekPlan.courseStatistic;
 	// 	}
 	// }
+=======
+	
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 
 	globalCourseDetail.courseStatus = courseByInFo(payload.courseactivestatus);
 	globalCourseDetail.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
@@ -86,8 +100,12 @@ function getRenderData() {
 		"studyInfo": globalCourseDetail.studyInfo,
 		"tasksSummary": globalCourseDetail.tasksSummary,
 		"weeksSummary": globalCourseDetail.weeksSummary,
+<<<<<<< HEAD
 		"weekDate": globalCourseDetail.weekDate,
 		"weekStatus": globalCourseDetail.weekStatus,
+=======
+
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		"courseInfo": globalCourseDetail.courseInfo,
 		"courseStatus": globalCourseDetail.courseStatus,
 		"courseLastLearn": globalCourseDetail.lastLearn,
@@ -271,7 +289,11 @@ function getTaskProgress(taskElement) { // 给任务注入任务进度
 	return taskProgress;
 }
 
+<<<<<<< HEAD
 function filterCoursePlanPHP(coursePlan){
+=======
+function filterCoursePlan(coursePlan){
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	let newCoursePlan = [];
 	for(let index in coursePlan){
 		
@@ -295,6 +317,7 @@ function filterCoursePlanPHP(coursePlan){
 	}
 	return newCoursePlan;
 }
+<<<<<<< HEAD
 function filterCoursePlanJAVA(coursePlan){
 	let newCoursePlan = [];
 	for(let index in coursePlan){
@@ -322,13 +345,19 @@ function filterCoursePlanJAVA(coursePlan){
 	}
 	return newCoursePlan;
 }
+=======
+
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课程结构
 	let orderListArray = [];
 	let courseWeekPlanData = {
 		isCoursePlan: "true",
 		courseWeekPlan: [], // 课程计划周列表
+<<<<<<< HEAD
 		weekDate:[],
 		weekStatus: [],
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		courseWeekPlanRenderData: [],
 		courseStatistic: {
 			week: {
@@ -368,7 +397,10 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 	}
 
 	let weekStartTime = coursePlan[0].startDate; // 计划开始时间
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	let newDate = new Date().getTime(); // 现在时间
 	let newDateSecond = newDate/1000;
 	let coursePlanWeekNum = coursePlan.length; // 学习计划周数
@@ -407,7 +439,10 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 			weekInfo: { // 周基础信息
 				'isOpen': true, // 周计划是否开启
 				'isFinish': 0, // 周任务是否完成
+<<<<<<< HEAD
 				'isTrueFinish': 0,// 周任务是否真实完成
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 				'status': '', // 周状态描述
 				'isLock': true
 			},
@@ -555,8 +590,11 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 		// let weekEndTime = (element.endDate + constant.dayTime); // 周结束时间
 		let weekStartTime = element.startDate; // 周开始时间
 		let weekEndTime = (element.endDate + constant.dayTime); // 周结束时间
+<<<<<<< HEAD
 		courseWeekPlanData.weekDate.push(weekStartTime)
 		courseWeekPlanData.weekDate.push(weekEndTime)
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		if(parseInt(index)){
 			weekStartTime = coursePlan[index-1].endDate + constant.dayTime;
 			weekEndTime = (element.endDate + constant.dayTime);
@@ -590,9 +628,12 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 		setWeekStatistic(weekData);
 
 		// 上一周任务是否完成
+<<<<<<< HEAD
 		let weekTaskDoneNum = weekData.weekAllTaskStatistic.completed + weekData.weekAllTaskStatistic.onGoing;
 		let weekTaskTrueDoneNum = weekData.weekAllTaskStatistic.completed;
 
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		if(isPrevWeekDone){
 			switch(weekData.weekInfo.status){
 				case "notstarted":
@@ -603,6 +644,7 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 						weekData.weekInfo.status = "ongoing";
 						weekData.weekInfo.isLock = false;
 					}
+<<<<<<< HEAD
 					if(weekData.weekAllTaskStatistic.totalNum == weekTaskTrueDoneNum){
 						// weekData.weekInfo.isTrueFinish = 1;
 						weekData.weekInfo.isFinish = 1;
@@ -610,11 +652,17 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 					if (weekData.weekAllTaskStatistic.totalNum == weekTaskDoneNum) {
 						isPrevWeekDone = true;
 						// weekData.weekInfo.isFinish = 1;
+=======
+					if (weekData.weekAllTaskStatistic.totalNum == weekData.weekAllTaskStatistic.completed) {
+						isPrevWeekDone = true;
+						weekData.weekInfo.isFinish = 1;
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 						weekData.weekInfo.status = "completed";
 						weekData.weekInfo.isLock = false;
 					}
 					break;
 				case "beoverdue":
+<<<<<<< HEAD
 					if(weekData.weekAllTaskStatistic.totalNum == weekTaskTrueDoneNum){
 						// weekData.weekInfo.isTrueFinish = 1;
 						weekData.weekInfo.isFinish = 1;
@@ -622,6 +670,11 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 					if (weekData.weekAllTaskStatistic.totalNum == weekTaskDoneNum) {
 						isPrevWeekDone = true;
 						// weekData.weekInfo.isFinish = 1;
+=======
+					if (weekData.weekAllTaskStatistic.totalNum == weekData.weekAllTaskStatistic.completed) {
+						isPrevWeekDone = true;
+						weekData.weekInfo.isFinish = 1;
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 						weekData.weekInfo.status = "completed";
 						weekData.weekInfo.isLock = false;
 					}
@@ -639,23 +692,35 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 						weekData.weekInfo.status = "ongoing";
 						weekData.weekInfo.isLock = false;
 					}
+<<<<<<< HEAD
 					if(weekData.weekAllTaskStatistic.totalNum == weekTaskTrueDoneNum){
 						weekData.weekInfo.isFinish = 1;
 					}
 					if (weekData.weekAllTaskStatistic.totalNum == weekTaskDoneNum) {
 						isPrevWeekDone = true;
 						// weekData.weekInfo.isFinish = 1;
+=======
+					if (weekData.weekAllTaskStatistic.totalNum == weekData.weekAllTaskStatistic.completed) {
+						isPrevWeekDone = true;
+						weekData.weekInfo.isFinish = 1;
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 						weekData.weekInfo.status = "completed";
 						weekData.weekInfo.isLock = false;
 					}
 					break;
 				case "beoverdue":
+<<<<<<< HEAD
 					if(weekData.weekAllTaskStatistic.totalNum == weekTaskTrueDoneNum){
 						weekData.weekInfo.isFinish = 1;
 					}
 					if (weekData.weekAllTaskStatistic.totalNum == weekTaskDoneNum) {
 						isPrevWeekDone = true;
 						// weekData.weekInfo.isFinish = 1;
+=======
+					if (weekData.weekAllTaskStatistic.totalNum == weekData.weekAllTaskStatistic.completed) {
+						isPrevWeekDone = true;
+						weekData.weekInfo.isFinish = 1;
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 						weekData.weekInfo.status = "completed";
 						weekData.weekInfo.isLock = false;
 					}
@@ -750,6 +815,7 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 		courseWeekPlanData.courseWeekPlan.push(weekData);
 		
 		let weekTitleArray = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "二十一", "二十二", "二十三", "二十四", "二十五", "二十六", "二十七", "二十八", "二十九", "三十", "三十一", "三十二", "三十三", "三十四", "三十五", "三十六", "三十七", "三十八", "三十九", "四十", "四十一", "四十二", "四十三", "四十四", "四十五", "四十六", "四十七", "四十八", "四十九", "五十", "五十一", "五十二", "五十三", "五十四", "五十五", "五十六", "五十七", "五十八", "五十九", "六十", "六十一", "六十二", "六十三", "六十四", "六十五", "六十六", "六十七", "六十八", "六十九", "七十", "七十一", "七十二", "七十三", "七十四", "七十五", "七十六", "七十七", "七十八", "七十九", "八十", "八十一", "八十二", "八十三", "八十四", "八十五", "八十六", "八十七", "八十八", "八十九", "九十", "九十一", "九十二", "九十三", "九十四", "九十五", "九十六", "九十七", "九十八", "九十九"]
+<<<<<<< HEAD
 		if(element.isEnable){
 			weekData.weekInfo.isLock = false;
 		}
@@ -796,6 +862,8 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 			"isFinish": weekStatusArray[weekData.weekInfo.status],
 			"isEnable": weekData.weekInfo.isLock ? "0" : "1"
 		})
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		courseWeekPlanData.courseWeekPlanRenderData.push({
 			'list': weekData.weekPlan,
 			'weekId': element.id,
@@ -808,7 +876,10 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 
 			'isOpen': weekData.weekInfo.isOpen,
 			'isFinish': weekData.weekInfo.isFinish,
+<<<<<<< HEAD
 			// 'isTrueFinish': weekData.weekInfo.isTrueFinish,
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 			'status': weekData.weekInfo.status,
 			'weekStatus': weekData.weekInfo.status,
 			'weekName': element.planTitle,
@@ -874,8 +945,11 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 	// return courseWeekPlanData;
 	return {
 		'isCoursePlan': "true",
+<<<<<<< HEAD
 		'weekDate': courseWeekPlanData.weekDate,
 		'weekStatus': courseWeekPlanData.weekStatus,
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		'planInfo': courseWeekPlanData.courseWeekPlanRenderData,
 		'weekIngNum': courseWeekPlanData.courseStatistic.week.ingNum,
 		"studyInfo": {
@@ -979,7 +1053,11 @@ function taskStatistic(weekData, chapterData) {
 	}).percentage;
 
 	let tasksLength = newTasks.length ? newTasks.length : 0;
+<<<<<<< HEAD
 	
+=======
+	// console.log(tasksTotalProgress+";;"+tasksLength+':::'+Math.round(tasksTotalProgress / tasksLength))
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	// 章节学习进度
 	chapterData.progress = Math.round(tasksTotalProgress / tasksLength) || 0;
 	chapterData.chapterStudyTime = chapterStudyTime;
@@ -1313,6 +1391,11 @@ function filterLastLearnChapter(courseDetailList, taskProgress) {
 
 function getCoursePlanDetailType(ctx){
 	let type = "mobile";
+<<<<<<< HEAD
+=======
+	// console.log(ctx.userAgent)
+	// console.log(ctx.host)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	if(ctx.userAgent.isDesktop){
 		switch(ctx.host){
 			case "localhost:3080":

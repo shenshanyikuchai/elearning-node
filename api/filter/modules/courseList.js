@@ -367,6 +367,10 @@ function filterCategorySubject(payload) {
 	if(payload.courseLists && payload.courseLists.length){
 		payload.courseLists.forEach((item) => {
 			if(item.newList && item.newList.length){
+<<<<<<< HEAD
+=======
+				console.log(item.newList)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 				let subjectArray = item.newList.map((item) => {
 					// return item.subjectName;
 					return item.subjectID;

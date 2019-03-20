@@ -11,12 +11,16 @@ module.exports = async(ctx, next) => {
 	    courseId: ctx.query.courseId
 	  }
 	}).then((res) => {
+<<<<<<< HEAD
 		// if(res.state == "success"){
 		// 	ctx.state.memberGetplan = res.data;
 		// }else{
 		// 	ctx.state.memberGetplan = [];
 		// }
 		if(res.success){
+=======
+		if(res.state == "success"){
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 			ctx.state.memberGetplan = res.data;
 		}else{
 			ctx.state.memberGetplan = [];

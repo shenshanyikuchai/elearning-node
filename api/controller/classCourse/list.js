@@ -14,6 +14,10 @@ module.exports = async(ctx, next) => {
 		let classCourseStudyIn = [];
 		let classCourseActivated = [];
 		let querySource = ctx.query.source;
+<<<<<<< HEAD
+=======
+		console.log(classCourseList)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		if(classCourseList.data && classCourseList.data.length){
 			classCourseList.data.forEach((element, index) => {
 				let source = parseInt(element.dataSource);

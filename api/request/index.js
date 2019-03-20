@@ -144,6 +144,10 @@ function ajax(payload) {
 }
 
 function done(args, payload, res) {
+<<<<<<< HEAD
+=======
+  // console.log(res)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
   if (res.state == "success") {
     return res;
     if (payload.server == "messageListNoRead") {
@@ -177,6 +181,10 @@ function done(args, payload, res) {
 }
 
 function fail(args, payload, err) {
+<<<<<<< HEAD
+=======
+  // console.log(err)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
   let errType = typeof err;
   let path = '';
   if (args.type == "GET") {
@@ -186,7 +194,11 @@ function fail(args, payload, err) {
     path = args.url + '?' + path.substr(1)
   }
   if(errType == "object"){
+<<<<<<< HEAD
     if (payload.server == "getStudyPlanList" || payload.server == "studyPlanProgressSave" || payload.server == "getappdownloadinfo" || payload.server == "getTeacherLiveCourselist" || payload.server == "applyrestudylist" ) {
+=======
+    if (payload.server == "getappdownloadinfo" || payload.server == "getTeacherLiveCourselist" || payload.server == "applyrestudylist" ) {
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
       return err;
     } else if ( (payload.server == "getClassPlanDetail" || payload.server == "memberGetplan") && err.msg == "没有对应的学习计划") {
       return err;

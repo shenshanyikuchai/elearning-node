@@ -11,6 +11,11 @@ function logs(ctx){
 		userAgent : ctx.userAgent, // UA
 		fail : ZBG.iGlobal.filterFail(ctx.state.fail), // 错误信息
 	},(err, doc) => {
+<<<<<<< HEAD
+=======
+		// console.log(err)
+		// console.log(doc)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	  // if (err) throw err;
 	  
 	})

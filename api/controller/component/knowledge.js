@@ -27,4 +27,19 @@ module.exports = async(ctx, next) => {
   }).catch(function (error) {
     
   });
+<<<<<<< HEAD
+=======
+ 
+	// await Request.ajax({
+	//   server : 'getKnowledgePointInfoByExerciseIds',
+	//   ctxState : ctx.state,
+	//   data : {
+ //  		exerciseIds: ctx.state.exerciseIds
+ //  	}
+	// }).then((res) => {
+	//   console.log(JSON.stringify(res))
+	//   ctx.state.knowledges = res.data;
+	//   return next();
+	// })
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 }

@@ -28,6 +28,10 @@ function initData() { // 初始化数据
 }
 
 function coursePlanDetail(payload) {
+<<<<<<< HEAD
+=======
+	// console.log(payload)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	// debugger;
 	initData();
 	globalCourseDetail = { ...globalCourseDetail,
@@ -320,6 +324,10 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 	// let weekIndex = 0;
 
 	// courseWeekPlanData.courseStatistic.week.ingNum = Math.ceil(courseWeekPlanData.courseStatistic.day.ingNum / 7);
+<<<<<<< HEAD
+=======
+	console.log(coursePlan)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	for (let index in coursePlan) {
 		// weekIndex++;
 		let element = coursePlan[index];
@@ -786,7 +794,11 @@ function taskStatistic(weekData, chapterData) {
 	}).percentage;
 
 	let tasksLength = newTasks.length ? newTasks.length : 0;
+<<<<<<< HEAD
 	
+=======
+	// console.log(tasksTotalProgress+";;"+tasksLength+':::'+Math.round(tasksTotalProgress / tasksLength))
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	// 章节学习进度
 	chapterData.progress = Math.round(tasksTotalProgress / tasksLength) || 0;
 	chapterData.chapterStudyTime = chapterStudyTime;
@@ -1120,6 +1132,11 @@ function filterLastLearnChapter(courseDetailList, taskProgress) {
 function getCoursePlanDetailType(ctx){
 	
 	let type = "mobile";
+<<<<<<< HEAD
+=======
+	// console.log(ctx.userAgent)
+	// console.log(ctx.host)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	if(ctx.userAgent.isDesktop){
 		switch(ctx.host){
 			case "localhost:3080":

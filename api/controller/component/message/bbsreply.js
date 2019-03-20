@@ -3,6 +3,10 @@
 */
 
 module.exports = async(ctx, next) => {
+<<<<<<< HEAD
+=======
+	console.log(ctx.request.body)
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	await ZBG.Request.ajax({
 		server: 'bbsreply',
 		ctxState: ctx.state,

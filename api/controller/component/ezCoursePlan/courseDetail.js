@@ -2,7 +2,11 @@ module.exports = async(ctx, next) => {
 	if(ctx.query.token && ctx.query.memberId && ctx.query.courseId){
 		await next();
 		if(ctx.state.isCourseDetail){
+<<<<<<< HEAD
 			let ezCoursePlanDetail = ctx.Filter.ezCoursePlanDetail({
+=======
+			ctx.state.data = ctx.Filter.ezCoursePlanDetail({
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 				UAType : ctx.state.UAType,
 				courseDetail : ctx.state.courseDetail,
 				tasksProgress : ctx.state.getTasksProgress,
@@ -11,6 +15,7 @@ module.exports = async(ctx, next) => {
 				courseactivestatus : ctx.state.courseactivestatus,
 				getCourseArrange : ctx.state.getCourseArrange
 			})
+<<<<<<< HEAD
 			
 			ZBG.Request.ajax({
 				server : 'studyPlanProgressSave',
@@ -23,6 +28,8 @@ module.exports = async(ctx, next) => {
 				
 			})
 			ctx.state.data = ezCoursePlanDetail
+=======
+>>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		}
 	}else{
 		ctx.state.response = ctx.constant.response.noparameter;
