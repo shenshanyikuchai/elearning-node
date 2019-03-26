@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "data" : [ {
     "id" : "19bbf54d003e81e137045c4a51b492df",
     "createTime" : 1498549804000,
@@ -201,4 +202,129 @@
   } ],
   "state" : "success",
   "server-time" : 1521095727824
+=======
+  "data" : {
+    "data" : [ {
+      "id" : "19bbf54d003e81e137045c4a51b492df",
+      "createTime" : 1498549804000,
+      "modifyTime" : 1501742940000,
+      "name" : "ACCA串讲课程集合",
+      "memberCount" : 0,
+      "starTime" : 1521043200000,
+      "endTme" : 1523721600000,
+      "classTeacherId" : null,
+      "classTeacherName" : null,
+      "qrCodeUrl" : null,
+      "isDelete" : 0,
+      "classCourse" : [ {
+        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492df",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      } ],
+      "classAssistant" : [ {
+        "id" : "219bb4041e6211e793b064006a5147a1",
+        "createTime" : 1520584358000,
+        "modifyTime" : null,
+        "classCourseId" : "0116cfac7d223690f24b29a130ce8b8e",
+        "teacherId" : "ff808081473905e701475d7b01bd005d",
+        "teacherName" : "Cindy Deng",
+        "classId" : "19bbf54d003e81e137045c4a51b492df"
+      } ]
+    }, {
+      "id" : "a02c7d182f722c29de16d8c34ac0ab8b",
+      "createTime" : 1501845052000,
+      "modifyTime" : 1511256327000,
+      "name" : "一步通班直播",
+      "memberCount" : 0,
+      "starTime" : 1523721600000,
+      "endTme" : 1526313600000,
+      "classTeacherId" : null,
+      "classTeacherName" : null,
+      "qrCodeUrl" : null,
+      "isDelete" : 0,
+      "classAssistant" : null,
+      "classCourse" : [ {
+        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492df",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      } ]
+    }, {
+      "id" : "95bec70c25401d5d404fe6929452777a",
+      "createTime" : 1498546610000,
+      "modifyTime" : 1501742072000,
+      "name" : "Acca视频直播课程",
+      "memberCount" : 0,
+      "starTime" : 1515945600000,
+      "endTme" : 1518624000000,
+      "classTeacherId" : null,
+      "classTeacherName" : null,
+      "qrCodeUrl" : null,
+      "isDelete" : 1,
+      "classAssistant" : null,
+      "classCourse" : [ {
+        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492df",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      } ]
+    }, {
+      "id" : "04b9f43c5bf3d440919605952737ee2b",
+      "createTime" : 1504768421000,
+      "modifyTime" : 1510888658000,
+      "name" : "产品部班级",
+      "memberCount" : 0,
+      "starTime" : 1518624000000,
+      "endTme" : 1521043200000,
+      "classTeacherId" : null,
+      "classTeacherName" : null,
+      "qrCodeUrl" : null,
+      "isDelete" : 1,
+      "classAssistant" : null,
+      "classCourse" : [ {
+        "id" : "0116cfac7d223690f24b29a130ce8b8e",
+        "createTime" : 1503397777000,
+        "modifyTime" : null,
+        "classId" : "19bbf54d003e81e137045c4a51b492df",
+        "courseId" : "ff8080814dad5062014dadd9c70d0053",
+        "courseCategoryId" : "ff808081473905e701475cd3c2080001",
+        "versionId" : null,
+        "planId" : "0de179e85e7e988b1e93578aafcdf91c",
+        "beginTime" : null,
+        "teacherId" : null,
+        "teacherName" : null,
+        "sort" : 44
+      } ]
+    } ],
+    "state" : "success",
+    "server-time" : 1521095727824
+  },
+  "state" : "success",
+  "msg" : ""
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 }

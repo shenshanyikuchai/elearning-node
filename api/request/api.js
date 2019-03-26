@@ -1,4 +1,5 @@
 module.exports = {
+<<<<<<< HEAD
   'demo': true,
   'token': 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
   'sendsms' : {
@@ -190,6 +191,66 @@ module.exports = {
     'notMock': true,
     'queryData': {
       'exerciseIds': "ff8080814ad1f7d3014afc9ef7286b7c,ff8080814a766dea014a767e38fb0003"
+=======
+  'demo' : true,
+  'token' : 'dd68b8cb-9c9c-4da4-9d24-7cbc92006d41',
+  'classCourseList': {
+    'name' : '登录',
+    'url': '/api/userAction/study/member/getClass',
+    'mock' : 'getClass.json',
+    'defaultData' : {
+      'token' : this.token,
+      'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
+      'courseId' : ''
+    }
+  },
+  'classCourseDetail': {
+    'name' : '登录',
+    'url': '/api/zbids/member/login/v1.0',
+    'mock' : 'classCourseDetail.json',
+    'defaultData' : {
+      'token' : this.token,
+      'memberId' : 'ff8080815133db0d0151375bfdf30c0d',
+      'courseId' : ''
+    }
+  },
+  'teachingProgram' : {
+    'name' : '课程班级教学大纲',
+    'isPrefix' : true,
+    'path' : '/teachingProgram',
+    'mock' : '/courseDetail.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
+  'teachingPlan' : {
+    'name' : '课程班级教学计划',
+    'isPrefix' : true,
+    'path' : '/teachingPlan',
+    'mock' : '/teachingPlan.json',
+    'notMock' : true,
+    'queryData' : {
+      'courseid' : "123456"
+    }
+  },
+  'getClass' : {
+    'name' : '获取指定学员班级列表信息',
+    'path' : '/api/userAction/study/member/getClass',
+    'mock' : '/getClass.json',
+    'queryData' : {
+      'token' : "123456"
+    }
+  },
+  'teachingPlan' : {
+    'name' : '获取学员在某班级指定课程和学习计划的学习计划进度',
+    'path' : '/api/userAction/study/member/getplan',
+    'mock' : '/teachingPlan.json',
+    'queryData' : {
+      'token' : "123456",
+      'courseCategoryId' : "科目id",
+      'courseId' : "课程id"
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     }
   },
   'gettoken': {

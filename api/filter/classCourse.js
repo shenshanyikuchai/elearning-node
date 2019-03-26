@@ -1,6 +1,7 @@
 const iGlobal = require('../global');
 const constant = require('../global/constant');
 const _ = require('lodash');
+<<<<<<< HEAD
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
 var courseDetail = {};
@@ -24,12 +25,25 @@ function classCourse(payload){
 	// 初始化数据
 	initData();
 	courseDetail = payload.courseDetail;
+=======
+
+var courseDetailList = [];
+// var courseTimeTotalNum = 0;
+// var courseDetailLevel = 0;
+var weekIngNum = 0;
+
+function classCourse(payload){
+	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	let courseRenderData = {};
 	filterCourseDetail(payload.courseDetail.chapters);
 	addTaskProgress(payload.tasksProgress);
 	courseRenderData = getChapterListWeekList(payload.memberGetplan);
 
+<<<<<<< HEAD
 	// formatCourseDetail(courseRenderData);
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	courseRenderData.courseStatus = courseByInFo(payload.courseactivestatus);
 	courseRenderData.courseStatus.examinationDate = filterExamDate(payload.courseDetail.courseId, payload.examDate);
 	courseRenderData.courseInfo = filterCourseInfo(payload.courseDetail);
@@ -37,7 +51,10 @@ function classCourse(payload){
 
 	return courseRenderData;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 	if(level){
 		level++;
@@ -61,13 +78,18 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 		let examTime = 0;
 		let knowledgePointTime = 0;
 		let openCourseTime = 0;
+<<<<<<< HEAD
 		let chapter = element;
 		if(element.tasks && element.tasks.length && element.children && element.children.length){
 			
+=======
+		if(element.tasks && element.tasks.length){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			let newTasks = [];
 			let completedNum = 0;
 			let ongoingNum = 0;
 			let notstartedNum = 0;
+<<<<<<< HEAD
 			element.tasks.forEach((taskElement,taskIndex) => {
 				taskElement = {
 					...taskElement,
@@ -107,6 +129,34 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 					completedNum++;
 				}else{
 					if(taskElement.progress){
+=======
+			element.tasks.forEach(function(element,index){
+				if(element.taskType == "video"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.videoTime);
+					chapterTotalTime+=(+element.videoTime);
+					videoTime+=(+element.videoTime);
+				}else if(element.taskType == "exam"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.taskTime)*60;
+					chapterTotalTime+=(+element.taskTime)*60;
+					examTime+=(+element.taskTime);
+				}else if(element.taskType == "knowledgePointExercise"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (120)*60;
+					chapterTotalTime+=(120)*60;
+					knowledgePointTime+=(+element.taskTime);
+				}else if(element.taskType == "openCourse"){
+					newTasks.push(element);
+					// courseTimeTotalNum += (+element.taskTime);
+					chapterTotalTime+=(+element.taskTime);
+					openCourseTime+=(+element.taskTime);
+				}
+				if(element.state){
+					completedNum++;
+				}else{
+					if(element.progress){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 						ongoingNum++;
 					}else{
 						notstartedNum++;
@@ -118,6 +168,7 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'rootNode' : rootNode,
 				'parentNode' : node,
 				'node' : newNode,
+<<<<<<< HEAD
 				'isChildren' : "true",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
@@ -200,6 +251,11 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'isChildren' : "false",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
+=======
+				'isChildren' : false,
+				'isFree' : element.isFree,
+				'chapterTitle' : element.chapterTitle,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 				'chapterId' : element.chapterId,
 				'isTasks' : true,
 				'tasks' : newTasks,
@@ -216,22 +272,37 @@ function filterCourseDetail(chapters, level, node, oldNode, rootNode) {
 				'activeClass' : true,
 				'showClass' : true
 			})
+<<<<<<< HEAD
 		}else if(element.children && element.children.length){
+=======
+		}
+		if(element.children && element.children.length){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			// courseDetailLevel++;
 			courseDetailList.push({
 				'level' : level,
 				'rootNode' : rootNode,
 				'parentNode' : node,
 				'node' : newNode,
+<<<<<<< HEAD
 				'isChildren' : "true",
 				'isFree' : element.isFree,
 				'title' : element.chapterTitle,
+=======
+				'isChildren' : true,
+				'isFree' : element.isFree,
+				'chapterTitle' : element.chapterTitle,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 				'chapterId' : element.chapterId,
 				'isTasks' : false,
 				'checked' : true,
 				'activeClass' : true,
 				'showClass' : true
 			})
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			filterCourseDetail(element.children, level, newNode, node, rootNode);
 		}
 	})
@@ -256,6 +327,7 @@ function addTaskProgress(taskProgress) {
 					});
 
 					if(thatTaskData){
+<<<<<<< HEAD
 						var studyTime = thatTaskData.taskStudyTotalTime;
 						// if(thatTaskData.taskStudyTimeList && thatTaskData.taskStudyTimeList.length){
 						// 	thatTaskData.taskStudyTimeList.forEach(function(element, index){
@@ -270,6 +342,17 @@ function addTaskProgress(taskProgress) {
 							taskElement.studyTime = 0;
 						}
 						
+=======
+
+						var studyTime = 0;
+						if(thatTaskData.taskStudyTimeList && thatTaskData.taskStudyTimeList.length){
+							thatTaskData.taskStudyTimeList.forEach(function(element, index){
+								studyTime += parseInt(element.studyTime);
+							})
+						}
+
+						chapterStudyTime+=studyTime;
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 						if(thatTaskData.state){
 							completedNum++;
 						}else{
@@ -277,6 +360,7 @@ function addTaskProgress(taskProgress) {
 								ongoingNum++;
 							}
 						}
+<<<<<<< HEAD
 						
 						taskElement.progress = thatTaskData.progress;
 						taskElement.total = thatTaskData.total;
@@ -286,6 +370,16 @@ function addTaskProgress(taskProgress) {
 						notstartedNum++;
 					}
 				});
+=======
+						taskElement.progress = thatTaskData.progress;
+						taskElement.total = thatTaskData.total;
+						taskElement.state = thatTaskData.state;
+						taskElement.percentage = iGlobal.getPercentage(thatTaskData.progress,thatTaskData.total);
+					}else{
+						notstartedNum++;
+					}
+				})
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 				courseElement.completedNum = completedNum;
 				courseElement.ongoingNum = ongoingNum;
 				courseElement.notstartedNum = notstartedNum;
@@ -303,13 +397,20 @@ function getChapterListWeekList(memberGetplan){
 }
 function filterCourseDetailPlan(courseData){
 	return  {
+<<<<<<< HEAD
 		'weekIngNum' : weekIngNum,
 		'planInfo' : [],
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		'isCoursePlan' : "false",
 		'chapterList' : courseData
 	}
 }
 function filterCourseDetailWeekPlan(courseData, planData){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	let courseDetailWeekList = [];
 	let courseDetailLevel = 0;
 
@@ -327,6 +428,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 	let itemStart = 0;
 	let newDate = new Date().getTime();
+<<<<<<< HEAD
 	let weekStartTime = planData[0].startDate;
 	let dayIngNum = 0;
 	let dayNoStartNum = 0;
@@ -356,6 +458,10 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			return false;
 		}
 
+=======
+
+	planData.forEach(function(element,index){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		let isOpen = 'true';
 		let startCategoryId = element.startCategoryId;
 		let endCategoryId = element.endCategoryId;
@@ -365,7 +471,10 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let itemLength = item.length;
 		let itemEnd = 0;
 
+<<<<<<< HEAD
 		let weekTask = [];
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		let weekStatus = "";
 		let weekTaskTime = 0;
 		let weekStudyTime = 0;
@@ -380,7 +489,10 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		let weekTaskCompleted = 0;
 		let weekTaskNotstarted = 0;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		let videoTotal = 0;
 		let videoBeoverdue = 0;
 		let videoOngoing = 0;
@@ -397,6 +509,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 		let evaluationStatus = 0;
 		let evaluationTime = 0;
+<<<<<<< HEAD
 		let evaluationId = '';
 
 		let liveStatus = 0;
@@ -421,6 +534,27 @@ function filterCourseDetailWeekPlan(courseData, planData){
 		}
 		
 		for(var i=startIndex;i<=endIndex;i++){
+=======
+
+		let liveStatus = 0;
+		let liveTime = 0;
+		let liveStatusText = '';
+
+		if(element.startDate<newDate && element.endDate<newDate){
+			weekStatus = "beoverdue";
+			weekTotalBeoverdue++;
+		}else if(element.startDate<newDate && newDate<element.endDate){
+			weekIngNum = index;
+			weekStatus = "ongoing";
+			weekTaskOngoing++;
+		}if(newDate<element.startDate && newDate<element.endDate){
+			isOpen = "false";
+			weekStatus = "notstarted";
+			weekTaskNotstarted++;
+		}
+		
+		for(var i=itemStart;i<itemLength;i++){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			weekTotal++;
 			var thisItem = item[i];
 			thisItem.index = i;
@@ -433,9 +567,15 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 					weekTaskTime+=thisItem.chapterTotalTime;
 					weekStudyTime+=thisItem.chapterStudyTime;
+<<<<<<< HEAD
 					
 					
 					// liveTime+=thisItem.openCourseTime;
+=======
+					videoTime+=thisItem.videoTime;
+					examTime+=thisItem.examTime;
+					liveTime+=thisItem.openCourseTime;
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 
 					let taskLength = thisItem.tasks.length;
 					weekTaskTotal+=taskLength;
@@ -485,12 +625,17 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							taskTotalNotstarted+=taskLength;
 							break;
 					}
+<<<<<<< HEAD
 					let newTasks = [];
 					thisItem.tasks.forEach((element,index) => {
 						element.chapterId = thisItem.chapterId;
 						if(element.taskType == "video"){
 							videoTime+=element.studyTime ? element.studyTime : 0;
 							newTasks.push(element);
+=======
+					thisItem.tasks.forEach(function(element,index){
+						if(element.taskType == "video"){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 							videoTotal++;
 							if(element.state){
 								videoCompleted++;
@@ -502,6 +647,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 								}
 							}
 						}else if(element.taskType == "exam"){
+<<<<<<< HEAD
 							if(element.taskLevel == "practice" || element.taskLevel == "core" || element.taskLevel == "extension" || element.taskLevel == "backup"){
 								examTime+=element.studyTime ? element.studyTime : 0;
 								examTotal++;
@@ -536,6 +682,21 @@ function filterCourseDetailWeekPlan(courseData, planData){
 							// thisItem.tasks.splice(index,1);
 							element.openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 							element.openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
+=======
+							examTotal++;
+							if(element.state){
+								examCompleted++;
+							}else{
+								if(element.progress){
+									examOngoing++;
+								}else{
+									examNotstarted++;
+								}
+							}
+						}else if(element.taskType == "knowledgePointExercise"){
+							// evaluationStatus = 1;
+						}else if(element.taskType == "openCourse"){
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 							liveStatus = element.state;
 							if(element.state){
 								liveStatusText = "已完成"
@@ -546,12 +707,18 @@ function filterCourseDetailWeekPlan(courseData, planData){
 									liveStatusText = "未开始";
 								}
 							}
+<<<<<<< HEAD
 
 						}
 					})
 					thisItem.tasks = newTasks;
 				}
 				
+=======
+						}
+					})
+				}
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 				addCourseDetailList.push(thisItem);
 			}
 			if(endCategoryId == thisItem.chapterId){
@@ -570,6 +737,7 @@ function filterCourseDetailWeekPlan(courseData, planData){
 
 		taskTotal += weekTaskTotal;
 
+<<<<<<< HEAD
 		let studyTimeTotal = videoTime+examTime+evaluationTime;
 		let evaluationTimePercentage = iGlobal.getProgress(evaluationTime,studyTimeTotal);
 		let examTimePercentage = iGlobal.getProgress(examTime,studyTimeTotal);
@@ -599,15 +767,28 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'status' : weekStatus,
 			'weekStatus' : weekStatus,
 			'weekTask' : weekTask,
+=======
+		courseDetailWeekList.push({
+			'isOpen' : isOpen,
+			'isFinish' : element.isFinish,
+			'list' : addCourseDetailList,
+			'status' : weekStatus,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			'isDone' : weekDone,
 			'planId' : element.id,
 			'weekName' : element.planTitle,
 			'weekProgress' : iGlobal.getProgress(weekTaskCompleted,weekTaskTotal),
 			
+<<<<<<< HEAD
 			'totalTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
 			'taskTime' : iGlobal.formatSeconds(weekTaskTime,'h'),
 			'studyTime' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
 			'studyTimeFormat' : iGlobal.formatSeconds(videoTime+examTime+evaluationTime,'h'),
+=======
+			'totalTime' : weekTaskTime,
+			'taskTime' : weekTaskTime,
+			'studyTime' : weekStudyTime,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			'weekTime' : `${iGlobal.getDate(element.startDate)}-${iGlobal.getDate(element.endDate)}`,
 			'startDate' : iGlobal.getDate(element.startDate),
 			'endDate' : iGlobal.getDate(element.endDate),
@@ -623,14 +804,18 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'videoOngoing' : videoOngoing,
 			'videoProgress' : iGlobal.getProgress(videoCompleted,videoTotal),
 			'videoTime' : videoTime,
+<<<<<<< HEAD
 			'videoTimeFormat' : iGlobal.formatSeconds(videoTime,'h'),
 			'videoTimePercentage' : videoTimePercentage,
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 
 			'examTotal' : examTotal,
 			'examCompleted' : examCompleted,
 			'examOngoing' : examOngoing,
 			'examProgress' : iGlobal.getProgress(examCompleted,examTotal),
 			'examTime' : examTime,
+<<<<<<< HEAD
 			'examTimeFormat' : iGlobal.formatSeconds(examTime,'h'),
 			'examTimePercentage' : examTimePercentage,
 
@@ -644,6 +829,15 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'liveStatusText' : liveStatusText,
 			'liveTime' : liveTime,
 			'liveDate' : weekLiveDate
+=======
+
+			'evaluationStatus' : evaluationStatus,
+			'evaluationTime' : evaluationTime,
+
+			'liveStatus' : liveStatus,
+			'liveStatusText' : liveStatusText,
+			'liveTime' : iGlobal.getDate(element.startDate)
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		})
 	})
 
@@ -662,10 +856,13 @@ function filterCourseDetailWeekPlan(courseData, planData){
 			'notstarted' : taskTotalNotstarted
 		},
 		'weeksSummary' : {
+<<<<<<< HEAD
 			'dayTotal' : weekTotal*7,
 			'weekIngNum' : weekIngNum,
 			'dayIngNum' : dayIngNum,
 			'dayNoStartNum' : dayNoStartNum,
+=======
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 			'total' : weekTotal,
 			'beoverdue' : weekTotalBeoverdue,
 			'completed' : weekTotalCompleted,
@@ -675,11 +872,19 @@ function filterCourseDetailWeekPlan(courseData, planData){
 	}
 }
 function courseByInFo(coursestatus){
+<<<<<<< HEAD
 	let lockStatus = false;
+=======
+	let lockStatus = "false";
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	let courseActiveTime = 0;
 	let courseExpirationTime = 0;
 	let courseActiveState=0;
 	let courseActiveStateText = "默认未购买";
+<<<<<<< HEAD
+=======
+	console.log(coursestatus)
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	if(coursestatus && coursestatus.length){
 		var lockStatusNum = 0;
 		for(var i=0;i<coursestatus.length;i++){
@@ -688,7 +893,11 @@ function courseByInFo(coursestatus){
 			}
 		}
 		if(!lockStatusNum){
+<<<<<<< HEAD
 			lockStatus = true;
+=======
+			lockStatus = "true";
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 		}
 
 		for(var i=0;i<coursestatus.length;i++){
@@ -719,7 +928,11 @@ function courseByInFo(coursestatus){
 	}else{
 
 	}
+<<<<<<< HEAD
 	var day = (parseInt((courseExpirationTime-datanow)/(24*60*60)) +1).toString();
+=======
+	var day = (parseInt((courseExpirationTime-datanow)/(24*60*60))).toString();
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	if(day.length == 1){
 		day = "00" + day;
 	}else if(day.length == 2){
@@ -824,6 +1037,7 @@ function filterLastLearnChapter(taskProgress){
 		taskName : taskName
 	}
 }
+<<<<<<< HEAD
 function formatCourseDetail(courseRenderData){
 	var formatPlanInfo = [];
 	if(courseRenderData.planInfo && courseRenderData.planInfo.length){
@@ -850,3 +1064,6 @@ function formatCourseDetail(courseRenderData){
 	}
 }
 module.exports = { classCourse }
+=======
+module.exports = classCourse
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d

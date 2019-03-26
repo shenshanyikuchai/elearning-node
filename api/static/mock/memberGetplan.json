@@ -1,5 +1,6 @@
 {
   "data" : [ {
+<<<<<<< HEAD
     "id" : "dc7efe46487f11e89e7f00163e12bba6",
     "createDate" : 1524657463000,
     "modifyDate" : null,
@@ -18,11 +19,31 @@
     "learnTime" : null,
     "learnSum" : null,
     "ingSum" : null,
+=======
+    "id" : "f5f6aac5e48911e7b5e200163e12bba6",
+    "createDate" : 1513666684000,
+    "modifyDate" : 1518163991000,
+    "courseCategoryId" : "ff808081473905e701476204cb6c006f",
+    "courseId" : "8a22ecb55e755132015e8361703400c6",
+    "memberStudyPlanId" : "f5f50f91e48911e7b5e200163e12bba6",
+    "studyPlanId" : "737a55266003463e75ca76108c1a7dec",
+    "planTitle" : "基础部分",
+    "startCategoryId" : "8a22cc685c3379ab015c3d5fcb1d003d",
+    "endCategoryId" : "8a22ecb55c9b6c1b015caff7996101bb",
+    "startDate" : 1513008000000,
+    "endDate" : 1513526400000,
+    "taskTime" : 37130,
+    "taskSum" : 40,
+    "learnTime" : 0,
+    "learnSum" : 2,
+    "ingSum" : 3,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     "isFinish" : 0,
     "finishTime" : null,
     "testScores" : 0,
     "memberId" : null
   }, {
+<<<<<<< HEAD
     "id" : "dc7ff347487f11e89e7f00163e12bba6",
     "createDate" : 1524657463000,
     "modifyDate" : null,
@@ -41,11 +62,31 @@
     "learnTime" : null,
     "learnSum" : null,
     "ingSum" : null,
+=======
+    "id" : "f5f7a44de48911e7a34800163e0f5ece",
+    "createDate" : 1513666684000,
+    "modifyDate" : 1520997927000,
+    "courseCategoryId" : "ff808081473905e701476204cb6c006f",
+    "courseId" : "8a22ecb55e755132015e8361703400c6",
+    "memberStudyPlanId" : "f5f50f91e48911e7b5e200163e12bba6",
+    "studyPlanId" : "737a55266003463e75ca76108c1a7dec",
+    "planTitle" : "提高部分",
+    "startCategoryId" : "8a22ecb5554cfedf0155528579970079",
+    "endCategoryId" : "8a22ecb55c9b6c1b015caffaf72801c9",
+    "startDate" : 1513612800000,
+    "endDate" : 1514131200000,
+    "taskTime" : 50480,
+    "taskSum" : 57,
+    "learnTime" : 0,
+    "learnSum" : 0,
+    "ingSum" : 0,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     "isFinish" : 0,
     "finishTime" : null,
     "testScores" : 0,
     "memberId" : null
   }, {
+<<<<<<< HEAD
     "id" : "dc80de6a487f11e89e7f00163e12bba6",
     "createDate" : 1524657463000,
     "modifyDate" : null,
@@ -64,11 +105,31 @@
     "learnTime" : null,
     "learnSum" : null,
     "ingSum" : null,
+=======
+    "id" : "f5f83b4ce48911e7b5e200163e12bba6",
+    "createDate" : 1513666684000,
+    "modifyDate" : 1520997927000,
+    "courseCategoryId" : "ff808081473905e701476204cb6c006f",
+    "courseId" : "8a22ecb55e755132015e8361703400c6",
+    "memberStudyPlanId" : "f5f50f91e48911e7b5e200163e12bba6",
+    "studyPlanId" : "737a55266003463e75ca76108c1a7dec",
+    "planTitle" : "冲刺周",
+    "startCategoryId" : "8a22ecb5554cfedf01555285cd45007b",
+    "endCategoryId" : "8a22ecb55c9b6c1b015caffd6b1b01d0",
+    "startDate" : 1514217600000,
+    "endDate" : 1514736000000,
+    "taskTime" : 30293,
+    "taskSum" : 38,
+    "learnTime" : 0,
+    "learnSum" : 0,
+    "ingSum" : 0,
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     "isFinish" : 0,
     "finishTime" : null,
     "testScores" : 0,
     "memberId" : null
   }, {
+<<<<<<< HEAD
     "id" : "dc81de84487f11e8a34800163e0f5ece",
     "createDate" : 1524657463000,
     "modifyDate" : null,
@@ -115,6 +176,28 @@
     "testScores" : 0,
     "memberId" : null
   } ],
+=======
+    "id" : "f5f8e6d8e48911e7b5e200163e12bba6",
+    "createDate" : 1513666684000,
+    "modifyDate" : 1520997927000,
+    "courseCategoryId" : "ff808081473905e701476204cb6c006f",
+    "courseId" : "8a22ecb55e755132015e8361703400c6",
+    "memberStudyPlanId" : "f5f50f91e48911e7b5e200163e12bba6",
+    "studyPlanId" : "737a55266003463e75ca76108c1a7dec",
+    "planTitle" : "结束周",
+    "startCategoryId" : "8a22ecb5554cfedf01555285ec4c007c",
+    "endCategoryId" : "8a22ecb55c9b6c1b015cb00038fc01db",
+    "startDate" : 1514822400000,
+    "endDate" : 1515340800000,
+    "taskTime" : 8306,
+    "taskSum" : 10,
+    "learnTime" : 0,
+    "learnSum" : 0,
+    "ingSum" : 0,
+    "isFinish" : 0,
+    "finishTime" : 1514883645000
+  }],
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
   "state" : "success",
   "msg" : ""
 }

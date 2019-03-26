@@ -1,16 +1,14 @@
-// const sys = require('sys');
-
 const Koa = require('koa');
 const cors = require('koa2-cors');
 const koaBody = require('koa-body');
-
-// const api = require('./request/api');
-
-const router = require('./router/config');
+const koaBodyparser = require('koa-bodyparser');
 
 const app = new Koa();
-app.use(cors());
+process.env.NODE_ENV = "demo";
+const router = require('./router/init');
 
-app.use(router());
- 
+app.use(cors());
+app.use(koaBodyparser());
+app.use(router.routes()).use(router.allowedMethods());
+
 app.listen(3080);

@@ -12,9 +12,8 @@
     "koa-router": "^7.3.0",
     "koa2-cors": "^2.0.5",
     "lodash": "^4.17.4",
-    "qs": "^6.5.1"
+    "platform": "^1.3.5"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "nodemon --inspect api/server.js",
     "demo": "set NODE_ENV=development && nodemon --inspect api/server.js"

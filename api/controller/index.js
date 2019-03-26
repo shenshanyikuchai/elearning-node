@@ -1,5 +1,25 @@
+<<<<<<< HEAD
 module.exports = async (ctx, next) => {
 	// debugger;
+=======
+const constant = require('../global/constant');
+// const platform = require('platform');
+module.exports = async (ctx, next) => {
+	ctx.state.mock = ctx.query.mock;
+	ctx.state.fail = [];
+	ctx.state.response = constant.response.success;
+	// const UA = platform.parse(ctx.request.header['user-agent']);
+	// ctx.state.UA = UA;
+
+  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+	try {
+    await next();
+  } catch (err) {
+    ctx.state.response = constant.response.nodeerror;
+  }
+ 
+	let fail = ctx.state.fail;
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 	let responseData = {};
 	ctx.state = {
 		newTime : new Date().getTime(),
@@ -29,6 +49,7 @@ module.exports = async (ctx, next) => {
 			responseData = ctx.state.response;
 		}
 	}
+<<<<<<< HEAD
 	// 开启短信/邮箱预警
 	if(ZBG.isSendErrorSms){
 		ZBG.iGlobal.isCallMe(responseData);
@@ -43,4 +64,7 @@ module.exports = async (ctx, next) => {
 		ctx.DB.logs(ctx);
 	}
 	ctx.state = {};
+=======
+	ctx.body = responseData;
+>>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 }
