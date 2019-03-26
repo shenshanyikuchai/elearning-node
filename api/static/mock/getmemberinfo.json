@@ -1,0 +1,18 @@
+{
+  "data" : {
+    "id" : "8a22ecb553a0b1320153a7251a1e149f",
+    "idCard" : null,
+    "birth" : null,
+    "isAvatar" : false,
+    "address" : null,
+    "email" : null,
+    "nickName" : "app6hvm",
+    "zipCode" : null,
+    "name" : "zpk",
+    "gender" : 1,
+    "avatar" : "/upload/avatar/big_7.png",
+    "mobile" : "18612875765"
+  },
+  "state" : "success",
+  "msg" : ""
+}

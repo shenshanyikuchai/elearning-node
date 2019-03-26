@@ -1,15 +1,27 @@
 const Request = require('../../request')
-
-module.exports = async(ctx) => {
+const constant = require('../../global/constant');
+module.exports = async (ctx) => {
 	await Request.ajax({
-		server : 'login',
-		mock : ctx.state.mock,
-		data : {
-	    token: ctx.state.token,
-	    account: ctx.query.username,
-	    password: ctx.query.password
-	  }
+		server: 'login',
+		ctxState: ctx.state,
+		data: {
+			token: ctx.state.token,
+			account: ctx.request.body.username,
+			password: ctx.request.body.password
+		}
 	}).then((res) => {
-    ctx.body = res
-  })
+		if (res.state == "success") {
+			res.data.type = "";
+			for (let userlevel of constant.userLevel) {
+				if (userlevel.id == res.data.userLevel) {
+					res.data.type = userlevel.type;
+					break;
+				}
+			}
+			ctx.state.data = res;
+		} else {
+
+		}
+
+	})
 }

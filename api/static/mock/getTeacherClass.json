@@ -1,0 +1,47 @@
+{
+  "data" : [ {
+    "id" : "89d4d017c2d93cfee8430363823e1903",
+    "createTime" : 1523176020000,
+    "modifyTime" : 1523604247000,
+    "name" : "测试一班123",
+    "memberCount" : 0,
+    "starTime" : 1523808000000,
+    "endTme" : 1529942400000,
+    "classTeacherId" : "825571ADB61748B08DCEA1A37C8A04A9",
+    "classTeacherName" : "张世玉",
+    "qrCodeUrl" : "/upload/admin/201804/efbab26c58beabf9c8959f9b98fd1b87.png",
+    "isDelete" : 0,
+    "classCourse" : null,
+    "classAssistant" : null
+  }, {
+    "id" : "19bbf54d003e81e137045c4a51b492df",
+    "createTime" : 1522205446000,
+    "modifyTime" : 1523527655000,
+    "name" : "2018CMA一步通关班",
+    "memberCount" : 0,
+    "starTime" : 1522512000000,
+    "endTme" : 1530374400000,
+    "classTeacherId" : "219bb4041e6211e793b064006a5147e8",
+    "classTeacherName" : "李小璐",
+    "qrCodeUrl" : "/upload/admin/201804/992ced7d198ab841a3a58ce2138f5049.png",
+    "isDelete" : 0,
+    "classCourse" : null,
+    "classAssistant" : null
+  }, {
+    "id" : "89d4d017c2d93cfee8430363823e1903",
+    "createTime" : 1523176020000,
+    "modifyTime" : 1523604247000,
+    "name" : "测试一班123",
+    "memberCount" : 0,
+    "starTime" : 1523808000000,
+    "endTme" : 1529942400000,
+    "classTeacherId" : "825571ADB61748B08DCEA1A37C8A04A9",
+    "classTeacherName" : "张世玉",
+    "qrCodeUrl" : "/upload/admin/201804/efbab26c58beabf9c8959f9b98fd1b87.png",
+    "isDelete" : 0,
+    "classCourse" : null,
+    "classAssistant" : null
+  } ],
+  "state" : "success",
+  "msg" : ""
+}

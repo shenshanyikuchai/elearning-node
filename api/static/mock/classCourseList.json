@@ -1,0 +1,29 @@
+{
+	"state" : "success",
+	"msg" : "",
+	"classCourseList" : [{
+		"className" : "CMA英语基础课-B组",
+		"courseId" : "2344222",
+		"startTime" : "2018/3/9",
+		"endTime" : "2018/4/4",
+		"lecturer" : "讲师",
+		"headmaster" : "班主任",
+		"assistant" : ["一助教","二助教"],
+		"QRCode" : "http://exstatic.zbgedu.com/upload/avatar/big_ff8080815133db0d0151375bfdf30c0d.jpg",
+		"versionId" : "1239u9",
+		"planId" : "38949",
+		"serverTime" : "1520577241469"
+	},{
+		"className" : "CMA英语基础课-B组",
+		"courseId" : "2344222",
+		"startTime" : "2018/3/9",
+		"endTime" : "2018/4/4",
+		"lecturer" : "讲师",
+		"headmaster" : "班主任",
+		"assistant" : ["一助教","二助教"],
+		"QRCode" : "http://exstatic.zbgedu.com/upload/avatar/big_ff8080815133db0d0151375bfdf30c0d.jpg",
+		"versionId" : "1239u9",
+		"planId" : "38949",
+		"serverTime" : "1520577241469"
+	}]
+}

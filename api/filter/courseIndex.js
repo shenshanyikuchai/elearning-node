@@ -6,7 +6,6 @@ var courseDetailList = [];
 // var courseTimeTotalNum = 0;
 // var courseDetailLevel = 0;
 
-
 function courseIndex(payload){
 	// courseDetail, tasksProgress, examDate, memberGetplan, courseactivestatus
 	let courseRenderData = {};

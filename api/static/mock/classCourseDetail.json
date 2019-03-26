@@ -1,0 +1,135 @@
+{
+	"state" : "success",
+	"msg" : "",
+	"classCourseDetail" : {
+		"weekIngNum" : "1",
+		"courseInfo" : {
+			"categoryName" : "CFA Level 2",
+			"categoryId" : "234u9u",
+			"courseName" : "CFA L1 基础课（体验课）",
+			"courseId" : "sdf34522",
+			"courseImage" : "http://exstatic.zbgedu.com/upload/201712/2938ddcefc4741998a5bae2c6a2e41cf.jpg",
+			"expirationTime" : "2018/10/22",
+			"courseProgress" : "77",
+			"lastLearn" : "知识点1 战略规划概述"
+		},
+		"studyInfo" : {
+			"studyProgressTotal" : "22",
+			"weekTotal" : "11",
+			"weekCompleted" : "3",
+			"weekOngoing" : "2",
+			"weekNotstarted" : "3"
+		},
+		"planInfo" : [{
+			"isOpen" : "true",
+			"weekName" : "第一周",
+			"weekTime" : "2018.3.7-2018.3.11",
+			"weekProgress" : "57",
+			"taskTotal" : "122",
+			"videoTotal" : "119",
+			"videoCompleted" : "19",
+			"videoOngoing" : "19",
+			"videoProgress" : "33",
+			"examTotal" : "119",
+			"examCompleted" : "19",
+			"examOngoing" : "19",
+			"examProgress" : "66",
+			"evaluationStatus" : "1",
+			"liveStatus" : "0",
+			"liveStatusText" : "已完成",
+			"liveTime" : "2018年3月20日开讲",
+			"videoTime" : "17h",
+			"examTime" : "8h",
+			"evaluationTime" : "3h",
+			"totalTime" : "33h",
+			"teachingProgram" : {
+				"name" : "章",
+				"type" : "chapter",
+				"children" : [{
+					"name" : "节1",
+					"type" : "section",
+					"time" : "1.5h",
+					"progress" : "66",
+					"children" : [{
+						"name" : "任务1",
+						"type" : "task",
+						"taskType" : "video"
+					},{
+						"name" : "任务2",
+						"type" : "task",
+						"taskType" : "exam"
+					},{
+						"name" : "任务3",
+						"type" : "task",
+						"taskType" : "live"
+					}]
+				},{
+					"name" : "节2",
+					"type" : "section",
+					"time" : "1.5h",
+					"progress" : "66",
+					"children" : [{
+						"name" : "任务1",
+						"type" : "task",
+						"taskType" : "video"
+					}]
+				},{
+					"name" : "测评",
+					"type" : "task",
+					"status" : "0",
+					"taskType" : "examReport"
+				},{
+					"name" : "直播",
+					"type" : "task",
+					"taskType" : "live",
+					"status" : "0",
+					"timeText" : "2018年02月12日 20:00开始"
+				}]
+			}
+		},{
+			"isOpen" : "true",
+			"weekName" : "第一周",
+			"weekTime" : "2018.3.7-2018.3.11",
+			"weekProgress" : "96",
+			"taskTotal" : "122",
+			"videoTotal" : "119",
+			"videoCompleted" : "19",
+			"videoOngoing" : "19",
+			"videoProgress" : "33",
+			"examTotal" : "119",
+			"examCompleted" : "19",
+			"examOngoing" : "19",
+			"examProgress" : "66",
+			"evaluationStatus" : "1",
+			"liveStatus" : "2",
+			"liveStatusText" : "未开始",
+			"liveTime" : "2018年3月20日开讲",
+			"videoTime" : "17h",
+			"examTime" : "8h",
+			"evaluationTime" : "3h",
+			"totalTime" : "33h"
+		},{
+			"isOpen" : "false",
+			"weekName" : "第一周",
+			"weekTime" : "2018.3.7-2018.3.11",
+			"weekProgress" : "88",
+			"taskTotal" : "122",
+			"videoTotal" : "119",
+			"videoCompleted" : "19",
+			"videoOngoing" : "19",
+			"videoProgress" : "33",
+			"examTotal" : "119",
+			"examCompleted" : "19",
+			"examOngoing" : "19",
+			"examProgress" : "66",
+			"evaluationStatus" : "1",
+			"liveStatus" : "0",
+			"liveStatusText" : "已完成",
+			"liveTime" : "2018年3月20日开讲",
+			"videoTime" : "17h",
+			"examTime" : "8h",
+			"evaluationTime" : "3h",
+			"totalTime" : "33h"
+		}]
+	}
+}

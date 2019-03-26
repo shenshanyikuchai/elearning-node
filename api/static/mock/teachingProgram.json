@@ -1,0 +1,77 @@
+{
+	"state" : "success",
+	"msg" : "",
+	"teachingProgram" : [{
+		"name" : "章",
+		"type" : "chapter",
+		"children" : [{
+			"name" : "节1",
+			"type" : "section",
+			"children" : [{
+				"name" : "任务1",
+				"type" : "task",
+				"taskType" : "video"
+			},{
+				"name" : "任务2",
+				"type" : "task",
+				"taskType" : "exam"
+			},{
+				"name" : "任务3",
+				"type" : "task",
+				"taskType" : "live"
+			}]
+		},{
+			"name" : "节2",
+			"type" : "section",
+			"children" : [{
+				"name" : "任务1",
+				"type" : "task",
+				"taskType" : "video"
+			}]
+		},{
+			"name" : "测评",
+			"type" : "task",
+			"taskType" : "examReport"
+		},{
+			"name" : "直播",
+			"type" : "task",
+			"taskType" : "live"
+		}]
+	},{
+		"name" : "章2",
+		"type" : "chapter",
+		"children" : [{
+			"name" : "节1",
+			"type" : "section",
+			"children" : [{
+				"name" : "任务1",
+				"type" : "task",
+				"taskType" : "video"
+			},{
+				"name" : "任务2",
+				"type" : "task",
+				"taskType" : "exam"
+			},{
+				"name" : "任务3",
+				"type" : "task",
+				"taskType" : "live"
+			}]
+		},{
+			"name" : "节2",
+			"type" : "section",
+			"children" : [{
+				"name" : "任务1",
+				"type" : "task",
+				"taskType" : "video"
+			}]
+		},{
+			"name" : "测评",
+			"type" : "task",
+			"taskType" : "examReport"
+		},{
+			"name" : "直播",
+			"type" : "task",
+			"taskType" : "live"
+		}]
+	}]
+}

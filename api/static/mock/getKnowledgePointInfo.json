@@ -1,0 +1,22 @@
+{
+  "data" : [ {
+    "id" : "40288aae4a139150014a13ec970916ad",
+    "code" : 18,
+    "creator" : "ADMIN",
+    "enDescription" : null,
+    "enShortTitle" : null,
+    "enTitle" : "THE BUSINESS ORGANISATION, ITSSTAKEHOLDERS AND THE EXTERNALENVIRONMENT",
+    "knowledgePointState" : null,
+    "zhDescription" : null,
+    "zhShortTitle" : null,
+    "zhTitle" : null,
+    "officialNo" : "A",
+    "pointType" : "",
+    "knowledgeNodeId" : "40288aae4a139150014a13ec972816ae",
+    "knowledgePointId" : "40288aae4a139150014a13ec970916ad",
+    "parentId" : "ff8080814a04df96014a13037c44243e"
+  } ],
+  "state" : "success",
+  "msg" : null,
+  "code" : null
+}

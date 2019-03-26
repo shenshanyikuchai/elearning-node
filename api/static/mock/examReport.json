@@ -1,0 +1,50 @@
+{
+	"examReport" : {
+		"exercise" : {
+			"title" : "ACCA F2 基础Chapter1",
+			"score" : "77",
+	  	"right" : "22",
+	  	"error" : "33",
+	  	"total" : "55",
+	  	"list" : [
+	  		{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "2"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "2"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "2"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "1"
+		  	},{
+		  		"status" : "2"
+		  	}
+		  ]
+		},
+  	"knowledgePoint" : {
+  		"alreadyMastered" : [{
+  			"name" : "Introduction"
+  		},{
+  			"name" : "Chapter1 Accounting and accountancy（PART A CHAPTER 1 1-2页）"
+  		}],
+  		"notMastered" : [{
+  			"name" : "Bookkeeping"
+  		},{
+  			"name" : "The Balance sheet"
+  		}]
+  	}
+  },
+  "state" : "success",
+  "msg" : ""
+}

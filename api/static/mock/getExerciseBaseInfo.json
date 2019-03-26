@@ -1,0 +1,66 @@
+{
+  "data" : [ {
+    "id" : "ff8080814c7e36d9014c967ac2b90152",
+    "title" : "A company wishes to carry out a survey of adults’ reading habits of ZBCT country. It randomly selects a number of locations from around the ZBCT country and then interviews everyone who lives in these locations.<br />\r\nWhat is this approach to sampling known as?<br />",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f189a42013d",
+    "title" : "Which one of the followings is not a level of decision making in an&nbsp;organization?<br />\r\n<div>\r\n\t<br />\r\n</div>",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f1447c8013a",
+    "title" : "A sample of people is taken with the same proportion of individuals in&nbsp;separate gender bands as in the population as a whole.&nbsp;This is an example of which type of sampling?<br />",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f1622a4013b",
+    "title" : "The purpose of management accounting is to\r\nprovide:",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f10d4a00137",
+    "title" : "<span>Data is information that has been processed in such a way as to be&nbsp;</span><span>meaningful to its recipients.</span><br />\r\n<p>\r\n\t<span>Is this statement true or false?</span>\r\n</p>\r\n<p>\r\n\t<span><br />\r\n</span>\r\n</p>\r\n<span></span>",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f1201c80139",
+    "title" : "<p>\r\n\tThe following statement refers to a quality of good information:<span style=\"line-height:1.5;\">The cost of&nbsp;</span><span style=\"line-height:1.5;\">producing information should be greater than the value of the benefits of&nbsp;</span><span style=\"line-height:1.5;\">that information to management.</span>\r\n</p>\r\nIs this statement true or false?<br />",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5e7ea6b2011b",
+    "title" : "<p>\r\n\t<span> </span><b><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">Which of the following\r\nquestions should you ask yourself before writ-</span></b><b><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">ing a report?<?xml:namespace prefix = o ns = \"urn:schemas-microsoft-com:office:office\" /></span></b><span> </span>\r\n</p>\r\n<p>\r\n\t<span> \r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">1. Who am I writing to?</span>\r\n</p>\r\n<p>\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">2. What information do I need to provide?</span>\r\n</p>\r\n<p>\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">3. Do I need to include my own personal views?</span>\r\n</p>\r\n<p>\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">4. What can I do to make the report easier to read?</span>\r\n</p>\r\n<p>\r\n\t</span>\r\n</p>",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5f0c1fbd0133",
+    "title" : "<p>\r\n\tThe following table shows ZBCT company's sales revenue of different products in year 20X4\r\n</p>\r\n<p>\r\n\t<br />\r\n</p>\r\n<p>\r\n\t<img src=\"/upload/201503/3578d4aa5a1040dfa9f79fc371b18f24.png\" alt=\"\" />\r\n</p>\r\n<p>\r\n\t<span style=\"line-height:1.5;\">The best diagram to draw to highlight the\r\ndifference between products is:</span>\r\n</p>\r\n<p>\r\n</p>",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5e79583f0117",
+    "title" : "<span> </span><b><span style=\"color:#231F20;font-family:\"Arial\",\"sans-serif\";font-size:10pt;\"><span> </span>The following statements relate to different\r\ntypes of data, which two of<?xml:namespace prefix = o ns = \"urn:schemas-microsoft-com:office:office\" /></span></b><span> </span><b><span style=\"color:#231F20;font-family:\"Arial\",\"sans-serif\";font-size:10pt;\">the following statements are true?</span></b>",
+    "questionTypes" : "checkbox",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  }, {
+    "id" : "ff8080814c4f2e9f014c5e7674330114",
+    "title" : "<span> </span>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<b><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">Which of the followings is/are primary sources of data?</span></b>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\"><span> </span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">1.Historical records of selling and distribution costs to\r\nbe used to prepare<?xml:namespace prefix = o ns = \"urn:schemas-microsoft-com:office:office\" /></span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span> </span><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">forecasts for budgetary planning.</span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span> </span><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">2. Government statistics.</span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span> </span><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">3. Data collected by a company in a telephone survey to\r\nmonitor the</span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span> </span><span style=\"color:#231F20;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;font-size:10pt;\">customer satisfaction of the service.</span>\r\n</p>\r\n<p style=\"text-align:left;\" class=\"MsoNormal\" align=\"left\">\r\n\t<span><span><span> </span></span></span></span>\r\n</p>\r\n<span> </span>",
+    "questionTypes" : "radio",
+    "difficultyId" : "ff8080814ab43431014ac3a0b53729eb",
+    "score" : 2
+  } ],
+  "state" : "success",
+  "msg" : null,
+  "code" : null
+}

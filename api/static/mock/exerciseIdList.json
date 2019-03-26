@@ -1,0 +1,37 @@
+{
+	"code": "200",
+	"msg": "成功",
+	"state": "success",
+	"exerciseIdList": ["376651f3dd8c25061ace3fd21f3f0f10", "fe379295d0d736ff2f467b5c492a9589", "ee12818d4c69d326ad6625401280843a", "67f7fc1aef2fb583d2d9e10e20f3817c", "4d68d333dc49a29284380f24b3c9a5a6"],
+	"exercise": [{
+		"id": "376651f3dd8c25061ace3fd21f3f0f10",
+		"title": "CMA一步通关P1（2018年4月）第四周测评作业",
+		"examTypeName": "测评",
+		"taskType": "exam",
+		"taskLevel": "appraisal"
+	}, {
+		"id": "fe379295d0d736ff2f467b5c492a9589",
+		"title": "CMA一步通关P1（2018年4月）第五周测评作业",
+		"examTypeName": "测评",
+		"taskType": "exam",
+		"taskLevel": "appraisal"
+	}, {
+		"id": "ee12818d4c69d326ad6625401280843a",
+		"title": "CMA一步通关P1（2018年4月）第六周测评作业",
+		"examTypeName": "测评",
+		"taskType": "exam",
+		"taskLevel": "appraisal"
+	}, {
+		"id": "67f7fc1aef2fb583d2d9e10e20f3817c",
+		"title": "CMA一步通关P1（2018年4月）第七周测评作业",
+		"examTypeName": "测评",
+		"taskType": "exam",
+		"taskLevel": "appraisal"
+	}, {
+		"id": "4d68d333dc49a29284380f24b3c9a5a6",
+		"title": "CMA一步通关P1（2018年4月）第八周测评作业",
+		"examTypeName": "测评",
+		"taskType": "exam",
+		"taskLevel": "appraisal"
+	}]
+}

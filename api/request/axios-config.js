@@ -30,13 +30,14 @@ module.exports =  {
   timeout: 0,
   withCredentials: false,
   responseType: 'json',
+  // responseType : 'arraybuffer,blob,document,json,text,stream',
   // onUploadProgress: function(progressEvent) {
   //  // Do whatever you want with the native progress event
   // },
   // onDownloadProgress: function(progressEvent) {
   //  // Do whatever you want with the native progress event
   // },
-  maxContentLength: 2000,
+  maxContentLength: 2000000,
   validateStatus: function(status) {
     return status >= 200 && status < 300;
   },
