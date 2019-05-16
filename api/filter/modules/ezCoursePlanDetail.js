@@ -188,6 +188,7 @@ function flatCourseTasks(chapter) { // 添加章节任务数据
 			orderTask : task.orderTask, // 任务排序
 			express : task.express, // 扩展字段/是否显示解析
 			taskTime : task.taskTime, // 任务时间
+			type: task.type
 		}
 		switch(task.taskType){
 			case "video":

@@ -1,12 +1,19 @@
 # elearning-node
 
-使用node+Express+Seneca提供聚合api
+使用node+koa2提供学习中心场景缓存api
+
+```
+npm install
+npm run dev
+
+```
+> prefix : /api/userAction/scene/mobileIndex
 
 ## 阶段1 --- 整合接口
 
 ### 登录 -- `login`
+
 ```
-http://localhost:3000/login?type=pcWeb&username=zpk&password=123456
 
 产品类型 - type : pcWeb/winExe/iPad/iPhone/aPhone/aPad/zbjyjt/zbjyyw
 用户名   - username : zpk
@@ -52,6 +59,19 @@ http://localhost:3000/login?type=pcWeb&username=zpk&password=123456
 > getTasksProgress 任务进度
 
 > getExamDate 考试时间
+
+### 移动端首页 -- `mobileIndex`
+### pc端首页 -- `pcIndex`
+### pc端课程首页 -- `pcCourseIndex`
+
+### 班级课程列表 -- `classCourseList`
+### 班级课程详情 -- `classCourseDetail`
+
+### 测评成绩报告 -- `examReport`
+
+### 教学大纲 -- `teachingProgram`
+### 教学计划 -- `teachingPlan`
+
 
 ## 阶段2 --- 接口持久化，错误处理
 

@@ -1,5 +1,4 @@
 module.exports = {
-<<<<<<< HEAD
   
   "host": {
     "action": "http://action.zbgedu.com",
@@ -22,24 +21,6 @@ module.exports = {
     "infoAddress": "http://elearning.zbgedu.com/",
     "IPLocation": "http://elearning.zbgedu.com/api/v2/",
     "actionHostName": "http://action.zbgedu.com/api/userAction/scene/mobileIndex"
-=======
-  "ENTER_KEY" : "13",
-  "token": "",
-  "loginLink" : "http://www.zbgedu.com/index.php?m=user&c=index&a=index",
-  "loginLinkTest" : "#studycenterLogin",
-  "host": {
-    "origin" : "http://elearning.zbgedu.com",
-    "name": "http://api.zbgedu.com",
-    "nameAction": "http://action.zbgedu.com",
-    // "demoName" : "http://demo.caicui.com",
-    "demoName" : "http://192.168.10.112:8083",
-    "static" : "http://exstatic.zbgedu.com/",
-    "img" : "http://eximg.zbgedu.com",
-    "imgAddress" : "http://exstatic.zbgedu.com/",
-    "infoAddress" : "http://elearning.zbgedu.com/",
-    "IPLocation" : "http://elearning.zbgedu.com/api/v2/",
-    "actionHostName" : "http://action.zbgedu.com/api/userAction/scene/mobileIndex"
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
   },
   "product": {
     "pcWeb": {
@@ -71,7 +52,6 @@ module.exports = {
       "appType": "aPad",
       "appId": "aPadCourse",
       "appKey": "f7e4ebaa872f38db7b548b870c13e79e"
-<<<<<<< HEAD
     },
     "中博好老师": {
       "appType": "中博好老师",
@@ -168,40 +148,4 @@ module.exports = {
   ],
   "weekDay": 7,
   "dayTime": 86400000
-=======
-    }
-  },
-  "response" : {
-    "success" : {
-      "code" : "200",
-      "msg" : "成功",
-      "state" : "success"
-    },
-    "nologin" : {
-      "code" : "333",
-      "msg" : "没有登录",
-      "state" : "nologin"
-    },
-    "error" : {
-      "code" : "444",
-      "msg" : "服务器错误",
-      "state" : "error"
-    },
-    "noparameter" : {
-      "code" : "555",
-      "msg" : "参数错误",
-      "state" : "noparameter"
-    },
-    "loading" : {
-      "code" : "666",
-      "msg" : "网络没有响应",
-      "state" : "loading"
-    },
-    "nodeerror" : {
-      "code" : "777",
-      "msg" : "node服务器错误",
-      "state" : "nodeerror"
-    }
-  }
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 }

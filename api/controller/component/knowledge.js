@@ -17,22 +17,22 @@ module.exports = async(ctx, next) => {
 		exerciseIds = ctx.state.exerciseIds.toString()
 	}
 	console.log(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${exerciseIds}`)
-	// await axios.post(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds`, {
-	// 		params: {
-	// 			exerciseIds: exerciseIds
-	// 		}
-	// 	}).then((res) => {
-	// 		console.log(typeof res)
-	// 		console.log(res.data[0])
-	// 			ctx.state.knowledges = res.data;
-  //   return next();
-  // }).catch(function (error) {
+	await axios.post(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds`, {
+			params: {
+				exerciseIds: exerciseIds
+			}
+		}).then((res) => {
+			console.log(typeof res)
+			console.log(res.data[0])
+				ctx.state.knowledges = res.data;
+    return next();
+  }).catch(function (error) {
     
-	// });
-	await axios.get(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${exerciseIds}`).then((res) => {
-		ctx.state.knowledges = res.data;
-	return next();
-}).catch(function (error) {
+	});
+// 	await axios.get(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${exerciseIds}`).then((res) => {
+// 		ctx.state.knowledges = res.data;
+// 	return next();
+// }).catch(function (error) {
 	
-});
+// });
 }

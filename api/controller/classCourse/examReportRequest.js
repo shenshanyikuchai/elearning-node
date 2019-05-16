@@ -10,7 +10,8 @@ module.exports = async(ctx, next) => {
       member_id: ctx.query.memberId,
       type : 4,
       knowledge_points: ctx.query.knowledgePointId,
-      examenNum : ctx.query.examenNum
+      examenNum : ctx.query.examenNum,
+      class_id : ctx.query.classId
   	}
   }),Request.ajax({
   	server : "userExerciseStatus",
@@ -18,7 +19,8 @@ module.exports = async(ctx, next) => {
   	data : {
   		knowledge_point_id: ctx.query.knowledgePointId,
       member_id: ctx.query.memberId,
-      examenNum : ctx.query.examenNum
+      examenNum : ctx.query.examenNum,
+      class_id : ctx.query.classId
   	}
   }),Request.ajax({
     server : "getExerciseBaseInfo",

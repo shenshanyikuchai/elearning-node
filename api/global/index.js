@@ -312,11 +312,7 @@ module.exports = {
       if(a>0 && a<0.01){
         a = 0.01
       }
-<<<<<<< HEAD
       percentage = Math.round(a*100);
-=======
-      percentage = parseInt(a*100);
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     }else if(lastProgress){
       percentage = 1;
     }

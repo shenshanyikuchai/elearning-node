@@ -11,7 +11,7 @@ const app = new Koa();
 const config = require('./config');
 const configDemo = require('./config/demo');
 
-// process.env.NODE_ENV = "demo";
+process.env.NODE_ENV = "demo";
 console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.context.config = configDemo;
@@ -70,4 +70,3 @@ if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.listen(3080);
 }
 // app.listen(3080);
-

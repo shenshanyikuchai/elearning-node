@@ -32,7 +32,7 @@ function initData() { // 初始化数据
 function ezCoursePlanDetail(payload) {
 	// debugger;
 	initData();
-	globalCourseDetail = { 
+	globalCourseDetail = {
 		...globalCourseDetail,
 		...payload
 	};
@@ -94,7 +94,7 @@ function getRenderData() {
 function courseCalendar(payload){
 	// debugger;
 	initData();
-	globalCourseDetail = { 
+	globalCourseDetail = {
 		...globalCourseDetail,
 		...payload
 	};
@@ -224,6 +224,7 @@ function flatCourseTasks(chapter) { // 添加章节任务数据
 			orderTask : task.orderTask, // 任务排序
 			express : task.express, // 扩展字段/是否显示解析
 			taskTime : task.taskTime, // 任务时间
+			type: task.type
 		}
 		switch(task.taskType){
 			case "video":
@@ -636,7 +637,7 @@ function getCourseWeekPlan(courseDetail, coursePlan) { // 根据计划划分课�
 		// 上一周任务是否完成
 		let weekTaskDoneNum = weekData.weekAllTaskStatistic.completed + weekData.weekAllTaskStatistic.onGoing;
 		let weekTaskTrueDoneNum = weekData.weekAllTaskStatistic.completed;
-
+		// console.log(weekData)
 		if(isPrevWeekDone){
 			switch(weekData.weekInfo.status){
 				case "notstarted":
@@ -957,21 +958,28 @@ function dayStatistic(courseWeekPlanData,weekPlan, startDate, isLock){
 		if(dayFormat == newDayFormat){
 			isDay = true;
 		}
+
 		if(tasks && tasks.length){
 			tasks.forEach((element)=>{
 				element.startTime = dayTime;
 				if(element.state){
-					element.status = dayStatus = "completed";
+					dayTasksDoneNum++;
+					element.status  = "completed";
 				}
 				if(!element.state){
-					element.status = dayStatus = "nodone";
+					element.status  = "nodone";
 				}
 				if(element.taskId == globalCourseDetail.lastLearn.taskId){
 					courseWeekPlanData.courseStatistic.week.dayingNum = index;
-					element.status = dayStatus = "going";
+					element.status  = "going";
 					element.isGoing = isGoing = true;
 				}
 			})
+			if(dayTasksDoneNum == dayTasksTotal){
+				dayStatus = "completed";
+			}else{
+				dayStatus = "nodone";
+			}
 		}else{
 			dayStatus = "notask"
 		}

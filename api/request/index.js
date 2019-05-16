@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 const axios = require('axios');
 const config = require('./axios-config');
 const COMMON = require('../global/constant');
 const api = require('./api');
 
-=======
-
-const axios = require('axios');
-const config = require('./axios-config');
-const COMMON = require('../global/constant');
-const api = require('./api.js');
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
 // axios.defaults.timeout = 0;
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -31,15 +23,11 @@ axios.interceptors.response.use((res) => {
     try {
       res.data = JSON.parse(res.data);
     } catch (e) {
-<<<<<<< HEAD
       // Promise.reject(res.data);
       res.data ={
         isMock : true,
         state : "success"
       };
-=======
-      Promise.reject(res.data);
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     }
   }
   if (res && res.data.state == 'success') {
@@ -56,7 +44,6 @@ function ajax(payload) {
   var thatServer = api[payload.server];
   var hostName = '';
   var thatServerUrl = thatServer.url;
-<<<<<<< HEAD
   if(!payload.url){
     if (process.env.NODE_ENV == "dev") {
       if (thatServer.staticDataDemo) {
@@ -77,16 +64,6 @@ function ajax(payload) {
           args.url = hostName + thatServerUrl;
           args.type = thatServer.type ? thatServer.type : 'GET';
         }
-=======
-  if(process.env.NODE_ENV == "demo"){ // production development
-    if(thatServer.staticDataDemo){
-      args.url = thatServer.staticDataDemo  + "?verTT=" + new Date().getTime();
-      args.type = 'GET';
-    }else{
-      hostName  = COMMON.host.demoName;
-      if(thatServer.hostName){
-        hostName = thatServer.hostName;
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
       }
     } else if (process.env.NODE_ENV == "demo") { // production development
       if (thatServer.staticDataDemo) {
@@ -139,7 +116,6 @@ function ajax(payload) {
     }
     console.log(showUrl + '?' + requestParameter.substr(1))
   }
-<<<<<<< HEAD
   
   if (args.type === 'POST') {
     return axios.post(args.url, payload.data, config).then(res => done(args, payload, res)).catch(err => fail(args, payload, err));
@@ -156,24 +132,6 @@ function ajax(payload) {
     return new Promise(function(resolve, reject) {
       fs.readFile(file, "utf8", function(err, data) {
         if (err) {
-=======
-  // console.log(args.url+JSON.stringify(payload.data))
-  if (args.type === 'POST') {
-    return axios.post(args.url, payload.data, config).then(res => done(payload, res)).catch(err => fail(payload, err));
-  } else if (args.type === 'GET') {
-    return axios.get(args.url, {
-      params: payload.data
-    }, config).then(res => done(payload, res)).catch(err => fail(payload, err));
-  }else if(args.type === 'JSON'){
-    var fs = require('fs');
-    var path = require('path');
-    // let file = `${process.cwd()}/static/mock/${args.url}`;
-    
-    let file = `${__dirname}/../static/mock/${args.url}`;
-    return new Promise(function(resolve, reject){
-      fs.readFile(file, "utf8", function(err, data){
-        if(err){
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
           reject(err);
         } else {
           resolve(JSON.parse(data));
@@ -184,14 +142,9 @@ function ajax(payload) {
 
 
 }
-<<<<<<< HEAD
 
 function done(args, payload, res) {
   if (res.state == "success") {
-=======
-function done(payload, res){
-  if(res.state == "success"){
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
     return res;
     if (payload.server == "messageListNoRead") {
       return res;
@@ -222,7 +175,6 @@ function done(payload, res){
   }
 
 }
-<<<<<<< HEAD
 
 function fail(args, payload, err) {
   let errType = typeof err;
@@ -253,13 +205,6 @@ function fail(args, payload, err) {
       }
       return err;
     }
-=======
-function fail(payload, err){
-  if(payload.server == "getappdownloadinfo"){
-    return err
-  }else if(payload.server == "memberGetplan" && err.msg == "没有对应的学习计划"){
-    return err
->>>>>>> 7d2dcad445046277906f6b533e87d63ec5d6fa1d
   }else{
     if(payload.ctxState){
       payload.ctxState.fail.push({
