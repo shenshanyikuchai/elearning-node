@@ -4,7 +4,7 @@
   "description": "使用node+koa2提供学习中心场景缓存api",
   "main": "api/server.js",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "egg-view-nunjucks": "^2.2.0",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
