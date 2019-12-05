@@ -25,11 +25,7 @@ module.exports = async(ctx, next) => {
 	  res.on('end', () => {
 	    try {
 	      const parsedData = JSON.parse(rawData);
-<<<<<<< HEAD
 	      
-=======
-	      console.log(parsedData);
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 	    } catch (e) {
 	      console.error(e.message);
 	    }

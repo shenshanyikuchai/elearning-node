@@ -18,6 +18,17 @@ const {
 const {
 	courseCalendar
 } = require('./modules/courseCalendar');
+
+const {
+	iCoursePlanDetail
+} = require('./modules/iCoursePlanDetail');
+const {
+	iEzCoursePlanDetail
+} = require('./modules/iEzCoursePlanDetail');
+const {
+	iCourseCalendar
+} = require('./modules/iCourseCalendar');
+
 const {
 	studyIn,
 	notActivated,
@@ -44,5 +55,8 @@ module.exports = {
 	expiration: expiration,
 	exerciseIdList: exerciseIdList,
 	getCategorySubject: getCategorySubject,
-	courseCalendar: courseCalendar
+	courseCalendar: courseCalendar,
+	iCoursePlanDetail: iCoursePlanDetail,
+	iEzCoursePlanDetail: iEzCoursePlanDetail,
+	iCourseCalendar: iCourseCalendar
 }

@@ -18,23 +18,37 @@ const api = require('./api');
 //     // 对请求错误做些什么
 //     return Promise.reject(error);
 //   }); 
-axios.interceptors.response.use((res) => {
+let requestCourseDetailIndex = 3;
+
+axios.interceptors.response.use(async (res) => {
   if (typeof res.data == "string") {
     try {
-      res.data = JSON.parse(res.data);
-    } catch (e) {
-      // Promise.reject(res.data);
-      res.data ={
-        isMock : true,
-        state : "success"
-      };
+      let parseData = JSON.parse(res.data);
+      if (parseData && parseData.state == 'success') {
+        return Promise.resolve(parseData);
+      }
+    } catch (error) {
+      if(res.config.url == "http://api.zbgedu.com/api/teachsource/course/courseDetail/data"){
+        if(requestCourseDetailIndex){
+          requestCourseDetailIndex--;
+          return await axios.get(res.config.url, {
+            params: res.config.params
+          }).then(res => {
+            return Promise.resolve(res)
+          })
+        }else{
+          requestCourseDetailIndex = 3;
+        }
+      }
+      
+    }
+    
+  }else{
+    if (res && res.data && res.data.state == 'success') {
+      return Promise.resolve(res.data);
     }
   }
-  if (res && res.data.state == 'success') {
-    return Promise.resolve(res.data);
-  } else {
-    return Promise.reject(res.data);
-  }
+  
 }, (error) => {
   return Promise.reject(error);
 });
@@ -91,6 +105,9 @@ function ajax(payload) {
       if (thatServer.action) {
         hostName = COMMON.host.action;
       }
+      if (thatServer.zbapi) {
+        hostName = COMMON.host.zbapi;
+      }
       if (payload.ctxState && payload.ctxState.mock) {
         args.url = payload.mock ? payload.mock : thatServer.mock;
         args.type = 'JSON';
@@ -144,10 +161,6 @@ function ajax(payload) {
 }
 
 function done(args, payload, res) {
-<<<<<<< HEAD
-=======
-  // console.log(res)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
   if (res.state == "success") {
     return res;
     if (payload.server == "messageListNoRead") {
@@ -181,10 +194,6 @@ function done(args, payload, res) {
 }
 
 function fail(args, payload, err) {
-<<<<<<< HEAD
-=======
-  // console.log(err)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
   let errType = typeof err;
   let path = '';
   if (args.type == "GET") {
@@ -194,11 +203,7 @@ function fail(args, payload, err) {
     path = args.url + '?' + path.substr(1)
   }
   if(errType == "object"){
-<<<<<<< HEAD
     if (payload.server == "getStudyPlanList" || payload.server == "studyPlanProgressSave" || payload.server == "getappdownloadinfo" || payload.server == "getTeacherLiveCourselist" || payload.server == "applyrestudylist" ) {
-=======
-    if (payload.server == "getappdownloadinfo" || payload.server == "getTeacherLiveCourselist" || payload.server == "applyrestudylist" ) {
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
       return err;
     } else if ( (payload.server == "getClassPlanDetail" || payload.server == "memberGetplan") && err.msg == "没有对应的学习计划") {
       return err;

@@ -1,5 +1,5 @@
 {
-  "name"        : "elearning-node",
+  "name"        : "elearning-node-3088",
   "script"      : "./api/index.js",
   "cwd"         : "./",
   "args": "--inspect",
@@ -17,12 +17,12 @@
   "error_file" : "./logs/app-err.log",
   "out_file"   : "./logs/app-out.log",
   "env": {
-    "NODE_ENV": "production",
+    "NODE_ENV": "production"
   },
   "env_demo": {
-    "NODE_ENV": "demo",
+    "NODE_ENV": "demo"
   },
   "env_dev": {
-    "NODE_ENV": "dev",
+    "NODE_ENV": "dev"
   }
 }

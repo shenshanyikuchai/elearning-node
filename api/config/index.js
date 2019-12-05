@@ -15,7 +15,7 @@ module.exports = {
 	  }
 	],
 	"isDb" : true, // 是否启用数据库
-	"dbs" : "172.16.120.154/studyData" // 正式环境数据库地址
-	// "dbs" : "localhost/studyData" // 本地环境数据库地址
+	// "dbs" : "172.16.120.154/studyData" // 正式环境数据库地址
+	"dbs" : "localhost/studyData" // 本地环境数据库地址
 	// "dbs" : "127.0.0.1/studyData" // dev环境地址
 }

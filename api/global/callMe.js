@@ -2,10 +2,6 @@ const { ajax } = require('../request');
 
 module.exports = {
 	callMe : async(who, data) => {
-<<<<<<< HEAD
-=======
-		// console.log(data)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 		// data : {
 		// 	courseId : "0"
 		// }
@@ -28,11 +24,7 @@ module.exports = {
 						'errorId' : 'test'
 					}
 				}).then((res) => {
-<<<<<<< HEAD
 					
-=======
-					console.log(res)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 				})
 			}
 			if(item.email){
@@ -46,11 +38,7 @@ module.exports = {
 			  		email: item.email
 			  	}
 				}).then((res) => {
-<<<<<<< HEAD
 				  
-=======
-				  console.log(res)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 				})
 			}
 			

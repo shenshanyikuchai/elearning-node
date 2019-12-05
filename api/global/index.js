@@ -70,11 +70,7 @@ module.exports = {
       if (thisFail.state == "error") {
         if (thisFail.msg == "nologin" ) {
           responseData = constant.response.nologin;
-<<<<<<< HEAD
         } else if (thisFail.msg == "用户名或密码错误"||thisFail.msg == "密码不正确") {
-=======
-        } else if (thisFail.msg == "用户名或密码错误") {
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
           responseData = constant.response.errorInput;
         } else {
           responseData = constant.response.error;

@@ -224,27 +224,15 @@ module.exports = async (ctx, next) => {
 				}
 
 				if (serverTime < element.starTime) {
-<<<<<<< HEAD
-=======
-					// console.log("未开始")
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 					isClassCourse = "1";
 					classCourseData.state = "0";
 					// classCourseNotStart.push(classCourseData);
 					classCourseStudyIn.push(classCourseData);
 				} else if (element.starTime < serverTime && serverTime < element.endTme) {
-<<<<<<< HEAD
-=======
-					// console.log("进行中")
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 					isClassCourse = "1";
 					classCourseData.state = "1";
 					classCourseStudyIn.push(classCourseData);
 				} else if (element.endTme < serverTime) {
-<<<<<<< HEAD
-=======
-					// console.log("已过期")
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
 					classCourseData.state = "2";
 					classCourseActivated.push(classCourseData);
 				}

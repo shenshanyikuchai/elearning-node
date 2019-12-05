@@ -38,7 +38,8 @@ module.exports = async(ctx, next) => {
     //     courseDetail = res;
     //   })
     // }
-    let isNext = true;
+		let isNext = true;
+		
   	let courseDetailData = courseDetail.data;
   	let getTasksProgressData = getTasksProgress.data;
   	let getExamDateData = getExamDate.data;
@@ -46,7 +47,7 @@ module.exports = async(ctx, next) => {
       ctx.state.isCourseDetail = true;
   		ctx.state.courseDetail = courseDetailData[0];
   	}else{
-      isNext = false;
+      // isNext = false;
       ctx.state.isCourseDetail = false;
   		ctx.state.courseDetail = {
   			subjectId : '',

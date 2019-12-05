@@ -28,7 +28,7 @@ function initData() { // 初始化数据
 	}
 }
 
-function ezCoursePlanDetail(payload) {
+function iEzCoursePlanDetail(payload) {
 	// debugger;
 	initData();
 	globalCourseDetail = { 
@@ -135,6 +135,7 @@ function flatCourseDetail(payload) { // 将多层课程结构转换为一层结�
 			isFree: element.isFree, // 是否免费
 			title: element.chapterTitle, // 章节标题
 			chapterId: element.chapterId, // 章节id
+			tasks: [],
 			// 'isChildren' : "true", // 是否有子节点
 			// 'isTasks' : false, // 是否有任务
 		}
@@ -309,7 +310,6 @@ function filterCoursePlanPHP(coursePlan){
 	return newCoursePlan;
 }
 function filterCoursePlanJAVA(coursePlan){
-	console.log("coursePlan", coursePlan)
 	let newCoursePlan = [];
 	for(let index in coursePlan){
 		
@@ -917,14 +917,15 @@ function taskStatistic(weekData, chapterData) {
 				// isWeekTask = true;
 				taskType = taskLevel;
 				// 一周多测评
-				// weekData.weekAppraisal.push(element);
+        // weekData.weekAppraisal.push(element);
+        // newTasks.push(element);
 			}
 		} else if (taskType == "openCourse") {
 			// isWeekTask = true;
 			chapterData.tasks[index].openCourseDate = iGlobal.getDate(element.openCourseStartTime);
 			chapterData.tasks[index].openCourseText = `${element.title} ${iGlobal.getLocalTime(element.openCourseStartTime)} 开始`;
 			// 一周多直播
-			weekData.weekLive.push(element);
+			// weekData.weekLive.push(element);
 			// newTasks.push(element);
 		}
 		if (isWeekTask) {
@@ -1326,6 +1327,6 @@ function getCoursePlanDetailType(ctx){
 }
 
 module.exports = {
-	ezCoursePlanDetail,
+	iEzCoursePlanDetail,
 	getCoursePlanDetailType
 }

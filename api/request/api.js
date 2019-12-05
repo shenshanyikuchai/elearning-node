@@ -23,14 +23,15 @@ module.exports = {
       'classId': 'b8d924a90d42ca12685cec1ed32fb23e',
       'courseId': 'c0709cf3baf8fc1b4cb6932f4af165c4',
       'planType': 1
-<<<<<<< HEAD
     }
   },
   'getStudyPlanList': {
     'name': 'ez课程个人学习计划',
+    'zbapi': true,
     // 'hostNameDemo': 'http://192.168.10.201:9995',
     // 'url': '/api/userAction/php/plan/studyPlanList',
-    'url': '/api/study/userAction/plan/studyPlanList',
+    // 'url': '/api/study/userAction/plan/studyPlanList',
+    'url': '/api/userAction/scene/mobileIndex/plan/studyPlanList',
     'type': 'POST',
     'mock': '/mock/studyPlanList.json',
     'defaultData': {
@@ -45,15 +46,6 @@ module.exports = {
     'url': '/api/study/userAction/plan/studyPlanProgressSave',
     'type': 'POST',
     'mock': '/mock/studyPlanProgressSave.json',
-=======
-    }
-  },
-  'getStudyPlanList': {
-    'name': 'ez课程个人学习计划',
-    // 'hostNameDemo': 'http://192.168.10.201:9995',
-    'url': '/api/userAction/php/plan/studyPlanList',
-    'mock': '/mock/studyPlanList.json',
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
     'defaultData': {
       'token': 'b8d924a90d42ca12685cec1ed32fb23e',
       'courseId': 'c0709cf3baf8fc1b4cb6932f4af165c4'
@@ -230,7 +222,6 @@ module.exports = {
     'url': '/api/zbids/member/login/v1.0',
     // 'url': '/api/edu/zbids/member/login',
     'mock': '/mock/teacherLogin.json',
-<<<<<<< HEAD
     'type': 'POST',
     'defaultData': {
       'account': 'zpk',
@@ -245,22 +236,6 @@ module.exports = {
     'mock': '/mock/get_course_arrange.json',
     'notMock': false,
     'type': 'POST',
-=======
-    'type': 'POST',
-    'defaultData': {
-      'account': 'zpk',
-      'password': '123456',
-      'token': this.token
-    }
-  },
-  'getCourseArrange': {
-    'name': '课表列表',
-    'path': '/getCourseArrange',
-    'url': '/api/userAction/php/course_arrange/get_course_arrange',
-    'mock': '/mock/get_course_arrange.json',
-    'notMock': false,
-    'type': 'POST',
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
     'queryData': {
       'classId': 'e1699c9662050a66f0d6fd5af3823604',
       'token': '7f10d7d7-09e2-43d3-ab4b-4092f4a330b1',
@@ -321,21 +296,12 @@ module.exports = {
   },
   'noActivecourse': {
     'name': '未激活的课程',
-<<<<<<< HEAD
     'url': '/api/business/learning/noActivecourse/v1.0',
     'mock': '/mock/noActivecourse.json'
   },
   'noActivecourse-mock': {
     'name': '未激活的课程',
     'url': '/api/business/learning/noActivecourse/v1.0',
-=======
-    'url': '/api/business/learning/noActivecourse/v1.0',
-    'mock': '/mock/noActivecourse.json'
-  },
-  'noActivecourse-mock': {
-    'name': '未激活的课程',
-    'url': '/api/business/learning/noActivecourse/v1.0',
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
     'mock': '/mock/noActivecourse-mock.json'
   },
   'noActivecourse_pad-mock': {
@@ -411,8 +377,10 @@ module.exports = {
   },
   'courseDetail': {
     'name': '课程详情',
+    // 'zbapi': true,
     'urlDemo': '/api/teachsource/course/courseDetail/data',
     'url': '/api/teachsource/course/courseDetail/data',
+    // 'url': '/api/teachsource/course/courseDetail/data/v2.0',
     // 'mock' : '/mock/courseDetail-test.json',
     'mock': '/mock/courseDetail.json',
     'defaultData': {
@@ -765,6 +733,7 @@ module.exports = {
   },
   'applyrestudylist': {
     'name': '学员申请重听审核状态列表',
+    'mock': '/mock/applyrestudylist.json',
     'url': '/api/business/learning/applyrestudylist'
   },
   'exerciseIdList': {

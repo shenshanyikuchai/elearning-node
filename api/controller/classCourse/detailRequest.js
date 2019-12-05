@@ -24,22 +24,10 @@ module.exports = async(ctx, next) => {
   		memberId: ctx.query.memberId
   	}
   })]).then(axios.spread(function (courseDetail, getTasksProgress, getExamDate) {
-<<<<<<< HEAD
     if(typeof courseDetail == "string"){
       try{
         courseDetail = JSON.parse(courseDetail);
       }catch(err){
-=======
-    console.log(courseDetail)
-    console.log(typeof courseDetail)
-    if(typeof courseDetail == "string"){
-      try{
-        console.log(1)
-        courseDetail = JSON.parse(courseDetail);
-        console.log(2)
-      }catch(err){
-        console.log(3)
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
         console.log(err)
       }
       

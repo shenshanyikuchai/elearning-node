@@ -22,24 +22,17 @@ module.exports = async(ctx, next) => {
 				exerciseIds: exerciseIds
 			}
 		}).then((res) => {
+			console.log(typeof res)
+			console.log(res.data[0])
 				ctx.state.knowledges = res.data;
     return next();
   }).catch(function (error) {
     
-  });
-<<<<<<< HEAD
-=======
- 
-	// await Request.ajax({
-	//   server : 'getKnowledgePointInfoByExerciseIds',
-	//   ctxState : ctx.state,
-	//   data : {
- //  		exerciseIds: ctx.state.exerciseIds
- //  	}
-	// }).then((res) => {
-	//   console.log(JSON.stringify(res))
-	//   ctx.state.knowledges = res.data;
-	//   return next();
-	// })
->>>>>>> 7ebc21fcb7ef41e53856eb13addc6694ae67161e
+	});
+// 	await axios.get(`${hostName}/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds?exerciseIds=${exerciseIds}`).then((res) => {
+// 		ctx.state.knowledges = res.data;
+// 	return next();
+// }).catch(function (error) {
+	
+// });
 }

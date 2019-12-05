@@ -7,7 +7,7 @@ module.exports = {
 	    // "mobile" : 13601270155,
 	    "name" : "徐老师",
 	    // "email" : "panke.zhao@zbgedu.com"
-	  },{
+	  }, {
 	    "level" : 0,
 	    "mobile" : 18612875765,
 	    "name" : "zpk",
@@ -15,7 +15,7 @@ module.exports = {
 	  }
 	],
 	"isDb" : false, // 是否启用数据库
-	"dbs" : "172.16.120.154/studyData" // 正式环境数据库地址
-	// "dbs" : "localhost/studyData" // 本地环境数据库地址
+	// "dbs" : "172.16.120.154/studyData" // 正式环境数据库地址
+	"dbs" : "localhost/studyData" // 本地环境数据库地址
 	// "dbs" : "127.0.0.1/studyData" // dev环境地址
 }

@@ -10,6 +10,8 @@ module.exports = {
     "apiDemo": "http://apiDemo.zbgedu.com",
     "apiDev": "http://apiDev.zbgedu.com",
 
+    "zbapi": "http://zbapi.zbgedu.com",
+
     "origin": "http://elearning.zbgedu.com",
     "name": "http://api.zbgedu.com",
     "nameAction": "http://action.zbgedu.com",
