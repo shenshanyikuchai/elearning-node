@@ -1,4 +1,10 @@
 module.exports = [
+	{
+		name: "数据库",
+		path: "db",
+		type: "html",
+		modules: ["db/index"]
+	},
 	// base
 	{
 		isAddWord: true,
@@ -372,21 +378,6 @@ module.exports = [
 		}
 	}, 
 	{
-		name: "接口文档",
-		path: "api",
-		type: "html",
-		modules: ["html/api"]
-	}, {
-		name: "帮助",
-		path: "help",
-		type: "html",
-		modules: ["html/help"]
-	}, {
-		name: "数据库",
-		path: "db",
-		type: "html",
-		modules: ["db/index"]
-	}, {
 		name: "课程详情",
 		path: "courseDetail",
 		type: "get",

@@ -10,9 +10,35 @@ const app = new Koa();
 // 基础配置
 const config = require('./config');
 const configDemo = require('./config/demo');
+const templating = require('./init/templating');
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+app.use(async (ctx, next) => {
+	console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+	var
+			start = new Date().getTime(),
+			execTime;
+	await next();
+	execTime = new Date().getTime() - start;
+	ctx.response.set('X-Response-Time', `${execTime}ms`);
+});
+
+if (! isProduction) {
+	const staticFiles = require('./init/static');
+	app.use(staticFiles('/static/', __dirname + '/static'));
+}
+
+app.use(koaBodyparser());
 
 // process.env.NODE_ENV = "demo";
 console.log(process.env.NODE_ENV)
+
+app.use(templating('views', {
+    noCache: !isProduction,
+    watch: !isProduction
+}));
+
 if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.context.config = configDemo;
 }else{
@@ -61,9 +87,8 @@ global.ZBG = {
 const router = require('./router/init');
 app.use(userAgent());
 app.use(cors());
-app.use(koaBodyparser());
-app.use(router.routes()).use(router.allowedMethods());
 
+app.use(router.apiRouters()).use(router.allowedMethods());
 if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.listen(3088);
 }else{
