@@ -5,5 +5,8 @@ module.exports = [
 	}, {
 		name: "帮助",
 		path: "help",
+	}, {
+		name: "首页",
+		path: "home",
 	}
 ]

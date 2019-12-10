@@ -8,10 +8,9 @@ const nunjucks = require('nunjucks');
 
 
 function addMapping() {
-	router.get(`/`, async (ctx, next) => {
-		ctx.render(require(`${__dirname}/../views/index.html`), {
-				title: 'Welcome'
-		})});
+	let methods = [];
+	methods.push(require(`${__dirname}/../html/index`));
+	router.get(`/`, compose(methods));
 }
 
 function addHtmlMapping() {
@@ -43,6 +42,7 @@ function addApiMapping() {
 }
 
 module.exports = {
+	api,
 	apiRouters : () => {
 		addMapping();
 		addHtmlMapping();
