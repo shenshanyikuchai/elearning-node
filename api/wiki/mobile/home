@@ -1,0 +1,13 @@
+1.http://apidemo.zbgedu.com/api/business/coursestudy/getExamDate?memberId=67053f29529d11e8a34800163e0f5ece
+
+2.http://apidemo.zbgedu.com/api/article/slide/list?tag=0&valid=true&count=4
+
+3.http://apidemo.zbgedu.com/api/business/learning/learningcourse/v1.0?token=194629fe-3ed6-4614-b75a-affb8155e3af&pageNo=1&pageSize=999
+
+4.http://apidemo.zbgedu.com/api/userAction/study/member/getClass?token=194629fe-3ed6-4614-b75a-affb8155e3af
+
+5.http://apidemo.zbgedu.com/api/teachsource/course/courseBaseInfo/data?idType=0&courseId=952f7f80cb7311e8848a00163e0f507b
+
+
+
+6.http://actiondemo.zbgedu.com/api/userAction/course/getCourseProgress/v1.0/?token=194629fe-3ed6-4614-b75a-affb8155e3af&memberId=67053f29529d11e8a34800163e0f5ece&courseId=ff8080814f607c24014f68797ae11714,557c4c4251e4c8dad1ae619562c76827,ac1fab9311a381f7601b54fb73d13198

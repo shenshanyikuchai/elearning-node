@@ -1,0 +1,50 @@
+测评成绩报告所合并的接口
+
+1.获取用户知识点（或试卷）的答题进度（post）
+
+文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/07ce4236-56ae-4cbb-b11f-abc0feeb6bc4
+
+接口：https://api.zbgedu.com/api/userAction/examen/get_exercise_knowledge_member_status
+
+knowledge_points=0cc46b6d682832cff5c5073651eb8b9e&member_id=8a22ecb553a0b1320153a7251a1e149f&examenNum=0&type=4
+
+is_finish： 试卷是否交卷（0：未交卷，1：交卷）
+
+
+2.获取用户某知识点（或试卷）答题记录
+
+文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/64b7060d-a960-4ba8-a2ea-8e0585f98a16
+接口：http://api.zbgedu.com/api/userAction/examen/get_user_knowledge_point_exercise_list?knowledge_point_id=0cc46b6d682832cff5c5073651eb8b9e&member_id=8a22ecb553a0b1320153a7251a1e149f&examenNum=0
+
+status： 每道题的状态（1：正确，2：错误）
+
+
+3.根据试卷id获取试卷试题基本信息
+
+文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/a0561257-bcf5-4eb1-88c3-f1911e404794
+接口：http://api.zbgedu.com/api/teachsource/examen/getExerciseBaseInfo/data?examenId=0cc46b6d682832cff5c5073651eb8b9e
+
+4.根据题目id列表获取题目相关知识点基本信息（post）（依赖1，2，3）
+
+文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/005ad455-c01d-494c-b7fc-417d39c03baf
+
+接口：http://api.zbgedu.com/api/teachsource/knowledge/getKnowledgePointInfoByExerciseIds
+
+exerciseIds=4e77bac7941f118e77bed974a0a66042,9fa94b95f205301fd389fc9ad1e2644a,b4871168041a166defea5200afdc4490,5e941f374a4e0386f318d1280afb0744,2d175d56fe3f8292c66dc4a10c9c7572,2a0de5efef5a761d07ff739358a7e933
+
+=>
+
+node接口地址：https://action.zbgedu.com/api/userAction/scene/mobileIndex/examReport?memberId=8a22ecb553a0b1320153a7251a1e149f&knowledgePointId=0cc46b6d682832cff5c5073651eb8b9e&examenNum=0
+
+说明：目前只支持一个试卷，需改为支持多个试卷
+
+说明：node知识点掌握情况判断规则
+
+id：知识点id
+title：知识点标题
+index：知识点序号（0，1，2....）（用于知识点已存在时向原有的知识点添加正确，错误数）
+rightNum：试题正确数（当前知识点所涉及的试题正确数）
+errorNum：试题错误数（当前知识点所涉及的试题做错数）
+
+已掌握：试题正确数/（试题正确数+试题做错数）> 0.7 || 试题只有正确数
+未掌握：试题正确数/（试题正确数+试题做错数）< 0.7 || 试题只有做错数

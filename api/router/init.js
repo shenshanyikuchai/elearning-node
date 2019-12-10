@@ -11,6 +11,11 @@ function addMapping() {
 	let methods = [];
 	methods.push(require(`${__dirname}/../html/index`));
 	router.get(`/`, compose(methods));
+	api.forEach( (item, index) => {
+		let methods = [];
+		methods.push(require(`${__dirname}/../html/listContent`));
+		router.get(`/${item.path}`, compose(methods));
+	})
 }
 
 function addHtmlMapping() {

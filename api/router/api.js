@@ -1,10 +1,5 @@
 module.exports = [
-	{
-		name: "数据库",
-		path: "db",
-		type: "html",
-		modules: ["db/index"]
-	},
+	
 	// base
 	{
 		isAddWord: true,
@@ -236,7 +231,12 @@ module.exports = [
 		}
 	}, 
 	
-	
+	{
+		name: "数据库",
+		path: "db",
+		type: "html",
+		modules: ["db/index"]
+	},
 	// bbs
 	{
 		name : "保存帖子",

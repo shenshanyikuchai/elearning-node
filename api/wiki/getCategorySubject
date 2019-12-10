@@ -1,0 +1,17 @@
+学员学习的证书科目包含如下课程：
+
+1、基础网课：已激活未过期的课程
+
+2、直播课：已激活未过期的课程
+
+3、EZ课：已激活未过期的课程
+
+4、优播课：班级已开学未结束的课程
+
+
+
+需要合并如下接口数据：
+
+1、学员在学课程接口：http://api.zbgedu.com/api/business/learning/learningcourse/v1.0?verTT=1550993304706&token=ecae37c4-1e9e-4ab9-a2e8-bd7524ad2308&pageNo=0&pageSize=999
+
+2、学员在学班级接口：http://api.zbgedu.com/api/userAction/study/member/getClass?token=0ccce9ef-8fc5-4fcc-ad87-922061605921

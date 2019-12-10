@@ -1,0 +1,3 @@
+1.http://apidemo.zbgedu.com/api/business/learning/learningcourse/v1.0?token=194629fe-3ed6-4614-b75a-affb8155e3af&pageNo=0&pageSize=999
+
+2.http://actiondemo.zbgedu.com/api/userAction/course/getCourseProgress/v1.0/?token=194629fe-3ed6-4614-b75a-affb8155e3af&memberId=67053f29529d11e8a34800163e0f5ece&courseId=ff8080814f607c24014f68797ae11714,557c4c4251e4c8dad1ae619562c76827,ac1fab9311a381f7601b54fb73d13198

@@ -1,0 +1,11 @@
+1：获取教师班级列表信息
+
+/api/userAction/study/teacher/getClass
+
+2：获取教师直播课列表
+
+/api/teachsource/course/getteacheropencourselist
+
+3：登录日志
+
+/api/zbids/member/getLoginLog

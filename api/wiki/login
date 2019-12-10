@@ -1,0 +1,9 @@
+1.http://apidemo.zbgedu.com/api/zbids/app/gettoken/v1.0/?appType=pc&appId=pcWeb&appKey=e877000be408a6cb0428e0f584456e03
+
+2.http://apiDemo.zbgedu.com/api/zbids/member/login/v1.0（post）
+
+{account: "18612875765"
+
+password: "123456"
+
+token: "76afcee9-ed59-4b96-a43c-7260845869b8"}
