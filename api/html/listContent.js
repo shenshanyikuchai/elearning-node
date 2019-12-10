@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const qs = require('qs');
 
 module.exports = async (ctx, next) => {
-	console.log('listContent', ctx)
 	let currentPath = ctx.path.substr(1);
 	let current = {};
 	for(let i of ZBG.api){
-		console.log(i)
 		if(i.path == currentPath){
 			current = i;
 			break;
@@ -17,17 +16,18 @@ module.exports = async (ctx, next) => {
 	currentPathArray.forEach((item) => {
 		jsonPath += item + "/"
 	})
-	console.log(jsonPath.substr(0, jsonPath.length-1) + ".json")
 	let content = fs.readFileSync(path.join(__dirname, `/../wiki/${jsonPath.substr(0, jsonPath.length-1)}`),'utf-8');
+	// let sendHost = `${ZBG.COMMON.host.action}${ZBG.prefix}${current.path}`;
+	
+	let sendOrigin = `${ZBG.COMMON.host.actionMock}${ZBG.prefix}${current.path}`;
 
-	// await fs.readFileSync(path.join(__dirname, `/../wiki/${currentPath}.json`), 'utf-8', (err, data) => {
-		
-	// 	if (err) {
-	// 		content = '文件读取失败'
-	// 	} else {
-	// 		content = data
-	// 	}
-	// })
-	console.log(content)
-	await ctx.render('index', { list: ZBG.api, current: current, content: content  })
+	let sendParams = qs.stringify(current.queryData);
+	let sendUrl = `${sendOrigin}?${sendParams}`;
+	await ctx.render('index', { sendData: {
+		host: ZBG.COMMON.host.actionMock,
+		prefix: ZBG.prefix,
+		origin: sendOrigin,
+		params: sendParams,
+		url: sendUrl
+	}, list: ZBG.api, current: current, content: content  })
 }

@@ -4,7 +4,6 @@ const compose = require('koa-compose');
 
 const html = require('./html');
 const api = require('./api');
-const nunjucks = require('nunjucks');
 
 
 function addMapping() {
@@ -38,10 +37,8 @@ function addApiMapping() {
 		});
 		if(item.type == "html"){
 			router.get(`/${item.path}`, compose(methods));
-		}else if(item.type == "get"){
-			router.get(`/api/userAction/scene/mobileIndex/${item.path}`, compose(methods));
-		}else if(item.type == "post"){
-			router.post(`/api/userAction/scene/mobileIndex/${item.path}`, compose(methods));
+		}else{
+			router.get(`${ZBG.prefix}${item.path}`, compose(methods));
 		}
 	});
 }

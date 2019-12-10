@@ -83,19 +83,16 @@ if(app.context.config.isDb){
 	app.context.dbs = Monk(app.context.config.dbs);
 }
 
-
 // 初始化路由
 const router = require('./router/init');
 app.use(userAgent());
 app.use(cors());
 
-app.use(router.apiRouters()).use(router.allowedMethods());
-
-console.log('router', router)
 // 初始化返回数据
 app.context.responseData = {};
 global.ZBG = {
 	...app.context.config,
+	prefix: '/api/userAction/scene/mobileIndex/',
 	api: router.api,
 	// platform : platform,
 	callMeTime : 60*60*1000, // 接收时间间隔
@@ -107,7 +104,7 @@ global.ZBG = {
 	Filter : Filter,
 	DB : DB
 };
-
+app.use(router.apiRouters()).use(router.allowedMethods());
 
 if(process.env.NODE_ENV == "demo" || process.env.NODE_ENV == "dev"){
 	app.listen(3088);

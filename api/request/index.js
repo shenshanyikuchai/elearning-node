@@ -121,7 +121,7 @@ function ajax(payload) {
     args.url = payload.url;
     args.type = thatServer.type ? thatServer.type : 'GET';
   }
-
+  console.log('args', args)
   let showUrl = args.url;
   let requestParameter = '';
   if(args.type == "POST"){

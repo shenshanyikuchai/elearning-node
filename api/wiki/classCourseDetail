@@ -1,39 +1,39 @@
 优播课-课程详情所合并的接口
 
-1.根据课程id获取课程的章节以及任务等详细信息（会长）
+1.根据课程id获取课程的章节以及任务等详细信息
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/feefa938-90c6-4081-b6f2-e512b94318a1
 
 接口：http://api.zbgedu.com/api/teachsource/course/courseDetail/data?courseId=b23d4273c672a706276ee50093eb685a
 
-2.获取课程每个任务的学习进度（徐老师）
+2.获取课程每个任务的学习进度
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/f5cedab7-693f-41a1-955e-007d427969e8
 
 接口：http://action.zbgedu.com/api/userAction/course/getTasksProgress/v1.0/?token=659df6b7-ea0a-420e-b81f-f226c19c27e2&memberId=8a22ecb553a0b1320153a7251a1e149f&courseId=b23d4273c672a706276ee50093eb685a
 
-3.获取学员激活课程的考试日期（王璐）
+3.获取学员激活课程的考试日期
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/f9c855be-6e65-444b-bb2e-12ff28758c8f
 
 接口：http://api.zbgedu.com/api/business/coursestudy/getExamDate?memberId=8a22ecb553a0b1320153a7251a1e149f
 
-4.学习计划列表（朱学伟）
+4.学习计划列表
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/fe27bdf4-c1d1-4ceb-9b14-3b217864b243
 
 接口：http://api.zbgedu.com/api/userAction/php/class/getClassPlanDetail?classId=e1699c9662050a66f0d6fd5af3823604&courseId=b23d4273c672a706276ee50093eb685a&planType=1
 
-5.获取课程学习权限（王璐）
+5.获取课程学习权限
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/a44009a1-b0f6-4904-89b7-9242ab5f7e64
 
 接口：http://api.zbgedu.com/api/business/learning/courseactivestatus?token=659df6b7-ea0a-420e-b81f-f226c19c27e2&versionId=b23d4273c672a706276ee50093eb685a&classId=e1699c9662050a66f0d6fd5af3823604
 
-6.根据课程版本id获取课程变更列表（王璐）
+6.根据课程版本id获取课程变更列表
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/a1ab24e1-8f2b-4bcc-a445-845b0387c4ba
 
 接口：http://api.zbgedu.com/api/teachsource/courseAlteration/searchCourseAlterationsByVersionId?versionId=b23d4273c672a706276ee50093eb685a
 
-7.根据班级id获取班级下课表明细（朱学伟）（POST）
+7.根据班级id获取班级下课表明细（POST）
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/a44009a1-b0f6-4904-89b7-9242ab5f7e64
 
 接口：http://api.zbgedu.com/api/userAction/php/course_arrange/get_course_arrange?token=&classId=&pageNo=&pageSize=

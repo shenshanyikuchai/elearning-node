@@ -1,11 +1,9 @@
 module.exports = [
-	
-	// base
 	{
 		isAddWord: true,
 		name: "登录",
 		path: "login",
-		type: "post",
+		type: "get",
 		modules: ["login/getToken", "login/login"],
 		queryData: {
 			type: "pcWeb",
@@ -182,7 +180,7 @@ module.exports = [
 	{
 		name: "教师端登录",
 		path: "teacher/login",
-		type: "post",
+		// type: "post",
 		modules: ["login/getToken", "login/teacherLogin"],
 		queryData: {
 			type: "pcWeb",

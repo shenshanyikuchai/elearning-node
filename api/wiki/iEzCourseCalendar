@@ -1,17 +1,17 @@
-1.根据课程id获取课程的章节以及任务等详细信息（会长）
+1.根据课程id获取课程的章节以及任务等详细信息
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/feefa938-90c6-4081-b6f2-e512b94318a1
 
 接口：http://apidemo.zbgedu.com/api/teachsource/course/courseDetail/data?courseId=e71534832d022584527b871d86403a67
 
 
-2.获取课程每个任务的学习进度（徐老师）
+2.获取课程每个任务的学习进度
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/f5cedab7-693f-41a1-955e-007d427969e8
 接口：
 http://actiondemo.zbgedu.com/api/userAction/course/getTasksProgress/v1.0/?token=57328bfe-9af5-4763-afcf-45fc60255eb3&memberId=c9f32818cb6d11e8a74000163e0d1af8&courseId=e71534832d022584527b871d86403a67
 
-3.学习计划列表（王强）
+3.学习计划列表
 
 文档：http://123.56.110.160:8181/index.do#/f778af98-14ae-4e63-8747-d94c3850cf74/front/interfaceDetail/fe27bdf4-c1d1-4ceb-9b14-3b217864b243
 接口：http://apidemo.zbgedu.com/api/userAction/php/plan/studyPlanList?token=57328bfe-9af5-4763-afcf-45fc60255eb3&courseId=e71534832d022584527b871d86403a67
