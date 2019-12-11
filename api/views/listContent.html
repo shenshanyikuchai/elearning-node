@@ -1,83 +1,135 @@
 {% block listContent %}
 {% if current %}
 <div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title"><span class="glyphicon glyphicon-bookmark"></span> {{current.name}}详情</h3>
-  </div>
-  <div class="panel-body">
-    <form class="form-horizontal">
-      <p class="text-info">请求路径：</p>
-      <div class="form-group">
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputName1"  placeholder={{sendData.host}}>
-        </div>
-        <label for="inputName1" class="col-sm-9">{{sendData.prefix}}{{current.path}}</label>
-      </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="glyphicon glyphicon-bookmark"></span> {{current.name}}详情</h3>
+	</div>
+	<div class="panel-body">
+		<form class="form-horizontal">
+			<p class="text-info">请求路径：</p>
+			<div class="form-group">
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="queryHost" value={{sendData.host}}>
+				</div>
+				<label for="host" class="col-sm-9">{{sendData.prefix}}{{current.path}}</label>
+				<input type="hidden" id="queryPrefix" value={{sendData.prefix}} />
+				<input type="hidden" id="queryPath" value={{current.path}} />
+			</div>
 
-      <p class="text-info">请求类型：</p>
-      <div class="form-group">
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputName2"  placeholder={{current.type}}>
-        </div>
-      </div>
+			<p class="text-info">请求类型：</p>
+			<div class="form-group">
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="queryType" value={{current.type}} disabled>
+				</div>
+			</div>
 
-      <p class="text-info">请求参数：</p>
-      <div class="form-group">
-          <div class="col-sm-12">
-        <table class="table table-bordered">
-          <tbody>
-            {% for key, value in current.queryData %}
-            <tr>
-              <td class="col-sm-3">{{key}}</td>
-              <td class="col-sm-9"><input type="text" class="form-control" id="exampleInput" placeholder={{value}}></td>
-              
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        </div>
-      </div>
+			<p class="text-info">请求参数：</p>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<table class="table table-bordered">
+						<tbody>
+							{% for key, value in current.queryData %}
+							<tr>
+								<td class="col-sm-3">{{key}}</td>
+								<td class="col-sm-9"><input type="text" class="form-control queryParams" id="queryData{{loop.index}}"
+										name={{key}} value={{value}}>
+								</td>
 
-      <p class="text-info">请求说明：</p>
-      <div class="form-group">
-          <div class="col-sm-12">
-        <pre>{{content}}</pre>
-        </div>
-      </div>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-      <div class="form-group">
-        <div class="col-sm-12">
-            <p class="text-info">{{sendData.url}}</p><button type="submit" class="btn btn-default" id="send" data-url={{sendData.url}}>发送请求</button>
-        </div>
-        
-      </div>
 
-      <pre id="sendContent" class="pre-scrollable">
-      
-        </pre>
+			<p class="text-info">example：</p>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<a href={{sendData.url}} id="queryUrl" class="text-info" target="_blank">{{sendData.url}}</a>
+					<br />
+					<button type="button" class="btn btn-default" id="send" data-url={{sendData.url}}>发送请求</button>
+				</div>
 
-    </form>
-    
-    
-  </div>
+			</div>
+
+			<textarea id="sendContent" class="form-control"  style="word-wrap:break-word">
+
+			</textarea>
+			<br />
+			<button type="button" class="btn btn-default" id="addSidbar">请求结果添加到右侧</button>
+
+			<p class="text-info">请求说明：</p>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<pre>{{content}}</pre>
+				</div>
+			</div>
+		</form>
+
+
+	</div>
 </div>
 <script>
-  $(
-   function(){
-    var send = $( "#send" );
-    $( "#send" ).on( "click", function( event ) {
-      var sendUrl = $(this).data('url')
-      $.ajax({
-      url: sendUrl,
-      
-      success: function( result ) {
-        console.log(result)
-        $('#sendContent').html(JSON.stringify(result))
-      }
-    });
-    });
-   } 
-  )
+	$(
+		function () {
+			// sendurl
+			var queryUrl = $("#queryUrl");
+			var sendUrl = "";
+			// query host
+			var queryHost = $("#queryHost");
+			var hostVal = queryHost.val();
+			queryHost.keyup(function (event) {
+				hostVal = event.target.value;
+				getQueryUrl();
+			})
+			var queryPrefixVal = $("#queryPrefix").val();
+			var queryPathVal = $("#queryPath").val();
+			// query type
+			var queryType = $("#queryType").val();
+
+			// query params
+			var queryParams = $('.queryParams');
+			var queryParamsVal = "";
+			getQueryParams();
+			queryParams.keyup(function (event) {
+				getQueryParams();
+				getQueryUrl();
+			})
+
+			function getQueryParams() {
+				queryParamsVal = "";
+				$('.queryParams').each(function (index, domEle) {
+					queryParamsVal += (index ? '&' : '') + $(domEle).attr('name') + "=" + $(domEle).val()
+				})
+			}
+
+			function getQueryUrl() {
+				sendUrl = hostVal + queryPrefixVal + queryPathVal + "?" + queryParamsVal;
+				queryUrl.html(sendUrl)
+			}
+			getQueryUrl();
+			// 发送请求
+			var send = $("#send");
+			var sendResult = "";
+			$("#send").on("click", function (event) {
+				$.ajax({
+					url: sendUrl,
+					type: queryType,
+					success: function (result) {
+						console.log(result)
+						sendResult = JSON.stringify(result);
+						$('#sendContent').html(JSON.stringify(result))
+					}
+				});
+			});
+
+			$('#addSidbar').on("click", function (event) {
+				localStorage.setItem(queryPathVal, sendResult)
+				setListRight();
+			})
+		}
+	)
 </script>
 {% else %}
 hello

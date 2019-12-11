@@ -1,0 +1,62 @@
+<div id="listRight">
+
+</div>
+
+
+<script>
+  $(function(){
+    var listRight = $("#listRight");
+    function getListRightItem (str){
+      try{
+        var strJson = JSON.parse(localStorage[str])
+        console.log(strJson)
+        
+        // <form class="form-horizontal">
+        //   <div class="form-group">
+        //     <label class="col-sm-2 control-label">Email</label>
+        //     <div class="col-sm-10">
+        //       <p class="form-control-static">email@example.com</p>
+        //     </div>
+        //   </div>
+        //   <div class="form-group">
+        //     <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+        //     <div class="col-sm-10">
+        //       <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        //     </div>
+        //   </div>
+        // </form>
+      }catch(e){
+        console.log(e)
+      }
+    }
+    window.setListRight = function(){
+      var listRightDom = "";
+      for (var i=0;i<localStorage.length;i++) {
+        var key = localStorage.key(i);
+        getListRightItem(key);
+        listRightDom += '<div class="panel panel-default" >'
+        listRightDom += '<button type="button" class="close" aria-label="Close" key='+key+' style="position: absolute;top: 10px;right: 20px;"><span aria-hidden="true">&times;</span></button>'
+        listRightDom += '<div class="panel-heading">'+key+'</div>'
+        listRightDom += '<div class="panel-body" style="word-wrap:break-word">'
+        // listRightDom += '<p class="text-info">'
+        listRightDom += localStorage[key]
+        // listRightDom += '</p>'
+        listRightDom += '</div>'
+        listRightDom += '</div>'
+      }
+      listRight.html(listRightDom)
+    }
+    
+    setListRight();
+
+    $('.close').on('click', function(event){
+      var key = $(this).attr('key');
+      console.log(key)
+      localStorage.removeItem(key);
+      setListRight();
+    })
+
+  })
+  
+
+</script>
