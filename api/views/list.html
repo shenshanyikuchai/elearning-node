@@ -3,9 +3,9 @@
     {% for item in list %}
       {% if item.isAddWord %}
         {% if item.path == current.path %}
-          <a href="/{{ item.path }}" class="list-group-item list-group-item-info">{{item.name}}</a>
+          <a href="/elearning/{{ item.path }}" class="list-group-item list-group-item-info">{{item.name}}</a>
         {% else %}
-          <a href="/{{ item.path }}" class="list-group-item">{{item.name}}</a>
+          <a href="/elearning/{{ item.path }}" class="list-group-item">{{item.name}}</a>
         {% endif %}
       
       {% else %}

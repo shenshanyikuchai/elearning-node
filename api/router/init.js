@@ -9,11 +9,11 @@ const api = require('./api');
 function addMapping() {
 	let methods = [];
 	methods.push(require(`${__dirname}/../html/index`));
-	router.get(`/`, compose(methods));
+	router.get(`/elearning/`, compose(methods));
 	api.forEach( (item, index) => {
 		let methods = [];
 		methods.push(require(`${__dirname}/../html/listContent`));
-		router.get(`/${item.path}`, compose(methods));
+		router.get(`/elearning/${item.path}`, compose(methods));
 	})
 }
 
@@ -21,7 +21,7 @@ function addHtmlMapping() {
 	html.forEach( (item, index) => {
 		let methods = [];
 		methods.push(require(`${__dirname}/../html/${item.path}`));
-		router.get(`/${item.path}`, compose(methods));
+		router.get(`/elearning/${item.path}`, compose(methods));
 	});
 }
 

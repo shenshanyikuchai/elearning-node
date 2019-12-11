@@ -6,7 +6,8 @@ module.exports = async (ctx, next) => {
 	let currentPath = ctx.path.substr(1);
 	let current = {};
 	for(let i of ZBG.api){
-		if(i.path == currentPath){
+		console.log(i.path,currentPath)
+		if( ("elearning/"+i.path) == currentPath){
 			current = i;
 			break;
 		}
