@@ -65,6 +65,7 @@ module.exports = {
   filterFail : function(fail){
     let responseData = {};
     let requestFail = [];
+    console.log('fail', fail)
     for(let thisFail of fail){
       
       if (thisFail.state == "error") {

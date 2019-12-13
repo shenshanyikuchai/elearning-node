@@ -10,7 +10,7 @@ module.exports = [
 		state : "nologin"
 	},{
 		code : "444",
-		msg : "服务器错误",
+		msg : "nologin",
 		state : "error"
 	},{
 		code : "555",

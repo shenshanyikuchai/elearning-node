@@ -37,8 +37,10 @@ function addApiMapping() {
 		});
 		if(item.type == "html"){
 			router.get(`/${item.path}`, compose(methods));
-		}else{
+		}else if(item.type == "get"){
 			router.get(`${ZBG.prefix}${item.path}`, compose(methods));
+		}else if(item.type == "post"){
+			router.post(`${ZBG.prefix}${item.path}`, compose(methods));
 		}
 	});
 }
