@@ -6,8 +6,8 @@ module.exports = async (ctx) => {
 		ctxState: ctx.state,
 		data: {
 			token: ctx.state.token,
-			account: ctx.request.body.username,
-			password: ctx.request.body.password
+			account: ctx.query.username,
+			password: ctx.query.password
 		}
 	}).then((res) => {
 		if (res.state == "success") {
