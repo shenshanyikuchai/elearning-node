@@ -26,8 +26,6 @@ axios.interceptors.response.use(async (res) => {
       let parseData = JSON.parse(res.data);
       if (parseData && parseData.state == 'success') {
         return Promise.resolve(parseData);
-      }else{
-        return Promise.reject(res.data);
       }
     } catch (error) {
       if(res.config.url == "http://api.zbgedu.com/api/teachsource/course/courseDetail/data"){
@@ -46,13 +44,8 @@ axios.interceptors.response.use(async (res) => {
     }
     
   }else{
-    if (res && res.data) {
-      if(res.data.state == 'success'){
-        return Promise.resolve(res.data);
-      }else{
-        return Promise.reject(res.data);
-      }
-      
+    if (res && res.data && res.data.state == 'success') {
+      return Promise.resolve(res.data);
     }
   }
   
@@ -128,7 +121,7 @@ function ajax(payload) {
     args.url = payload.url;
     args.type = thatServer.type ? thatServer.type : 'GET';
   }
-  console.log('args', args)
+
   let showUrl = args.url;
   let requestParameter = '';
   if(args.type == "POST"){
@@ -168,7 +161,6 @@ function ajax(payload) {
 }
 
 function done(args, payload, res) {
-  // console.log('done', args, payload, res)
   if (res.state == "success") {
     return res;
     if (payload.server == "messageListNoRead") {
@@ -185,7 +177,6 @@ function done(args, payload, res) {
       }
       path = args.url + '?' + path.substr(1)
     }
-    
     err.request = {
       path: path,
       url: args.url,
@@ -203,7 +194,6 @@ function done(args, payload, res) {
 }
 
 function fail(args, payload, err) {
-  // console.log('fail',args, payload, err)
   let errType = typeof err;
   let path = '';
   if (args.type == "GET") {

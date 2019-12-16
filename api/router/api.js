@@ -1,9 +1,10 @@
 module.exports = [
+	// base
 	{
 		isAddWord: true,
 		name: "登录",
 		path: "login",
-		type: "get",
+		type: "post",
 		modules: ["login/getToken", "login/login"],
 		queryData: {
 			type: "pcWeb",
@@ -180,7 +181,7 @@ module.exports = [
 	{
 		name: "教师端登录",
 		path: "teacher/login",
-		// type: "post",
+		type: "post",
 		modules: ["login/getToken", "login/teacherLogin"],
 		queryData: {
 			type: "pcWeb",
@@ -229,12 +230,7 @@ module.exports = [
 		}
 	}, 
 	
-	{
-		name: "数据库",
-		path: "db",
-		type: "html",
-		modules: ["db/index"]
-	},
+	
 	// bbs
 	{
 		name : "保存帖子",
@@ -376,6 +372,21 @@ module.exports = [
 		}
 	}, 
 	{
+		name: "接口文档",
+		path: "api",
+		type: "html",
+		modules: ["html/api"]
+	}, {
+		name: "帮助",
+		path: "help",
+		type: "html",
+		modules: ["html/help"]
+	}, {
+		name: "数据库",
+		path: "db",
+		type: "html",
+		modules: ["db/index"]
+	}, {
 		name: "课程详情",
 		path: "courseDetail",
 		type: "get",
